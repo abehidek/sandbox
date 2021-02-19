@@ -13,7 +13,7 @@ it's really simple, you only need to download the repository and run index.html 
 
 ## License
 
-MIT © [Knowlead](https://github.com/knowlead)
+MIT ©
 
 
 
