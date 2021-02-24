@@ -11,6 +11,11 @@ app.use(router);
 
 app.listen(3333, ()=> console.log('Server is Running!'));
 
+
+
+
+
+
 /*
  * GET => BUSCAR INFORMAÇÃO
  * POST => SALVAR
@@ -24,11 +29,11 @@ app.listen(3333, ()=> console.log('Server is Running!'));
 //     return response.send("HW NLW04");
 // });
 
-app.get("/", (request,response)=>{
-    return response.json({ message: "HW Next Level Week 04" });
-});
+// app.get("/", (request,response)=>{
+//     return response.json({ message: "HW Next Level Week 04" });
+// });
 
-app.post("/", (request, response)=>{
-    // Recebeu os dados para salvar
-    return response.json({ message: "Os dados foram salvos com sucesso!, será?" });
-});
+// app.post("/", (request, response)=>{
+//     // Recebeu os dados para salvar
+//     return response.json({ message: "Os dados foram salvos com sucesso!, será?" });
+// });
