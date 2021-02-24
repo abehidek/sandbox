@@ -1,11 +1,13 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
-import { User } from '../models/User';
+import { getCustomRepository } from 'typeorm';
+import { UsersRepository } from '../repositories/UsersRepository';
+// SHIFT ALT O organiza os imports
+// CONTROLA AS POSSÍVEIS ROTAS DE CONEXÃO ENTRE O FRONT E BANCO DE DADOS
 
 class UserController {
     async create(request: Request, response: Response) {
         const { name, email } = request.body;
-        const usersRepository = getRepository(User);
+        const usersRepository = getCustomRepository(UsersRepository);
 
         const userAlreadyExist = await usersRepository.findOne({
             email
