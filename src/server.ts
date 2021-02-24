@@ -1,4 +1,8 @@
+import 'reflect-metadata';
 import express, { request, response } from 'express';
+import "./database";
+
+
 const app = express();
 
 /*
@@ -15,12 +19,12 @@ app.get("/route1", (request, response)=> {
 });
 
 app.get("/", (request,response)=>{
-    return response.json({ message: "HW NLW04" });
+    return response.json({ message: "HW Next Level Week 04" });
 });
 
 app.post("/", (request, response)=>{
     // Recebeu os dados para salvar
-    return response.json({ message: "Os dados foram salvos com sucesso!" });
+    return response.json({ message: "Os dados foram salvos com sucesso!, será?" });
 });
 
 app.listen(3333, ()=> console.log('Server is Running!'));
