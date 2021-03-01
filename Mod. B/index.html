@@ -17,8 +17,58 @@
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, asperiores accusantium soluta fugiat debitis repudiandae.</p>
     <script>
 
+        /* ORDEM DE PRECEDÊNCIA DOS OPERADORES 
+            |
+            |   - Operadores Aritméticos
+            |       ()  (Parenteses)
+            |       **  (Potência)
+            |       * / % (Multiplicação, Divisão e Resto da Divisão Inteira)
+            |       + - (Adição e Subtração)
+            |
+            |   - Operadores Relacionais (não tem ordem de precedência, quem aparecer primeiro vai ser feito primeiro)
+            |
+            |   - Operadoes Lógicos
+            |       !
+            |       &&
+            |       ||
+            |
+            |   - Operadores Ternários 
+            V
+        
+        */
+        /* OPERADOR TERNÁRIO
+            teste lógico ? se for true : se for false
+        */
+        /* OPERADORES LÓGICOS
 
+            ! -> negação ("não")
+            && -> conjunção ("e")
+            || -> disjunção ("ou")
 
+            Ordem de precedência dos operadores lógicos
+            |   negação
+            |   conjunção
+            v   disjunção
+        */
+        /* OPERADORES RELACIONAIS 
+            5  > 2 -> true
+            7  < 4 -> false
+            8 >= 8 -> true
+            9 <= 7 -> false
+            5 == 5 -> true
+            4 != 4 -> false
+
+            == igualdade
+            5 == '5' -> true
+            === igualdade restrita
+            5 === '5' -> false
+
+            != desigualdade
+            5 != '5' -> false
+
+            !== desigualdade restrita
+            t !== '5' -> true
+        */
         /* OPERADORES ARITMÉTICOS
             5 + 2 = 7 (ADIÇÃO)
             5 - 2 = 3 (SUBTRAÇÃO)
