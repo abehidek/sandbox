@@ -29,11 +29,11 @@
 - [Insomnia](https://insomnia.rest/)
 - [SQL Editor Beekeeper Studio](https://www.beekeeperstudio.io/)
 
-## 💻 Project
+## 💻 About the project
 
 This project is an application that consist in calculating the NPS (Net Promoter Score), We can register users and surveys, send emails for the users to take theses surveys and with that calculate the NPS.
 
-This was developed in NLW#4 (Next Level Week Edition 4) from Rocketseat, in node.js trail here is the <strong>General contents of all class of NLW#04:</strong>
+This was developed in NLW#4 (Next Level Week Edition 4) from Rocketseat, in node.js trail. Here is the <strong>General contents of all class of NLW#04:</strong>
 
 <details><summary><b>Day 1</b></summary>
 
