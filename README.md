@@ -45,4 +45,6 @@ This was developed in NLW#4 (Next Level Week Edition 4) from Rocketseat, in node
 
 The application can be accessed in [`localhost:3333`](http://localhost:3333).
 
+---
+
 Made by Guilherme H. Abe and Rocketseat
