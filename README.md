@@ -9,8 +9,6 @@
 </p>
 
 <p align="center">
-  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=8257E5&labelColor=000000">
-
  <img src="https://img.shields.io/static/v1?label=NLW&message=04&color=8257E5&labelColor=000000" alt="NLW 04" />
 </p>
 
@@ -30,8 +28,6 @@
 - [SQL Editor Beekeeper Studio](https://www.beekeeperstudio.io/)
 
 ## 💻 Project
-
-O NPS-NLW é uma aplicação que consiste em calcular o NPS da empresa. Nele fazemos o cadastro de usuários, cadastro de pesquisas, envio de e-mail para os usuários responderem as pesquisas de satisfação e com isso podemos realizar o cálculo do NPS.
 
 This project is an application that consist in calculating the NPS (Net Promoter Score), We can register users and surveys, send emails for the users to take theses surveys and with that calculate the NPS.
 
