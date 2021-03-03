@@ -17,7 +17,7 @@
   <img alt="Happy" src=".github/preview.png" width="100%">
 </p>
 
-## 🔧 Tools and tecnologies
+## 🔧 Main tools and tecnologies used in the project
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [Ethereal-Email](https://ethereal.email/)
@@ -33,7 +33,52 @@
 
 This project is an application that consist in calculating the NPS (Net Promoter Score), We can register users and surveys, send emails for the users to take theses surveys and with that calculate the NPS.
 
-This was developed in NLW#4 (Next Level Week Edition 4) from Rocketseat, in node.js trail
+This was developed in NLW#4 (Next Level Week Edition 4) from Rocketseat, in node.js trail here is the <strong>General contents of all class of NLW#04:</strong>
+
+<details><summary><b>Day 1</b></summary>
+
+- What is an API
+- Introduction to Node.js
+- Advantages of typescript
+- Initial Code
+
+</details>
+
+<details><summary><b>Day 2</b></summary>
+
+- Database configuration (SQLite)
+- Initial Migrations and Models configurations
+- First table (user)
+- Introduction to business rules
+- Creation of UserController.ts
+- First endpoint
+
+</details>
+
+<details><summary><b>Day 3</b></summary>
+
+- Introduction to repositories
+- Basic concepts of automated tests
+
+</details>
+
+<details><summary><b>Day 4</b></summary>
+
+- Sending emails through Nodemailer
+- E-mail templates with Handlebars 
+- Handling enviroment variables
+
+</details>
+
+<details><summary><b>Day 5</b></summary>
+
+- Minor corrections and code refactoring
+- Validations with yup.js
+- Custom Exceptions 
+- Middleware introduction 
+
+</details>
+
 
 ## 🔶 Diagram
 
