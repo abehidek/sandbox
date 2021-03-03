@@ -16,7 +16,6 @@ describe("User", () => {
             email: "user@example.com",
             name: "User Example"
         })
-
         expect(response.status).toBe(201)
     })
 
@@ -26,7 +25,6 @@ describe("User", () => {
             email: "user@example.com",
             name: "User Example"
         })
-
         expect(response.status).toBe(400)
     })
 })

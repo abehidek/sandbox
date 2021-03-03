@@ -3,7 +3,7 @@ import {resolve} from 'path'
 import handleBars from 'handlebars'
 import fs from 'fs'
 
-class SendMailService{
+class SendMailService {
     
     private client: Transporter
 
@@ -22,7 +22,8 @@ class SendMailService{
         })
     }
 
-    async execute(to: string, subject: string, variables: object, path: string) {
+    async execute(to: string, subject: string, variables: object, path: string) 
+    {
         const templateFileContent = fs.readFileSync(path).toString("utf-8")
 
         const mailTemplateParse = handleBars.compile(templateFileContent)

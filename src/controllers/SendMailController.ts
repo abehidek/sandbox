@@ -1,6 +1,5 @@
 import { Request, Response } from "express"
 import { getCustomRepository } from "typeorm";
-
 import { resolve } from 'path'
 
 import { SurveysRepository } from "../repositories/SurveysRepository";
@@ -9,17 +8,15 @@ import { UsersRepository } from "../repositories/UsersRepository";
 
 import SendMailService from "../services/SendMailService";
 
-
-
 class SendMailController {
-    async execute(request: Request, response: Response) {
+    async execute(request: Request, response: Response) 
+    {
         const { email, survey_id } = request.body;
 
         const usersRepository = getCustomRepository(UsersRepository);
         const surveysRepository = getCustomRepository(SurveysRepository);
         const surveysUsersRepository = getCustomRepository(SurveysUsersRepository)
         
-
         const user = await usersRepository.findOne({email})
 
         if (!user) {

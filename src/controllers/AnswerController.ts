@@ -1,5 +1,4 @@
 import { Request, Response } from "express"
-
 import { getCustomRepository } from "typeorm"
 import { SurveysUsersRepository } from "../repositories/SurveysUsersRepository"
 
@@ -19,16 +18,14 @@ class AnswerController
         const surveyUser = await surveysUsersRepository.findOne({
             id: String(u)
         })
-        if (!surveyUser)
-        {
+        if (!surveyUser) {
             return response.status(400).json({
                 error: "Survey User does not exist"
             })
         }
         surveyUser.value = Number(value)
-
         await surveysUsersRepository.save(surveyUser)
-        
+
         return response.json(surveyUser)
     }
 }

@@ -5,7 +5,8 @@ import { UsersRepository } from '../repositories/UsersRepository';
 // CONTROLA AS POSSÍVEIS ROTAS DE CONEXÃO ENTRE O FRONT E BANCO DE DADOS
 
 class UserController {
-    async create(request: Request, response: Response) {
+    async create(request: Request, response: Response) 
+    {
         const { name, email } = request.body;
         const usersRepository = getCustomRepository(UsersRepository);
 
