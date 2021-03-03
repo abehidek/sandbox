@@ -27,7 +27,8 @@
 - [Nodemailer](https://nodemailer.com)
 - [Handlebars](https://handlebarsjs.com/)
 - [Insomnia](https://insomnia.rest/)
-- [SQL Editor Beekeeper Studio](https://www.beekeeperstudio.io/)
+- [Beekeeper](https://www.beekeeperstudio.io/)
+- [SQLite](https://www.sqlite.org/index.html)
 
 ## 💻 About the project
 
