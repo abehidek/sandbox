@@ -9,8 +9,8 @@
 
 <p align="center">
  <img src="https://img.shields.io/static/v1?label=NLW&message=04&color=8257E5&labelColor=000000" alt="NLW 04" />
-  <br>
-  <a href="https://github.com/rocketseat-education/nlw-04-nodejs">Original Repository</a>
+  <br><br>
+  <a href="https://github.com/rocketseat-education/nlw-04-nodejs">Go to Original Repository</a>
 </p>
 <br>
 <p align="center">
@@ -44,7 +44,3 @@ This was developed in NLW#4 (Next Level Week Edition 4) from Rocketseat, in node
 - Start server with `$ yarn dev` or `$ npm run dev`
 
 The application can be accessed in [`localhost:3333`](http://localhost:3333).
-
----
-
-Made by Abe and Rocketseat
