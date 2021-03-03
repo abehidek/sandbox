@@ -17,13 +17,17 @@
   <img alt="Happy" src=".github/preview.png" width="100%">
 </p>
 
-## ✨ Tecnologies
+## 🔧 Tools and tecnologies
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [Ethereal-Email](https://ethereal.email/)
 - [TypeORM](https://typeorm.io/#/)
 - [Express](https://expressjs.com/pt-br/)
 - [Jest](https://jestjs.io/)
+- [Nodemailer](https://nodemailer.com)
+- [Handlebars](https://handlebarsjs.com/)
+
+- [Insomnia]
 - [SQL Editor Beekeeper Studio](https://www.beekeeperstudio.io/)
 
 ## 💻 Project
