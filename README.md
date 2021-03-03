@@ -26,8 +26,7 @@
 - [Jest](https://jestjs.io/)
 - [Nodemailer](https://nodemailer.com)
 - [Handlebars](https://handlebarsjs.com/)
-
-- [Insomnia]
+- [Insomnia](https://insomnia.rest/)
 - [SQL Editor Beekeeper Studio](https://www.beekeeperstudio.io/)
 
 ## 💻 Project
