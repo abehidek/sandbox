@@ -7,7 +7,7 @@ import { SurveysUsersRepository } from "../repositories/SurveysUsersRepository";
 import { UsersRepository } from "../repositories/UsersRepository";
 
 import SendMailService from "../services/SendMailService";
-import { AppError } from "../../errors/AppError";
+import { AppError } from "../errors/AppError";
 
 class SendMailController {
     async execute(request: Request, response: Response) 
@@ -19,11 +19,13 @@ class SendMailController {
         const surveysUsersRepository = getCustomRepository(SurveysUsersRepository)
         
         const user = await usersRepository.findOne({email})
+
         if (!user) {
             throw new AppError("User do not exist")
         }
 
         const survey = await surveysRepository.findOne({id: survey_id})
+        
         if (!survey) {
             throw new AppError("Survey do not exist")
         }
@@ -33,9 +35,11 @@ class SendMailController {
         // VERIFICA SE NÃO HÁ REGISTRO DE PESQUISA PARA AQUELE USUÁRIO
         const surveyUserAlreadyExists = await surveysUsersRepository.findOne({
             // where: [{user_id: user.id}, {value: null}], OR, DISJUNÇÃO
-            where: {user_id: user.id, value: null}, // AND, CONJUNÇÃO
+            where: { user_id: user.id, value: null }, // AND, CONJUNÇÃO
             relations: ["user","survey"],
         })
+        
+        
 
         const variables = {
             name: user.name,

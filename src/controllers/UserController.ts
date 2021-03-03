@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
 import { UsersRepository } from '../repositories/UsersRepository';
 import * as yup from 'yup'
-import { AppError } from '../../errors/AppError';
+import { AppError } from '../errors/AppError';
 // SHIFT ALT O organiza os imports
 // CONTROLA AS POSSÍVEIS ROTAS DE CONEXÃO ENTRE O FRONT E BANCO DE DADOS
 
