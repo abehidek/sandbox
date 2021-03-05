@@ -31,23 +31,23 @@ function ()
 );
 
 function validar(){
-var nome = form1.nome.value;
-var email = form1.email.value;
-var comentario = form1.comentario.value;
+    var nome = form1.nome.value;
+    var email = form1.email.value;
+    var comentario = form1.comentario.value;
 
-if (nome ==""){
-    alert('Por favor preencha o campo do seu nome');
-    form1.nome.focus();
-    return false;
-}
-if (email ==""){
-    alert('Por favor preencha o campo do seu email');
-    form1.email.focus();
-    return false;
-}
-if (comentario=="") {
-    alert('Por favor deixe seu comentario :)');
-    form1.comentario.focus();
-    return false;     
-}
+    if (nome ==""){
+        alert('Por favor preencha o campo do seu nome');
+        form1.nome.focus();
+        return false;
+    }
+    if (email ==""){
+        alert('Por favor preencha o campo do seu email');
+        form1.email.focus();
+        return false;
+    }
+    if (comentario=="") {
+        alert('Por favor deixe seu comentario :)');
+        form1.comentario.focus();
+        return false;     
+    }
 }
