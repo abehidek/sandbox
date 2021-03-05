@@ -13,7 +13,7 @@ it's really simple, you only need to download the repository and run index.html 
 
 ## License
 
-MIT ©
+This project is under MIT license, check license file for more details
 
 
 
