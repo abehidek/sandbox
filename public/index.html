@@ -12,35 +12,45 @@
     
 LOGO
 
-BIO / DESCRIPTION
+X BIO / DESCRIPTION
 
 RECOMENDATION
 SOCIAL MEDIA
 -->
 
 <body>
-    <div class="h-screen grid grid-rows-2 text-white"> <!-- MAIN -->
-        <div class="bg-gray-900 p-12">
-            
+    <div class="h-screen grid grid-rows-3 text-white"> <!-- MAIN -->
+        <div class="bg-gray-900 p-12 flex justify-center items-center">
+            <div class="w-40 sm:w-80">
+                <img src="../assets/logo.transp.png" alt="Logo" srcset="">
+            </div>
         </div>
-        <div class="bg-black p-12 flex items-end justify-center md:justify-start">
-            <p class="text-4xl sm:text-5xl md:text-7xl text-white">Hey</p>
-        </div>
-    </div>
-
-    <div class="bg-gray-100 grid grid-cols-1"> <!-- CONTENT 1 -->
-        <div class="bg-gray-400 p-16">                                 <!-- CONTENT 2 -->
-            <div class="w-full h-full justify-center md:justify-start">
-                <p class="font-bold text-4xl md:text-5xl">About me:</p>
-                <p class="max-w-xl md:max-w-3xl text-2xl md:text-3xl mt-5">
-                18 years old, born in Brazil, lived in Japan for 5 years, generalist developer, currently studying english and japanese.
-                </p>
+        <div class="bg-black p-5 sm:p-10 lg:pl-32 xl:pl-48 lg:pt-24 xl:pt-36 justify-center md:justify-start break-words row-span-2">
+            <div class="max-w-6xl overflow-clip">
+                <h1 class="text-xl sm:text-5xl xl:text-7xl font-bold lg:mb-16">Hey there</h1>
+                <p class="text-md sm:text-3xl mt-2 sm:mt-5">Tecnology enthusiast, student and software developer, born in Brazil.</p>
+                <p class="text-md sm:text-3xl mt-2 sm:mt-5">Constantly searching something new to do, I enjoy consuming content, video games and browsing the internet, interested and fascinated by history, physics and math and other fields of knowledge.</p>
+                <p class="text-md sm:text-3xl sm:mt-5">My projects can be found on my GitHub and you can follow me on twitter.</p>
             </div>
         </div>
     </div>
 
-    <div class="h-28 bg-gradient-to-r from-gray-600 via-gray-900 to-black flex justify-center items-center"> <!-- FOOTER -->
-        <p class="text-white">Site developed by Guilherme Hidek Abe</p>
+    <div class="h-screen  bg-gray-800 p-16 text-white"> 
+  
+            <div class="flex justify-center"><p class="text-md sm:text-3xl mb-3 sm:mb-10">Livestream</p></div>
+            <div class="flex justify-center" id="twitch-embed"></div>
+        
+        <script src="https://embed.twitch.tv/embed/v1.js"></script>
+        <script type="text/javascript">
+            new Twitch.Embed("twitch-embed", {
+                width: 940,
+                height: 480,
+                channel: "thathtk",
+                allowfullscreen: true,
+                // only needed if your site is also embedded on embed.example.com and othersite.example.com 
+                parent: ["embed.example.com", "othersite.example.com"]
+            });
+        </script>
     </div>
 </body>
 </html>
