@@ -4,51 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidek Abe</title>
+    <title>Guilherme Hidek Abe</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
-
-<!--
-    
-LOGO
-
-X BIO / DESCRIPTION
-
-RECOMENDATION
-SOCIAL MEDIA
--->
-
 <body>
-    <div class="h-screen grid grid-rows-3 text-white"> <!-- MAIN -->
-        <div class="bg-gray-900 p-12 flex justify-center items-center">
-            <div class="w-40 sm:w-80">
-                <img src="../assets/logo.transp.png" alt="Logo" srcset="">
-            </div>
-        </div>
-        <div class="bg-black p-5 sm:p-10 lg:pl-32 xl:pl-48 lg:pt-24 xl:pt-36 justify-center md:justify-start break-words row-span-2">
-            <div class="max-w-6xl overflow-clip">
-                <h1 class="text-xl sm:text-5xl xl:text-7xl font-bold lg:mb-16">Hey there</h1>
-                <p class="text-md sm:text-3xl mt-2 sm:mt-5">Tecnology enthusiast, student and software developer, born in Brazil.</p>
-                <p class="text-md sm:text-3xl mt-2 sm:mt-5">Constantly searching something new to do, I enjoy consuming content, video games and browsing the internet, interested and fascinated by history, physics and math and other fields of knowledge.</p>
-                <p class="text-md sm:text-3xl sm:mt-5">My projects can be found on my GitHub and you can follow me on twitter.</p>
-            </div>
+    <div class="main">
+    <div class="sub"> 
+        <h1 class="bio-title">About me:</h1>
+        <p class="bio-text">Tecnology enthusiast, student and software developer, born in Brazil.</p>
+        <p class="bio-text">Constantly searching something new to do, I enjoy consuming content, video games and browsing the internet, fascinated by history, physics, math and other fields of knowledge.</p>
+        <p class="bio-text">I understand both portuguese and english, currently learning japanese.</p>
+        <p class="bio-text">My projects can be found on my 
+            <a class="text-links" href="https://github.com/abehidek" target="_blank">GitHub</a> 
+            and you can follow me on 
+            <a class="text-links" href="https://twitter.com/guilhermehabe" target="_blank">twitter</a>.
+        </p>
+        <div class="social-menu">
+            <ul class="flex justify-center xl:justify-start">
+                <li class="social-icon"><a href="https://twitter.com/guilhermehabe" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                <li class="social-icon"><a href="https://www.linkedin.com/in/guilhermehabe" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                <li class="social-icon"><a href="https://www.instagram.com/guilhermehabe/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                <li class="social-icon"><a href="https://www.twitch.tv/realhtk" target="_blank"><i class="fa fa-twitch"></i></a></li>
+                <li class="social-icon"><a href="https://github.com/abehidek" target="_blank"><i class="fa fa-github"></i></a></li>
+            </ul>
         </div>
     </div>
+    </div>
 
-    <div class="h-screen  bg-gray-800 p-16 text-white"> 
+    <div class="main2"> 
   
-            <div class="flex justify-center"><p class="text-md sm:text-3xl mb-3 sm:mb-10">Livestream</p></div>
-            <div class="flex justify-center" id="twitch-embed"></div>
+        <div class="flex justify-center lg:justify-start pt-8">
+            <p class="text-md sm:text-3xl mb-3 sm:mb-10 font-bold">Watch me:</p>
+        </div>
+        <div class="flex justify-center lg:justify-start" id="twitch-embed"></div>
         
         <script src="https://embed.twitch.tv/embed/v1.js"></script>
         <script type="text/javascript">
             new Twitch.Embed("twitch-embed", {
-                width: 940,
-                height: 480,
-                channel: "thathtk",
+                width: 1280,
+                height: 530,
+                channel: "realhtk",
                 allowfullscreen: true,
-                // only needed if your site is also embedded on embed.example.com and othersite.example.com 
-                parent: ["embed.example.com", "othersite.example.com"]
             });
         </script>
     </div>
