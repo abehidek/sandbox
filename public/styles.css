@@ -522,9 +522,10 @@ video {
 }
 
 .bio-title {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 2.25rem;
   line-height: 2.5rem;
+  margin-bottom: 2rem;
   --tw-text-opacity: 1;
   color: rgba(124, 31, 224, var(--tw-text-opacity));
 }
@@ -553,7 +554,7 @@ video {
   font-weight: 300;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  margin-top: 0.5rem;
+  margin-top: 1.25rem;
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
@@ -562,7 +563,6 @@ video {
   .bio-text {
     font-size: 1.875rem;
     line-height: 2.25rem;
-    margin-top: 1.25rem;
   }
 }
 
@@ -577,15 +577,10 @@ body {
 
 .sub {
   max-width: 80rem;
-  padding: 2.5rem;
-}
-
-@media (min-width: 640px) {
-  .sub {
-    padding-left: 3rem;
-    padding-right: 3rem;
-    padding-top: 5rem;
-  }
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 @media (min-width: 1024px) {
@@ -663,20 +658,31 @@ body {
   }
 
   .social-menu ul li .fa{
-    font-size: 25px;
+    font-size: 20px;
   }
 }
 
-@media (min-width: 350px){
+@media (min-width: 350px) {
+  .social-menu ul li .fa{
+    font-size: 25px;
+  }
+
   .social-icon {
     margin-left: 0px;
-    margin-right: 2.5rem;
+    margin-right: 1.75rem;
   }
 }
 
 @media (min-width: 640px) {
   .social-menu ul li .fa{
     font-size: 40px;
+  }
+}
+
+@media (min-width: 450px){
+  .social-icon {
+    margin-left: 0px;
+    margin-right: 2.5rem;
   }
 }
 
@@ -703,7 +709,7 @@ body {
 
 /* MAKES HEIGHT THE SIZE OF THE SCREEN WHEN WIDTH > 310*/
 
-@media (min-height:700px) and (min-width:400px) {
+@media (min-height:700px) and (min-width:740px) {
   .main {
     height: 100vh;
   }
@@ -715,14 +721,13 @@ body {
   .bio-text {
     font-size: 1rem;
     line-height: 1.5rem;
-    margin-top: 0.5rem;
+    margin-top: 1.25rem;
   }
 
   @media (min-width: 640px) {
     .bio-text {
       font-size: 1.875rem;
       line-height: 2.25rem;
-      margin-top: 1.25rem;
     }
   }
 }
@@ -731,14 +736,13 @@ body {
   .bio-text {
     font-size: 1.25rem;
     line-height: 1.75rem;
-    margin-top: 0.5rem;
+    margin-top: 1.25rem;
   }
 
   @media (min-width: 640px) {
     .bio-text {
       font-size: 1.875rem;
       line-height: 2.25rem;
-      margin-top: 1.25rem;
     }
   }
 }

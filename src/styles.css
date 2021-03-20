@@ -7,10 +7,10 @@
         @apply text-white;
     }
     .bio-title {
-        @apply text-4xl sm:text-5xl xl:text-7xl font-bold lg:mb-16 text-primary;
+        @apply text-4xl mb-8 sm:text-5xl xl:text-7xl font-medium lg:mb-16 text-primary;
     }
     .bio-text {
-        @apply text-sm sm:text-3xl mt-2 sm:mt-5 text-white font-light;
+        @apply text-sm sm:text-3xl mt-5 text-white font-light;
     }
     body {
         @apply font-mainFont;
@@ -19,7 +19,7 @@
         @apply bg-black;
     }
     .sub {
-        @apply p-10 sm:px-12 sm:pt-20 lg:p-20 xl:pl-48 xl:pt-36 max-w-7xl;
+        @apply px-12 py-20 lg:p-20 xl:pl-48 xl:pt-36 max-w-7xl;
     }
     .main2 {
         @apply h-screen bg-secondary text-white pt-12 sm:pt-24 lg:p-20 xl:pt-48 xl:pl-48 flex-col;
@@ -43,17 +43,25 @@
             @apply ml-0 mr-5;
         }
         .social-menu ul li .fa{
-        font-size: 25px;
+        font-size: 20px;
         }
     }
-    @media (min-width: 350px){
+    @media (min-width: 350px) {
+        .social-menu ul li .fa{
+            font-size: 25px;
+        }
         .social-icon {
-            @apply ml-0 mr-10;
+            @apply ml-0 mr-7;
         }
     }
     @media (min-width: 640px) {
         .social-menu ul li .fa{
             font-size: 40px;
+        }
+    }
+    @media (min-width: 450px){
+        .social-icon {
+            @apply ml-0 mr-10;
         }
     }
     /* MAKES SOCIAL MEDIA ICONS DISAPPEAR WHEN WIDTH < 260 */
@@ -72,7 +80,7 @@
         }
     }
     /* MAKES HEIGHT THE SIZE OF THE SCREEN WHEN WIDTH > 310*/
-    @media (min-height:700px) and (min-width:400px) {
+    @media (min-height:700px) and (min-width:740px) {
         .main {
             @apply h-screen;
         }
@@ -80,12 +88,12 @@
     /* THESE ONES CHANGES TEXT SIZE BASED ON WHAT IS THE SCREEN SIZE */
     @media (min-height: 400px) and (min-width:310px) {
         .bio-text {
-            @apply text-base sm:text-3xl mt-2 sm:mt-5;
+            @apply text-base sm:text-3xl mt-5;
         }
     }
     @media (min-height: 620px) and (min-width:310px) {
         .bio-text {
-            @apply text-xl sm:text-3xl mt-2 sm:mt-5;
+            @apply text-xl sm:text-3xl mt-5;
         }
     }
 }
