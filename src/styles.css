@@ -10,10 +10,10 @@
         @apply text-4xl sm:text-5xl xl:text-7xl font-bold lg:mb-16 text-primary;
     }
     .bio-text {
-        @apply text-sm sm:text-3xl mt-2 sm:mt-5 text-white;
+        @apply text-sm sm:text-3xl mt-2 sm:mt-5 text-white font-light;
     }
     body {
-        @apply font-mono;
+        @apply font-mainFont;
     }
     .main {
         @apply bg-black;

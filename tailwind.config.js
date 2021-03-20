@@ -4,6 +4,9 @@ module.exports = {
   },
   theme: {
     extend: {
+      fontFamily:{
+        'mainFont': ['Rubik','Roboto','ui-sans-serif','system-ui','Arial'],
+      },
       colors: {
         'primary': '#7c1fe0',
         'secondary': '#421078', 

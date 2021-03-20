@@ -550,6 +550,7 @@ video {
 }
 
 .bio-text {
+  font-weight: 300;
   font-size: 0.875rem;
   line-height: 1.25rem;
   margin-top: 0.5rem;
@@ -566,7 +567,7 @@ video {
 }
 
 body {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: Rubik, Roboto, ui-sans-serif, system-ui, Arial;
 }
 
 .main {
