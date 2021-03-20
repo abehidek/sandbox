@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "postcss ./src/styles.css -o ./public/styles.css"
+    "build": "postcss ./src/styles.css -o ./public/styles.css",
+    "production": "NODE_ENV=production postcss ./src/styles.css -o ./public/styles.css"
   },
   "keywords": [],
   "author": "",
