@@ -523,8 +523,8 @@ video {
 
 .bio-title {
   font-weight: 700;
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
   --tw-text-opacity: 1;
   color: rgba(124, 31, 224, var(--tw-text-opacity));
 }
@@ -565,6 +565,10 @@ video {
   }
 }
 
+body {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
 .main {
   --tw-bg-opacity: 1;
   background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
@@ -572,7 +576,7 @@ video {
 
 .sub {
   max-width: 80rem;
-  padding: 1.5rem;
+  padding: 2.5rem;
 }
 
 @media (min-width: 640px) {
@@ -698,7 +702,7 @@ video {
 
 /* MAKES HEIGHT THE SIZE OF THE SCREEN WHEN WIDTH > 310*/
 
-@media (min-height:700px) and (min-width:310px) {
+@media (min-height:700px) and (min-width:400px) {
   .main {
     height: 100vh;
   }

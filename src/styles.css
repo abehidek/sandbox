@@ -7,16 +7,19 @@
         @apply text-white;
     }
     .bio-title {
-        @apply text-2xl sm:text-5xl xl:text-7xl font-bold lg:mb-16 text-primary;
+        @apply text-4xl sm:text-5xl xl:text-7xl font-bold lg:mb-16 text-primary;
     }
     .bio-text {
         @apply text-sm sm:text-3xl mt-2 sm:mt-5 text-white;
+    }
+    body {
+        @apply font-mono;
     }
     .main {
         @apply bg-black;
     }
     .sub {
-        @apply p-6 sm:px-12 sm:pt-20 lg:p-20 xl:pl-48 xl:pt-36 max-w-7xl;
+        @apply p-10 sm:px-12 sm:pt-20 lg:p-20 xl:pl-48 xl:pt-36 max-w-7xl;
     }
     .main2 {
         @apply h-screen bg-secondary text-white pt-12 sm:pt-24 lg:p-20 xl:pt-48 xl:pl-48 flex-col;
@@ -69,7 +72,7 @@
         }
     }
     /* MAKES HEIGHT THE SIZE OF THE SCREEN WHEN WIDTH > 310*/
-    @media (min-height:700px) and (min-width:310px) {
+    @media (min-height:700px) and (min-width:400px) {
         .main {
             @apply h-screen;
         }
