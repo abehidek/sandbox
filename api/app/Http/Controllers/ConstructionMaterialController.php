@@ -16,6 +16,7 @@ class ConstructionMaterialController extends Controller
     public function store(Request $request)
     {
         ConstructionMaterial::create($request->all());
+        return ConstructionMaterial::all();
     }
 
     public function show($id)
@@ -27,11 +28,13 @@ class ConstructionMaterialController extends Controller
     {
         $ConstructionMaterial = ConstructionMaterial::findOrFail($id);
         $ConstructionMaterial->update($request->all());
+        return ConstructionMaterial::all();
     }
 
     public function destroy($id)
     {
         $ConstructionMaterial = ConstructionMaterial::findOrFail($id);
         $ConstructionMaterial->delete();
+        return ConstructionMaterial::all();
     }
 }
