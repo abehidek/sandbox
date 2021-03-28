@@ -1,5 +1,5 @@
 <template>
-  <div id="nav" class="bg-red-100">
+  <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
@@ -25,6 +25,6 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #a549b8;
 }
 </style>
