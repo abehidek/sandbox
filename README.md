@@ -1,5 +1,9 @@
 # ConstrUp - Exam
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/abehidek/construp-exam/main/public/Home.png" alt="Home" />
+</p>
+
 ## 💻 About this repository
 
 This repository countais all the requirement for ConstrUp (Brazilian Startup) exam.
