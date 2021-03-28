@@ -8,7 +8,6 @@
       </p>
       <p class="">
         More informations on the <a href="https://github.com/abehidek/construp-exam" class="text-purple-500 hover:text-purple-400 font-bold">github repository</a>. 
-        
       </p>
       <br>
       <p>Thanks you for reading</p>
