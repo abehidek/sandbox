@@ -2,11 +2,13 @@
 
 ## 💻 About this repository
 
-This repository countais the requirement for ConstrUp (Brazilian Startup) exam.
-It's an application that displays a list of construction material, you can edit all fields of each construction material.
+This repository countais all the requirement for ConstrUp (Brazilian Startup) exam.
+It's an application that displays a list of construction materials, you can add a material, delete it and edit it (basic operations of CRUD), all fields of each construction material are editable and is stored in a MySQL database.
 It's also responsive and it has a simple layout.
 
-Also, feel free to copy the code or fork it and pull a request :)
+All the functionalities are working.
+
+Also, feel free to copy the code or fork it and pull a request =)
 
 ## 🔧 Main tools and tecnologies used in the project
 
