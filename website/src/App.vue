@@ -3,7 +3,12 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
+  <transition
+    enter-active-class="animate__animated animate__fadeInLeft"
+    leave-active-class="animate__animated animate__fadeInRight"
+    mode="out-in">
   <router-view />
+  </transition>
 </template>
 
 <style>
@@ -25,6 +30,7 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #a549b8;
+  border-bottom: 2px solid #A855F7;
+  color: #A855F7;
 }
 </style>
