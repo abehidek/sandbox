@@ -1,2 +1,2 @@
 # vue-course
-learning vue throught crash course
+learning framework vue.js throught crash course
