@@ -25,4 +25,21 @@ Also, feel free to copy the code or fork it and pull a request =)
 
 You need to install all dependecies from both api and website, I used NPM (Node Package Manager) to install tailwindcss and other dependencies related to web application, and for API, I used Composer.
 
-More info will be provided in the future.
+- First you need to install MySQL and PHP, I recommend using [XAMPP](https://www.apachefriends.org/index.html) to install then, Be sure to install [Node](https://nodejs.org/en/) as well
+- Install both [Node Package Manager](https://www.npmjs.com/) and [Composer](https://getcomposer.org/)
+- Clone this repository
+
+### For API
+- Use your system console to navigate to [api](https://github.com/abehidek/construp-exam/tree/main/api) folder
+- Start MySQL and create new database
+- Renamed `.env.example` to `.env` and set up all database information
+- Install the dependecies using `$ composer install`
+- Run the migrations using `$ php artisan migrate`
+- To run it use `$ php artisan serve`
+
+### For Front-End
+
+- Use your system console to navigate to [website](https://github.com/abehidek/construp-exam/tree/main/website) folder
+- Install the dependecies using `$ npm install`
+- To run it use `$ npm run serve`
+
