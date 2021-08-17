@@ -1,5 +1,4 @@
 import requests
-import json
 print('This programs converts BRL into USD')
 BRL = float(input('How much BRL you wanna convert into USD (dollars) ?: '))
 
