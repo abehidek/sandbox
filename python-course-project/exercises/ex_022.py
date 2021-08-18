@@ -1,0 +1,6 @@
+name = input('Type your full name: ')
+print('Your name in uppercase is:', name.upper())
+print('Your name in lowercase is:', name.lower())
+number_of_letters = len(name) - name.count(' ')
+print('Your name has {} letter(s) (without the space)'.format(number_of_letters))
+print('Your first name has {} letter(s)'.format(len(name.split()[0])))

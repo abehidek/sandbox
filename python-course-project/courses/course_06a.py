@@ -1,3 +1,4 @@
+# Primitive Types and Data Output
 n1 = int(input('Type any number: '))
 n2 = int(input('Type other number: '))
 s=n1+n2

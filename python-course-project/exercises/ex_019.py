@@ -16,5 +16,6 @@ while c == 1:
 #     print(x)
 
 random_num = randint(0, len(names))  # this generate a random int number between 0 and the length of the array
+# you can also choose to use random.choice(names)
 
 print(random_num, names[random_num])
