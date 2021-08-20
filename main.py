@@ -23,6 +23,7 @@ while True:
     def collision(c1, c2):
         return (c1[0] == c2[0]) and (c1[1] == c2[1])
 
+
     # definition for snake movement
     UP = 0
     RIGHT = 1
@@ -30,7 +31,7 @@ while True:
     LEFT = 3
 
     # setting initial conditions for the game:
-    snake = [(20*game_block, 20*game_block), (21*game_block, 20*game_block), (22*game_block, 20*game_block)]
+    snake = [(20 * game_block, 20 * game_block), (21 * game_block, 20 * game_block), (22 * game_block, 20 * game_block)]
     snake_skin = pygame.Surface((game_block, game_block))
     snake_skin.fill((255, 255, 255))  # filling snake skin with white color
     snake_direction = LEFT
@@ -49,13 +50,14 @@ while True:
                 exit()
 
             if event.type == KEYDOWN:
-                if event.key == K_UP and snake_direction != DOWN and event.key != K_RIGHT and event.key != K_DOWN and event.key != K_LEFT:
+                keys = pygame.key.get_pressed()
+                if (keys[pygame.K_UP] == True) and (keys[pygame.K_DOWN] != True) and snake_direction != DOWN:
                     snake_direction = UP
-                elif event.key == K_DOWN and snake_direction != UP and event.key != K_RIGHT and event.key != K_UP and event.key != K_LEFT:
+                if (keys[pygame.K_DOWN] == True) and (keys[pygame.K_UP] != True) and snake_direction != UP:
                     snake_direction = DOWN
-                elif event.key == K_RIGHT and snake_direction != LEFT and event.key != K_UP and event.key != K_DOWN and event.key != K_LEFT:
+                if (keys[pygame.K_RIGHT] == True) and (keys[pygame.K_DOWN] != True) and (keys[pygame.K_UP] != True) and (keys[pygame.K_LEFT] != True) and snake_direction != LEFT:
                     snake_direction = RIGHT
-                elif event.key == K_LEFT and snake_direction != RIGHT and event.key != K_RIGHT and event.key != K_UP and event.key != K_DOWN:
+                if (keys[pygame.K_LEFT] == True) and (keys[pygame.K_DOWN] != True) and (keys[pygame.K_UP] != True)  and (keys[pygame.K_RIGHT] != True) and snake_direction != RIGHT:
                     snake_direction = LEFT
 
         # score system
@@ -123,7 +125,7 @@ while True:
         screen.blit(game_over_text, game_over_screen_rect)
         screen.blit(game_over_restart, game_over_restart_rect)
         if event.type == KEYDOWN:
-            if event.key == K_F5 :
+            if event.key == K_F5:
                 game_over = False
         for event in pygame.event.get():
             if event.type == QUIT:
