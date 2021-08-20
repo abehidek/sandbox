@@ -5,7 +5,7 @@ from pygame.locals import *
 
 display_x = 600
 display_y = 600
-pixel_size = 10
+game_block = 20
 game_speed = 20
 
 pygame.init()
@@ -15,9 +15,9 @@ while True:
 
     # helper functions
     def on_grid_random():
-        x = random.randint(0, display_x - pixel_size)
-        y = random.randint(0, display_y - pixel_size)
-        return x // pixel_size * pixel_size, y // pixel_size * pixel_size
+        x = random.randint(0, display_x - game_block)
+        y = random.randint(0, display_y - game_block)
+        return x // game_block * game_block, y // game_block * game_block
 
 
     def collision(c1, c2):
@@ -29,12 +29,12 @@ while True:
     DOWN = 2
     LEFT = 3
 
-    snake = [(20*pixel_size, 20*pixel_size), (21*pixel_size, 20*pixel_size), (22*pixel_size, 20*pixel_size)]
-    snake_skin = pygame.Surface((pixel_size, pixel_size))
+    snake = [(20*game_block, 20*game_block), (21*game_block, 20*game_block), (22*game_block, 20*game_block)]
+    snake_skin = pygame.Surface((game_block, game_block))
     snake_skin.fill((255, 255, 255))  # filling snake skin with white color
 
     apple_pos = on_grid_random()
-    apple = pygame.Surface((pixel_size, pixel_size))
+    apple = pygame.Surface((game_block, game_block))
     apple.fill((255, 0, 0))  # filling apple skin with red color
 
     my_direction = LEFT
@@ -83,18 +83,18 @@ while True:
 
         # changes the direction of the movement of the snake
         if my_direction == UP:
-            snake[0] = (snake[0][0], snake[0][1] - pixel_size)
+            snake[0] = (snake[0][0], snake[0][1] - game_block)
         if my_direction == RIGHT:
-            snake[0] = (snake[0][0] + pixel_size, snake[0][1])
+            snake[0] = (snake[0][0] + game_block, snake[0][1])
         if my_direction == DOWN:
-            snake[0] = (snake[0][0], snake[0][1] + pixel_size)
+            snake[0] = (snake[0][0], snake[0][1] + game_block)
         if my_direction == LEFT:
-            snake[0] = (snake[0][0] - pixel_size, snake[0][1])
+            snake[0] = (snake[0][0] - game_block, snake[0][1])
 
         screen.fill((0, 0, 0))
-        for x in range(0, display_x, pixel_size):  # Draw vertical lines
+        for x in range(0, display_x, game_block):  # Draw vertical lines
             pygame.draw.line(screen, (40, 40, 40), (x, 0), (x, display_x))
-        for y in range(0, display_y, pixel_size):  # Draw vertical lines
+        for y in range(0, display_y, game_block):  # Draw vertical lines
             pygame.draw.line(screen, (40, 40, 40), (0, y), (display_y, y))
 
         score_font = pygame.font.Font('OpenSans-Bold.ttf', 18).render(f'Score: {score}', True, (255, 255, 255))
