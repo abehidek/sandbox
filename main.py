@@ -6,17 +6,18 @@ from pygame.locals import *
 display_x = 600
 display_y = 600
 pixel_size = 10
+game_speed = 20
 
 pygame.init()
-screen = pygame.display.set_mode((600, 600))
+screen = pygame.display.set_mode((display_x, display_y))
 pygame.display.set_caption('Snake')
 while True:
 
     # helper functions
     def on_grid_random():
-        x = random.randint(0, 590)
-        y = random.randint(0, 590)
-        return x // 10 * 10, y // 10 * 10
+        x = random.randint(0, display_x - pixel_size)
+        y = random.randint(0, display_y - pixel_size)
+        return x // pixel_size * pixel_size, y // pixel_size * pixel_size
 
 
     def collision(c1, c2):
@@ -28,12 +29,12 @@ while True:
     DOWN = 2
     LEFT = 3
 
-    snake = [(200, 200), (210, 200), (220, 200)]
-    snake_skin = pygame.Surface((10, 10))
+    snake = [(20*pixel_size, 20*pixel_size), (21*pixel_size, 20*pixel_size), (22*pixel_size, 20*pixel_size)]
+    snake_skin = pygame.Surface((pixel_size, pixel_size))
     snake_skin.fill((255, 255, 255))  # filling snake skin with white color
 
     apple_pos = on_grid_random()
-    apple = pygame.Surface((10, 10))
+    apple = pygame.Surface((pixel_size, pixel_size))
     apple.fill((255, 0, 0))  # filling apple skin with red color
 
     my_direction = LEFT
@@ -43,7 +44,7 @@ while True:
     score = 0
     game_over = False
     while not game_over:
-        clock.tick(20)
+        clock.tick(game_speed)
         for event in pygame.event.get():
 
             if event.type == QUIT:
@@ -66,7 +67,7 @@ while True:
             score += 1
 
         # Check if snake collided with boundaries
-        if snake[0][0] == 600 or snake[0][1] == 600 or snake[0][0] < 0 or snake[0][1] < 0:
+        if snake[0][0] == display_x or snake[0][1] == display_y or snake[0][0] < 0 or snake[0][1] < 0:
             game_over = True
             break
 
@@ -82,23 +83,23 @@ while True:
 
         # changes the direction of the movement of the snake
         if my_direction == UP:
-            snake[0] = (snake[0][0], snake[0][1] - 10)
+            snake[0] = (snake[0][0], snake[0][1] - pixel_size)
         if my_direction == RIGHT:
-            snake[0] = (snake[0][0] + 10, snake[0][1])
+            snake[0] = (snake[0][0] + pixel_size, snake[0][1])
         if my_direction == DOWN:
-            snake[0] = (snake[0][0], snake[0][1] + 10)
+            snake[0] = (snake[0][0], snake[0][1] + pixel_size)
         if my_direction == LEFT:
-            snake[0] = (snake[0][0] - 10, snake[0][1])
+            snake[0] = (snake[0][0] - pixel_size, snake[0][1])
 
         screen.fill((0, 0, 0))
-        for x in range(0, 600, 10):  # Draw vertical lines
-            pygame.draw.line(screen, (40, 40, 40), (x, 0), (x, 600))
-        for y in range(0, 600, 10):  # Draw vertical lines
-            pygame.draw.line(screen, (40, 40, 40), (0, y), (600, y))
+        for x in range(0, display_x, pixel_size):  # Draw vertical lines
+            pygame.draw.line(screen, (40, 40, 40), (x, 0), (x, display_x))
+        for y in range(0, display_y, pixel_size):  # Draw vertical lines
+            pygame.draw.line(screen, (40, 40, 40), (0, y), (display_y, y))
 
         score_font = pygame.font.Font('OpenSans-Bold.ttf', 18).render(f'Score: {score}', True, (255, 255, 255))
         score_rect = score_font.get_rect()
-        score_rect.topleft = (600 - 120, 10)
+        score_rect.topleft = (display_x - 120, 10)
         screen.blit(score_font, score_rect)
 
         screen.blit(apple, apple_pos)
@@ -120,10 +121,10 @@ while True:
         game_over_restart = pygame.font.Font('OpenSans-Bold.ttf', 40).render('Press F5 to restart the game', True, (255, 255, 0))
 
         game_over_screen_rect = game_over_text.get_rect()
-        game_over_screen_rect.midtop = (600 / 2, 20)
+        game_over_screen_rect.midtop = (display_x / 2, 20)
 
         game_over_restart_rect = game_over_restart.get_rect()
-        game_over_restart_rect.midtop = (600 / 2, 300)
+        game_over_restart_rect.midtop = (display_y / 2, 300)
 
         screen.blit(game_over_text, game_over_screen_rect)
         screen.blit(game_over_restart, game_over_restart_rect)
