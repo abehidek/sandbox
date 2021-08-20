@@ -29,22 +29,19 @@ while True:
     DOWN = 2
     LEFT = 3
 
+    # setting initial conditions for the game:
     snake = [(20*game_block, 20*game_block), (21*game_block, 20*game_block), (22*game_block, 20*game_block)]
     snake_skin = pygame.Surface((game_block, game_block))
     snake_skin.fill((255, 255, 255))  # filling snake skin with white color
-
+    snake_direction = LEFT
     apple_pos = on_grid_random()
     apple = pygame.Surface((game_block, game_block))
     apple.fill((255, 0, 0))  # filling apple skin with red color
 
-    my_direction = LEFT
-
-    clock = pygame.time.Clock()
-
     score = 0
     game_over = False
     while not game_over:
-        clock.tick(game_speed)
+        pygame.time.Clock().tick(game_speed)
         for event in pygame.event.get():
 
             if event.type == QUIT:
@@ -52,15 +49,16 @@ while True:
                 exit()
 
             if event.type == KEYDOWN:
-                if event.key == K_UP and my_direction != DOWN:
-                    my_direction = UP
-                if event.key == K_RIGHT and my_direction != LEFT:
-                    my_direction = RIGHT
-                if event.key == K_DOWN and my_direction != UP:
-                    my_direction = DOWN
-                if event.key == K_LEFT and my_direction != RIGHT:
-                    my_direction = LEFT
+                if event.key == K_UP and snake_direction != DOWN and event.key != K_RIGHT and event.key != K_DOWN and event.key != K_LEFT:
+                    snake_direction = UP
+                elif event.key == K_DOWN and snake_direction != UP and event.key != K_RIGHT and event.key != K_UP and event.key != K_LEFT:
+                    snake_direction = DOWN
+                elif event.key == K_RIGHT and snake_direction != LEFT and event.key != K_UP and event.key != K_DOWN and event.key != K_LEFT:
+                    snake_direction = RIGHT
+                elif event.key == K_LEFT and snake_direction != RIGHT and event.key != K_RIGHT and event.key != K_UP and event.key != K_DOWN:
+                    snake_direction = LEFT
 
+        # score system
         if collision(snake[0], apple_pos):
             apple_pos = on_grid_random()
             snake.append((0, 0))
@@ -82,38 +80,34 @@ while True:
             snake[i] = (snake[i - 1][0], snake[i - 1][1])
 
         # changes the direction of the movement of the snake
-        if my_direction == UP:
+        if snake_direction == UP:
             snake[0] = (snake[0][0], snake[0][1] - game_block)
-        if my_direction == RIGHT:
+        if snake_direction == RIGHT:
             snake[0] = (snake[0][0] + game_block, snake[0][1])
-        if my_direction == DOWN:
+        if snake_direction == DOWN:
             snake[0] = (snake[0][0], snake[0][1] + game_block)
-        if my_direction == LEFT:
+        if snake_direction == LEFT:
             snake[0] = (snake[0][0] - game_block, snake[0][1])
 
+        # create screen, lines and text
         screen.fill((0, 0, 0))
         for x in range(0, display_x, game_block):  # Draw vertical lines
             pygame.draw.line(screen, (40, 40, 40), (x, 0), (x, display_x))
         for y in range(0, display_y, game_block):  # Draw vertical lines
             pygame.draw.line(screen, (40, 40, 40), (0, y), (display_y, y))
-
         score_font = pygame.font.Font('OpenSans-Bold.ttf', 18).render(f'Score: {score}', True, (255, 255, 255))
         score_rect = score_font.get_rect()
         score_rect.topleft = (display_x - 120, 10)
         screen.blit(score_font, score_rect)
 
+        # creates snake and apple
         screen.blit(apple, apple_pos)
-
         for pos in snake:
             screen.blit(snake_skin, pos)
 
         if game_over:
             break
 
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                exit()
         pygame.display.update()
 
     while game_over:
