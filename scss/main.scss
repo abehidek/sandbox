@@ -1,0 +1,62 @@
+// Tutorial: https://www.youtube.com/watch?v=_a5j7KoflTs&ab_channel=freeCodeCamp.org
+// Partials
+@import './resets', './variables';
+
+// Functions
+@function weight($weight-name) {
+    @return map-get($map: $font-weights, $key: $weight-name)
+}
+
+// Mixins
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin flexCenterDirection($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+@mixin theme($light-theme: true) {
+    @if $light-theme {
+        background-color: lighten($color: $primary-color, $amount: 100%);
+        color: darken($color: $text-color, $amount: 100%)
+    }
+}
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+body {
+    background-color: $primary-color;
+    color: $text-color;
+    font-weight: map-get($map: $font-weights, $key: bold);
+}
+
+// Nesting
+
+.main {
+
+    // @include flexCenter;
+    @include flexCenterDirection(row);
+    width: 80%;
+    margin: 0 auto;
+    // .main__paragraph {
+    //     font-weight: map-get($map: $font-weights, $key: regular);
+    // }
+    #{&}__paragraph {
+        font-weight: weight(regular);
+        &:hover {
+            color: pink;
+        }
+    }
+    @include mobile {
+        flex-direction: column;
+    }
+}
+.light {
+    @include theme($light-theme: false);
+}
