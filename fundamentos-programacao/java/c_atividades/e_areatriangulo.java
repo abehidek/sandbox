@@ -10,5 +10,6 @@ public class e_areatriangulo {
         System.out.print("Digite a altura do triângulo: ");
         double altura = input.nextDouble();
         System.out.println("A área do triângulo é: " + (base*altura)/2);
+        input.close();
     }
 }

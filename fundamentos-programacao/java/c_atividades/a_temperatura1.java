@@ -9,5 +9,6 @@ public class a_temperatura1 {
         double cel = input.nextDouble();
         double fah = (cel * 1.8) +32;
         System.out.print("A temperatura em fahrenheit é: " + fah);
+        input.close();
     }
 }

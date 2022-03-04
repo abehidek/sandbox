@@ -9,5 +9,6 @@ public class b_temperatura2 {
         double fah = input.nextDouble();
         double cel = (fah - 32) * 5/9;
         System.out.print("A temperatura em celsius é: " + cel);
+        input.close();
     }
 }

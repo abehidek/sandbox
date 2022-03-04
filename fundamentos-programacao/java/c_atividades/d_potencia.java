@@ -9,5 +9,6 @@ public class d_potencia {
         double valor = input.nextDouble();
         System.out.println("O quadrado é: " + Math.pow(valor, 2));
         System.out.println("O cubo é: " + Math.pow(valor, 3));
+        input.close();
     }
 }
