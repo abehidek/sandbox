@@ -1,6 +1,6 @@
-package aula03;
+package c_atividades;
 public class Main {
     public static void main(String[] args) {
-        01.main();
+        a_temperatura1.main();
     }
 }

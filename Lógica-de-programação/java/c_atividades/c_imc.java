@@ -1,8 +1,8 @@
-package aula03;
+package c_atividades;
 
 import java.util.Scanner;
 
-public class Ex03 {
+public class c_imc {
 
     public static void main() {
 

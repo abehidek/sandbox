@@ -1,4 +1,4 @@
-package aula02;
+package b_tipos;
 
 public class Main {
     public static void main() {

@@ -1,8 +1,8 @@
-package aula03;
+package c_atividades;
 
 import java.util.Scanner;
 
-public class Ex02 {
+public class b_temperatura2 {
     public static void main() {
         Scanner input = new Scanner(System.in);
         System.out.print("Digite a temperatura fahrenheit: ");

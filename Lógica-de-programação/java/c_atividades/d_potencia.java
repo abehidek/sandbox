@@ -1,8 +1,8 @@
-package aula03;
+package c_atividades;
 
 import java.util.Scanner;
 
-public class Ex04 {
+public class d_potencia {
     public static void main() {
         Scanner input = new Scanner(System.in);
         System.out.print("Digite um valor: ");

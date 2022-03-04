@@ -1,8 +1,8 @@
-package aula03;
+package c_atividades;
 
 import java.util.Scanner;
 
-public class Ex05 {
+public class e_areatriangulo {
     public static void main() {
         Scanner input = new Scanner(System.in);
         System.out.print("Digite a base do triângulo: ");
