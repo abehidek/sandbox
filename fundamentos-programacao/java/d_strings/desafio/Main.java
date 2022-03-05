@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Main {
     public static boolean Numerico(String stringNum) {
+        // Função que verifica se o número digitado (String) é númerico
         if (stringNum == null)
             return false;
         try {
@@ -16,10 +17,12 @@ public class Main {
         return true;
     }
     public static Date calcularData(long dataMilisegundos, int segundos) {
-        Date dataAdicionado = new Date(dataMilisegundos + (segundos*1000));
+        // aqui ele pega a data em milisegundos e adiciona nele o tempo até a colisão dos trens
+        Date dataAdicionado = new Date(dataMilisegundos + (segundos*1000)); 
         return dataAdicionado; 
     }
     public static Trem entrarTrem(Scanner input, Trem trem) {
+        // Função criada para preencher os atributos do objeto trem criados a partir da classe Trem
         while (true) {
             System.out.println("Digite o nome do trem: ");
             if(input.hasNextLine()) {
@@ -96,7 +99,7 @@ public class Main {
                 dataSaida.set(Calendar.HOUR_OF_DAY, 17);
                 dataSaida.set(Calendar.MINUTE, 0);
                 dataSaida.set(Calendar.SECOND, 0);
-                long dataSaidaSegundos = dataSaida.getTimeInMillis(); // Conversão do objeto Calendar em um inteiro em segundos, que conta quantos segundos se passaram desde 1970 até a data em questão
+                long dataSaidaSegundos = dataSaida.getTimeInMillis(); // Conversão do objeto Calendar em um inteiro em milisegundos, que conta quantos milisegundos se passaram desde 1970 até a data em questão
 
                 Date dataDaSaida = new Date(dataSaidaSegundos); // Conversão do inteiro em um objeto da classe Date
                 Date dataColisao = calcularData(dataSaidaSegundos, tempo_segundos); // Chama o método que adiciona nas horas o tempo até a colisão dos trems para obter a a data da colisão dos trens
