@@ -61,7 +61,7 @@ public class Main {
                 if (Numerico(velocidade)) {
                     trem.velocidade = Double.parseDouble(velocidade);
                     if (trem.velocidade < 0 || trem.velocidade > 300)
-                        System.out.println("A velocidade não pode ser negativa ou acima de 300 Km/h!! , Digite novamente\n");
+                        System.out.println("A velocidade nao pode ser negativa ou acima de 300 Km/h!! , Digite novamente\n");
                     else
                         break;
                 }
@@ -78,14 +78,14 @@ public class Main {
         while (true) {
             Trem tremA = new Trem();
             tremA = entrarTrem(input, tremA); // Chama o método entrarTrem passando o input e o objeto tremA como parâmetros
-            System.out.println("\n\nAgora digite as informações do segundo trem: \n");
+            System.out.println("\n\nAgora digite as informaçoes do segundo trem: \n");
             Trem tremB = new Trem();
             tremB = entrarTrem(input, tremB);
             tremB.velocidade = tremB.velocidade*-1; // INVERTER A DIREÇÃO DO TREM PARA A COLISÃO
             tremA.exibirInfo(); // Acessa o método do objeto de exibir as informações
             tremB.exibirInfo();
             if (tremA.posicao > tremB.posicao) // Se o tremB estiver antes do tremA, eles nunca irão se encontrar pois ambos estão em direções opostas
-                System.out.println("Os trens nunca irão se colidir");
+                System.out.println("Os trens nunca irao se colidir");
             else {
                 double tempo = (tremA.posicao-tremB.posicao)/(tremB.velocidade-tremA.velocidade);
                 int tempo_segundos = (int) (tempo * 3600);
@@ -104,10 +104,10 @@ public class Main {
                 Date dataDaSaida = new Date(dataSaidaSegundos); // Conversão do inteiro em um objeto da classe Date
                 Date dataColisao = calcularData(dataSaidaSegundos, tempo_segundos); // Chama o método que adiciona nas horas o tempo até a colisão dos trems para obter a a data da colisão dos trens
         
-                System.out.println(String.format("A colisão dos trens acontecerá no KM %.2f e ocorrerá após %.3f horas, ", posicao_colisao, tempo));
+                System.out.println(String.format("A colisao dos trens acontecerá no KM %.2f e ocorrerá após %.3f horas, ", posicao_colisao, tempo));
                 
                 System.out.println("Data da saída: "+dataDaSaida);
-                System.out.println("Data da colisão "+dataColisao);                
+                System.out.println("Data da colisao "+dataColisao);                
             }
             System.out.println("Deseja rodar o programa novamente? : S/N"); // Pergunta se o usuário quer rodar o programa de novo
             String opcao = input.nextLine().toUpperCase(); // Converte a entrada do usuário em letra maiúscula
