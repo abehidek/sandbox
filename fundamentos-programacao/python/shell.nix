@@ -6,8 +6,6 @@ let
   python-with-my-packages = my-python.withPackages (p: with p; [
     pygame
     tkinter
-    pip
-    # other python packages you want
   ]);
 in
 pkgs.mkShell {
