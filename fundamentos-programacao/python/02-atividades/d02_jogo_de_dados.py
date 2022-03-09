@@ -1,0 +1,74 @@
+from os import system
+from random import randint
+
+# def check(random_num, num_1, num_2):
+#     score = 0
+#     if (num_1 == random_num):
+#         score +=1
+#     if(num_2 == random_num):
+#         score +=1
+#     return score
+
+def check(random_num, player_num_1, player_num_2, cpu_num_1, cpu_num_2):
+    if (player_num_1 == random_num or player_num_2 == random_num):
+        print("Jogador ganhou")
+    elif(cpu_num_1 == random_num or cpu_num_2 == random_num):
+        print("CPU ganhou")
+    else:
+        print("Nenhum dos dois ganharam")
+
+def generateCpuNum(lim, player_num_1, player_num_2):
+    while (True):
+        cpu_num = randint(1,6)
+        if cpu_num != player_num_1 and cpu_num != player_num_2 and cpu_num != lim:
+            break
+
+    return cpu_num
+
+def isfloat(x):
+    try:
+        a = float(x)
+    except (TypeError, ValueError):
+        return False
+    else:
+        return True
+
+def isint(x):
+    try:
+        a = float(x)
+        b = int(a)
+    except (TypeError, ValueError):
+        return False
+    else:
+        return a == b
+
+def inputDiceNum(lim):
+    # Input cannot be letter or float, just int
+    while True:
+        player_num = input("Escolha o número do dado: ")
+        if (player_num.isnumeric == False):
+            print("Digite novamente um NÚMERO inteiro entre 1 e 6, e que não sejam iguais")
+        elif isint(player_num) == False:
+            print("Digite novamente um número INTEIRO entre 1 e 6, e que não sejam iguais")
+        elif int(player_num) > 6 or int(player_num) < 1 or int(player_num) == lim:
+            print("Digite novamente um número inteiro entre 1 e 6, e que não sejam iguais")
+        else:
+            return int(player_num)
+            
+def play():
+    random_num = randint(1,6)
+    print('Numero aleatorio: ',random_num)
+    player_num_1 = inputDiceNum(0)
+    player_num_2 = inputDiceNum(player_num_1)
+    cpu_num_1 = generateCpuNum(0, player_num_1, player_num_2)
+    cpu_num_2 = generateCpuNum(cpu_num_1, player_num_1, player_num_2)
+    check(random_num, player_num_1, player_num_2, cpu_num_1, cpu_num_2)
+
+def main():
+    balance = 18
+    o = input("Deseja jogar? [S/N]: ")
+    if o.upper() == 'S':
+        balance -= 7.5
+        play()
+
+main()
