@@ -2,8 +2,7 @@ from os import system
 from random import randint
 
 def generate_number():
-    rand_number = randint(1,100)
-    print("Número aleatório é: ",rand_number)
+    rand_number = randint(1,101)
     return rand_number
 
 def guess():
@@ -29,7 +28,9 @@ def game(attempts, life):
             attempts-=1
             life -= abs(rand_number - guess_number)
             print(f"Você tomou {abs(rand_number - guess_number)} de dano")
-            print("Tentativa inválida", ('\nSua vida esgotou' if life <= 0 else "\nTente novamente"))
+            print("Tentativa errada", ('\nSua vida esgotou' if life <= 0 else "\nTente novamente"))
+            input("Aperte qualquer coisa para continuar")
+            system('cls')
             
     print('Você', ('venceu' if win else 'perdeu'))
     system('pause')
@@ -39,8 +40,8 @@ def main():
     while(True):
         game(3, 50)
         system('cls')
-        opc = input("Deseja continuar?: Y/N  ").upper()
-        if opc == 'Y':
+        opc = input("Deseja continuar?: S/N  ").upper()
+        if opc == 'N':
             continue
         else:
             break
