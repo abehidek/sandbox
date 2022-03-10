@@ -9,13 +9,16 @@ from random import randint
 #         score +=1
 #     return score
 
-def check(random_num, player_num_1, player_num_2, cpu_num_1, cpu_num_2):
+def check(random_num, player_num_1, player_num_2, cpu_num_1, cpu_num_2, score_arr):
     if (player_num_1 == random_num or player_num_2 == random_num):
         print("Jogador ganhou")
+        score_arr[0]+=1
     elif(cpu_num_1 == random_num or cpu_num_2 == random_num):
         print("CPU ganhou")
+        score_arr[1]+=1
     else:
         print("Nenhum dos dois ganharam")
+    return score_arr
 
 def generateCpuNum(lim, player_num_1, player_num_2):
     while (True):
@@ -53,22 +56,35 @@ def inputDiceNum(lim):
         elif int(player_num) > 6 or int(player_num) < 1 or int(player_num) == lim:
             print("Digite novamente um número inteiro entre 1 e 6, e que não sejam iguais")
         else:
-            return int(player_num)
+            break
+    return int(player_num)
             
-def play():
+def play(score_arr):
     random_num = randint(1,6)
     print('Numero aleatorio: ',random_num)
     player_num_1 = inputDiceNum(0)
     player_num_2 = inputDiceNum(player_num_1)
     cpu_num_1 = generateCpuNum(0, player_num_1, player_num_2)
     cpu_num_2 = generateCpuNum(cpu_num_1, player_num_1, player_num_2)
-    check(random_num, player_num_1, player_num_2, cpu_num_1, cpu_num_2)
+    score_arr = check(random_num, player_num_1, player_num_2, cpu_num_1, cpu_num_2, score_arr)
+    print("Score: ",score_arr)
+    return score_arr
 
 def main():
-    balance = 18
-    o = input("Deseja jogar? [S/N]: ")
-    if o.upper() == 'S':
-        balance -= 7.5
-        play()
+    balance = 18.00
+    while True:
+        print("Voce tem R$", balance)
+        o = input("Deseja jogar? [S/N]: ")
+        if o.upper() == 'S':
+            print(f'Saldo: R$ {balance} - R$ 7.5: R$ {balance-7.5}')
+            balance -= 7.5
+            score_arr = [0,0]
+            while (score_arr[0]<2 or score_arr[1]<2):
+                score_arr = play(score_arr)
+                print(score_arr[0])
+            print("Saiu")
+            
+        else:
+            break
 
 main()
