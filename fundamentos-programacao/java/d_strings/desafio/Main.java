@@ -10,7 +10,7 @@ public class Main {
         if (stringNum == null)
             return false;
         try {
-            double d = Double.parseDouble(stringNum);
+            Double.parseDouble(stringNum);
         } catch (NumberFormatException nfe) {
             return false;
         }
