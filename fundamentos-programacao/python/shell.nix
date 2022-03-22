@@ -13,7 +13,6 @@ in
 pkgs.mkShell {
   buildInputs = [
     python-with-my-packages
-    pkgs.pfetch
   ];
   shellHook = ''
     PYTHONPATH=${python-with-my-packages}/${python-with-my-packages.sitePackages}
