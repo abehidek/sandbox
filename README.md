@@ -1,4 +1,5 @@
-# ConstrUp - Exam
+# DEPRECATED - ConstrUp - Exam
+#### This repo is old and using `$ npm install` will probably break the packages. If you really wanna run this project, use `$ npm ci` instead of `$ npm install`
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/abehidek/construp-exam/main/public/Home.png" alt="Home" />
@@ -40,6 +41,7 @@ You need to install all dependecies from both api and website, I used NPM (Node 
 ### For Front-End
 
 - Use your system console to navigate to [website](https://github.com/abehidek/construp-exam/tree/main/website) folder
-- Install the dependecies using `$ npm install`
+- ~~Install the dependecies using `$ npm install`~~
+- Install the dependencies using `$ npm ci` (Upgrading package versions will break.)
 - To run it use `$ npm run serve`
 
