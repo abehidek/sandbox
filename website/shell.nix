@@ -5,6 +5,7 @@ in
 pkgs.mkShell {
   buildInputs = [
     unstable.nodejs
+    unstable.nodePackages.vls
     # keep this line if you use bash
     pkgs.bashInteractive
   ];
