@@ -30,21 +30,18 @@ def game(attempts, life):
             print(f"Você tomou {abs(rand_number - guess_number)} de dano")
             print("Tentativa errada", ('\nSua vida esgotou' if life <= 0 else "\nTente novamente"))
             input("Aperte qualquer coisa para continuar")
-            system('cls')
             
     print('Você', ('venceu' if win else 'perdeu'))
-    system('pause')
 
 def main():
     print("Bem vindo ao jogo")
     while(True):
         game(3, 50)
-        system('cls')
         opc = input("Deseja continuar?: S/N  ").upper()
         if opc == 'N':
-            continue
-        else:
             break
+        else:
+            continue
 
 main()
 
