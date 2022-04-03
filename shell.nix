@@ -4,10 +4,8 @@ let
 in
 pkgs.mkShell {
   buildInputs = [
-    pkgs.nodejs
-    pkgs.nodePackages.npm
-
+    unstable.nodejs
     # keep this line if you use bash
-    # pkgs.bashInteractive
+    pkgs.bashInteractive
   ];
 }
