@@ -1,5 +1,7 @@
 # Learning React Framework
 
+[freeCodeCamp.org React Course](https://youtu.be/bMknfKXIFA8)
+
 <details><summary><b>Day 1</b></summary>
 
 - What is React
