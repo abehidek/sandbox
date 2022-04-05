@@ -1,10 +1,9 @@
-import React from "react"
+import React from 'react'
 
 export default function Footer() {
   return (
-    <footer className="footer" >
+    <footer className='footer'>
       <small>@ 2022 Abe development. All rights reserved.</small>
     </footer>
   )
 }
-
