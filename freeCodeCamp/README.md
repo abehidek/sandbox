@@ -10,3 +10,10 @@
   - JSX lang
   - Until 1:33
 </details>
+
+<details>
+  <summary><b>Day 2</b></summary>
+
+  - How to setup dev environment in machine
+</details>
+
