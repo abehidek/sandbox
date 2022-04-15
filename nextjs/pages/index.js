@@ -39,7 +39,11 @@ async function getPosts(folders) {
   return posts
 }
 
-export async function getServerSideProps() { 
+export async function getServerSideProps({ res }) {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
   const contents = await fetch("https://api.github.com/repos/abehidek/posts/contents")
   const response = await contents.json()
   const folders = []
