@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import matter from 'gray-matter';
 import Post from '../components/Post'
+import { sortByDate } from '../utils'
 
 export default function Home({posts}) {
   return (
@@ -12,7 +13,7 @@ export default function Home({posts}) {
       </Head>
       <div className="posts">
         {posts.map((post, index) => (
-          <Post post={post} />
+          <Post key={ index } post = { post } />
         ))}
       </div>
     </div>
@@ -52,7 +53,7 @@ export async function getStaticProps() {
   const posts = await getPosts(folders)
   return {
     props: {
-      posts: posts,
+      posts: posts.sort(sortByDate),
     }
   }
 }
