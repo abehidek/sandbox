@@ -39,7 +39,7 @@ async function getPosts(folders) {
   return posts
 }
 
-export async function getStaticProps() { 
+export async function getServerSideProps() { 
   const contents = await fetch("https://api.github.com/repos/abehidek/posts/contents")
   const response = await contents.json()
   const folders = []

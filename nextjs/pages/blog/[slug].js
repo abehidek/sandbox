@@ -25,7 +25,7 @@ export default function BlogPage({ slug, frontmatter, content }) {
   )
 }
 
-export async function getStaticPaths() {
+export async function getServerSidePaths() {
   const contents = await fetch("https://api.github.com/repos/abehidek/posts/contents")
   const response = await contents.json()
   const folders = []
@@ -46,7 +46,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params: { slug } }) { 
+export async function getServerSideProps({ params: { slug } }) { 
   const mdPromise = await fetch(`https://raw.githubusercontent.com/abehidek/posts/main/${slug}/main.md`)
   const md = await mdPromise.text()
   const { data: frontmatter, content } = matter(md)
