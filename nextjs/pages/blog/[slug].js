@@ -16,7 +16,7 @@ export default function BlogPage({ slug, frontmatter, content }) {
         <div className="post-body">
           <ReactMarkdown
             components={{img:({node,...props})=><img style={{maxWidth:'100%'}}{...props}/>}}
-            transformImageUri = {(uri) => uri.replace(/^/, `https://raw.githubusercontent.com/abehidek/posts/main/${slug}/`)}>
+            transformImageUri = {(uri) => uri.replace(/^/, `https://www.gitlab.com/abehidek/posts/-/raw/main/${slug}/`)}>
             { content }
           </ReactMarkdown>
         </div>
@@ -25,20 +25,17 @@ export default function BlogPage({ slug, frontmatter, content }) {
   )
 }
 
-export async function getServerSidePaths({ res }) {
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
-  const contents = await fetch("https://api.github.com/repos/abehidek/posts/contents")
+export async function getServerSidePaths() {
+  const contents = await fetch("https://gitlab.com/abehidek/posts/-/refs/main/logs_tree/?format=json&offset=0")
   const response = await contents.json()
   const folders = []
 
   response.map(content => {
-    if (content.type == "dir"){
-      folders.push(content.name)
+    if (content.type == "tree"){
+      folders.push(content.file_name)
     }
   })
+
   const paths = folders.map((foldername) =>({
     params: {
       slug: foldername,
@@ -50,12 +47,8 @@ export async function getServerSidePaths({ res }) {
   }
 }
 
-export async function getServerSideProps({ res, params: { slug } }) { 
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
-  const mdPromise = await fetch(`https://raw.githubusercontent.com/abehidek/posts/main/${slug}/main.md`)
+export async function getServerSideProps({ params: { slug } }) { 
+  const mdPromise = await fetch(`https://www.gitlab.com/abehidek/posts/-/raw/main/${slug}/main.md`)
   const md = await mdPromise.text()
   const { data: frontmatter, content } = matter(md)
   return {

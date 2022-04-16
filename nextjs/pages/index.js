@@ -25,11 +25,11 @@ async function getPosts(folders) {
   const posts = [];
 
   for (const slug of files) {
-    const mdPromise = await fetch(`https://raw.githubusercontent.com/abehidek/posts/main/${slug}/main.md`)
+    const mdPromise = await fetch(`https://www.gitlab.com/abehidek/posts/-/raw/main/${slug}/main.md`)
     const md = await mdPromise.text()
     const { data: frontmatter } = matter(md)
     if (!frontmatter.cover_image.startsWith("http")){
-      frontmatter.cover_image = frontmatter.cover_image.replace(/^/, `https://raw.githubusercontent.com/abehidek/posts/main/${slug}/` )
+      frontmatter.cover_image = frontmatter.cover_image.replace(/^/, `https://www.gitlab.com/abehidek/posts/-/raw/main/${slug}/` )
     }
     posts.push({
       slug: slug,
@@ -39,18 +39,14 @@ async function getPosts(folders) {
   return posts
 }
 
-export async function getServerSideProps({ res }) {
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
-  const contents = await fetch("https://api.github.com/repos/abehidek/posts/contents")
+export async function getServerSideProps() {
+  const contents = await fetch("https://gitlab.com/abehidek/posts/-/refs/main/logs_tree/?format=json&offset=0")
   const response = await contents.json()
   const folders = []
 
   response.map(content => {
-    if (content.type == "dir"){
-      folders.push(content.name)
+    if (content.type == "tree"){
+      folders.push(content.file_name)
     }
   })
   // Get slug and frontmatter
