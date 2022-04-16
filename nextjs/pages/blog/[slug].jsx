@@ -1,9 +1,14 @@
 import matter from "gray-matter"
 import Link from "next/link"
+import Head from 'next/head'
 import ReactMarkdown from 'react-markdown'
+
 export default function BlogPage({ slug, frontmatter, content }) {
   return (
     <>
+      <Head>
+        <title>Abe Hidek Blog | {frontmatter.title}</title>
+      </Head>
       <Link href='/'>
         <a className="btn btn-back">Go Back</a>
       </Link>
