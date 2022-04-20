@@ -20,7 +20,12 @@ export default function BlogPage({ slug, frontmatter, content }) {
         <img src={frontmatter.cover_image} alt="" />
         <div className="post-body">
           <ReactMarkdown
-            components={{img:({node,...props})=><img style={{maxWidth:'100%'}}{...props}/>}}
+            components={
+              {
+                img:({node,...props})=><img style={{maxWidth:'100%'}}{...props}/>,
+                code:({node, ...props})=><code style={{textOverflow: 'ellipsis', wordWrap: 'break-word', whiteSpace: 'pre-wrap', wordBreak: 'break-word'}}{...props}/>
+              }
+            }
             transformImageUri = {(uri) => uri.replace(/^/, `https://www.gitlab.com/abehidek/posts/-/raw/main/${slug}/`)}>
             { content }
           </ReactMarkdown>
