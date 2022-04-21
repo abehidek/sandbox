@@ -1,9 +1,11 @@
-from os import system
+from os import system, path
 from pynput.keyboard import Key, Controller
 from threading import Timer
 from random import randint
+
 keyboard = Controller()
 import macacos
+
 
 def swapLetter(masked_word, word, char, err):
     pos = list()
@@ -27,10 +29,12 @@ def swapLetter(masked_word, word, char, err):
 
 
 def getWord():
-    f = open("palavras.txt", "r").read()
-    row_arr = f.replace('\n', '').split(";")
-
-    randow_row = row_arr[randint(0, len(row_arr)-1)]
+    script_dir = path.dirname(__file__)  # <-- absolute dir the script is in
+    rel_path = "palavras.txt"
+    abs_file_path = path.join(script_dir, rel_path)
+    f = open(abs_file_path, "r").read()
+    row_arr = f.replace("\n", "").split(";")
+    randow_row = row_arr[randint(0, len(row_arr) - 1)]
     word = randow_row.split(":")[0]
     tip = randow_row.split(":")[1]
 
@@ -44,21 +48,23 @@ def skip():
     keyboard.release(Key.enter)
 
 
-
 def header(attempt, masked_word, tip):
-    print("-" * 30)
-    if attempt == 6:
-        print(macacos.macacoHead)
-    if attempt == 5:
-        print(macacos.macacoHead)
-    if attempt == 4:
-        print(macacos.macacoBraco1)
-    if attempt == 3:
-        print(macacos.macacoCorpo)
-    if attempt == 2:
-        print(macacos.macacoPerna2)
-    if attempt == 1:
-        print(macacos.macacoPerna1)
+    match attempt:
+        case 1:
+            print(macacos.monkey1)
+        case 2:
+            print(macacos.monkey2)
+        case 3:
+            print(macacos.monkey3)
+        case 4:
+            print(macacos.monkey4)
+        case 5:
+            print(macacos.monkey5)
+        case 6:
+            print(macacos.monkey6)
+        case default:
+            print("Erro")
+
     print("Tentativas:", attempt)
     print("\nPalavra:", masked_word)
     print("Dica:", tip)
@@ -80,7 +86,7 @@ def winGame(word):
 
 
 def lose(word):
-    print(macacos.macacoInteiro)
+    print(macacos.monkey0)
     print("A palavra é:", word)
     print("Você perdeu!!")
 
@@ -108,7 +114,6 @@ def game(attempt, seconds):
 
 def main():
     system("cls")
-
     game(6, 10)
 
 
