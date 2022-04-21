@@ -1,0 +1,111 @@
+Crie uma nova planilha chamada "Senha" e nela as colunas "Usuário", "Senha" e "Formulário". Aqui você irá definir a quais planilhas (chamamos de "formulário") o usuário tem acesso, seu login e sua senha. Lembrando que o administrador deve ter acesso à planilha "Senha". Se um usuário ter acesso a mais de uma planilha, devemos definir cada uma numa linha separada, repetindo as colunas "Usuário" e "Senha".
+Criando a tela de login
+Vá à aba Desenvolvedor e clique em Visual Basic, onde seremos direcionados á janela de edição de comandos VBA.
+Na janela de edição, clique em Inserir e após em UserForm. Para nomear e ajustar o formulário localize o quadro de propriedades, localizado no lado esquerdo da janela do VBA. Altere as seguintes informações:
+. Caption = Login;
+. name = frmLogin;
+. BackColor = &H00000000&(preto).
+Crie um botão de comando:
+. Caption = OK.
+Agora crie dois rótulos, representados pelo ícone com a letra "A".
+. Caption = 'Usuário' e outro 'Senha'.
+Para mudar o tamanho e o formatar o texto é só clicar nos 3 pontinhos ao lado da fonte, localizado entre as propriedades do rótulo. Se a caixinha for preta terá que colorir as palavras para a letra branca para ficar visível no campo ForeColor.
+Crie duas caixas de texto onde o usuário irá colocar login e senha (botãozinho que tem o "Ab"):
+. Name = 'txtUsuario' e outro 'txtSenha'.
+No txtSenha defina:
+. PasswordChar para *. Assim sua senha sairá criptografada.
+Agora, vamos adicionar as linhas de comando do botão OK. Dê dois clique nele e na janela de edição que se abrir cole o seguinte código:
+''''''''''''''''''''''''''''''''''''''''
+Private Sub CommandButton1_Click()
+	' Variável de total de linhas
+	Dim lTotal As Long
+	' Variável auxiliar
+	Dim lContador As Long
+	' Rotina de ocultar planilhas
+	lsDesabilitar
+	' Define última linha da planilha Senha
+	lTotal = Sheets("Senha").Range("A1").End(xlDown).Row
+	' Desprotege estrutura do Workbook
+	ActiveWorkbook.Unprotect Password:="123"
+	' Laço de repetição nas linhas existentes em Senha
+	For lContador = 2 To lTotal
+		' Variável local
+		Dim nome As String
+		' Atribui a nome contido na linha atual
+		nome = Sheets("Senha").Range("A" & lContador)
+		' Variável local
+		Dim senha As String
+		' Atribui a senha contida na linha atual
+		senha = Sheets("Senha").Range("B" & lContador)
+		' verificação de senha e nome com os digitados
+		If txtUsuario = nome And txtSenha = senha Then
+			' Define a planilha na lua atual como visível caso senha e nome corresponde aos digitados
+			Sheets(Sheets("Senha").Range("C" & lContador).Value).Visible = True
+		End If
+	Next lContador
+	' Remove o Form da memória
+	Unload frmLogin
+	' Proteje novamente a estrutura do Workbook
+	ActiveWorkbook.Protect Password:="123", Structure:=True, Windows:=False
+End Sub
+
+
+
+Private Sub txtUsuario_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+	' Modifica cada caracter digitado no txtUsuario para maiúsculo
+	KeyAscii = Asc(UCase(Chr(KeyAscii)))
+End Sub
+
+
+
+Private Sub UserForm_Activate()
+	' Ao ser carregado seta o txtUsuario como ítém selecionado
+	txtUsuario.SetFocus
+End Sub
+
+
+
+' Evento relacionado a qualquer tecla precionada com o UserForm ativo
+Private Sub UserForm_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+	' Se a tecla digitada for ENTER realiza algo
+	If KeyAscii = 13 Then
+		' executa o "tecla" TAB
+		SendKeys "{tab}"
+		' Reseta a variável KeyAscii
+		KeyAscii = 0
+	End If
+End Sub
+''''''''''''''''''''''''''''''''''''''''
+Insira um Módulo, na guia inserir. No código adicione mais planilhas, coso necessário:
+''''''''''''''''''''''''''''''''''''''''
+Public Sub lsShow()
+	' Procedimento para mostrar, carregar na memóri e exibir nosso form frmLogin
+	frmLogin.Show
+End Sub
+
+
+
+Public Sub lsDesabilitar()
+	' Desprotege a estrutura do Workbook
+	ActiveWorkbook.Unprotect Password:="123"
+	' sequencia de ocultar as planilhas existentes, menos a planilha Menu
+	Sheets("Contas").Visible = False
+	Sheets("Compras").Visible = False
+	Sheets("Gastos").Visible = False
+	Sheets("Senha").Visible = False
+	' Proteje novamente a estrutura do Workbook
+	ActiveWorkbook.Protect Password:="123", Structure:=True, Windows:=False
+End Sub
+''''''''''''''''''''''''''''''''''''''''
+O próximo passo é dar 2 cliques em "EstaPasta_de_trabalho" e colar o seguinte código:
+''''''''''''''''''''''''''''''''''''''''
+' Executa algo ao abrir nosso arquivo excel
+Private Sub Workbook_Open()
+' chama a rotina de ocultação das planilhas
+lsDesabilitar
+End Sub
+''''''''''''''''''''''''''''''''''''''''
+Agora crie uma planilha chamada "Menu". Nela vamos criar um botão. Depois você clique com o botão direito nele e em "Atribuir macro...". Na nova janela que aparecer selecione "isShow" e dê um ok.
+Feche a janela e salve seu documento como Modo Habilitado para Macro, caso contrário, todo trabalho será perdido.
+Agora, toda vez que algum usuário tentar acessar seu documento precisará entrar com login e senha.
+A senha para você começar a usar é 123 e o login é ADM.
