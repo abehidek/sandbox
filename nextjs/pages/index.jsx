@@ -39,7 +39,7 @@ async function getPosts(folders) {
   return posts
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const contents = await fetch("https://gitlab.com/abehidek/posts/-/refs/main/logs_tree/?format=json&offset=0")
   const response = await contents.json()
   const folders = []
@@ -54,6 +54,7 @@ export async function getServerSideProps() {
   return {
     props: {
       posts: posts.sort(sortByDate),
-    }
+    },
+    revalidate: 60,
   }
 }

@@ -35,7 +35,7 @@ export default function BlogPage({ slug, frontmatter, content }) {
   )
 }
 
-export async function getServerSidePaths() {
+export async function getStaticPaths() {
   const contents = await fetch("https://gitlab.com/abehidek/posts/-/refs/main/logs_tree/?format=json&offset=0")
   const response = await contents.json()
   const folders = []
@@ -53,11 +53,11 @@ export async function getServerSidePaths() {
   }))
   return {
     paths: paths,
-    fallback: false
+    fallback: false,
   }
 }
 
-export async function getServerSideProps({ params: { slug } }) { 
+export async function getStaticProps({ params: { slug } }) { 
   const mdPromise = await fetch(`https://www.gitlab.com/abehidek/posts/-/raw/main/${slug}/main.md`)
   const md = await mdPromise.text()
   const { data: frontmatter, content } = matter(md)
@@ -66,6 +66,7 @@ export async function getServerSideProps({ params: { slug } }) {
       slug,
       frontmatter,
       content
-    }
+    },
+    revalidate: 60,
   }
 }

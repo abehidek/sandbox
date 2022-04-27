@@ -9,7 +9,7 @@ export default function Post({post}) {
       </div>
       <h3>{post.frontmatter.title}</h3>
       <p>{post.frontmatter.excerpt}</p>
-      <Link href={`/blog/${post.slug}`}>
+      <Link href={`/post/${post.slug}`}>
         <a className="btn">Read More</a>
       </Link>
     </div>
