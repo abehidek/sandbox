@@ -18,7 +18,7 @@ export default function BlogPage({ slug, frontmatter, content }) {
         <div className="post-date">
           {frontmatter.date}
         </div>
-        <Image src={frontmatter.cover_image} width="100%" height="100%" layout="responsive" objectFit="contain" /> 
+        <Image src={frontmatter.cover_image} width="100%" height="70%" layout="responsive" objectFit="cover" /> 
         <div className="post-body">
           <ReactMarkdown
             components={
