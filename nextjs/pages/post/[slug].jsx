@@ -1,6 +1,7 @@
 import matter from "gray-matter"
 import Link from "next/link"
 import Head from 'next/head'
+import Image from "next/image"
 import ReactMarkdown from 'react-markdown'
 
 export default function BlogPage({ slug, frontmatter, content }) {
@@ -17,7 +18,7 @@ export default function BlogPage({ slug, frontmatter, content }) {
         <div className="post-date">
           {frontmatter.date}
         </div>
-        <img src={frontmatter.cover_image} alt="" />
+        <Image src={frontmatter.cover_image} width="100%" height="100%" layout="responsive" objectFit="contain" /> 
         <div className="post-body">
           <ReactMarkdown
             components={
