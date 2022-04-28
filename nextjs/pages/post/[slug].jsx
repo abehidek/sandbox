@@ -1,4 +1,6 @@
 import matter from "gray-matter"
+import fetchRepoTree from '../../lib/fetchRepoTree'
+import fetchMarkdown from '../../lib/fetchMarkdown'
 import Link from "next/link"
 import Head from 'next/head'
 import Image from "next/image"
@@ -27,7 +29,7 @@ export default function BlogPage({ slug, frontmatter, content }) {
                 code:({node, ...props})=><code style={{textOverflow: 'ellipsis', wordWrap: 'break-word', whiteSpace: 'pre-wrap', wordBreak: 'break-word'}}{...props}/>
               }
             }
-            transformImageUri = {(uri) => uri.replace(/^/, `https://www.gitlab.com/abehidek/posts/-/raw/main/${slug}/`)}>
+            transformImageUri = {(uri) => uri.replace(/^/, `${process.env.cdnRaw}/${slug}/`)}>
             { content }
           </ReactMarkdown>
         </div>
@@ -37,16 +39,7 @@ export default function BlogPage({ slug, frontmatter, content }) {
 }
 
 export async function getStaticPaths() {
-  const contents = await fetch("https://gitlab.com/abehidek/posts/-/refs/main/logs_tree/?format=json&offset=0")
-  const response = await contents.json()
-  const folders = []
-
-  response.map(content => {
-    if (content.type == "tree"){
-      folders.push(content.file_name)
-    }
-  })
-
+  const folders = await fetchRepoTree()
   const paths = folders.map((foldername) =>({
     params: {
       slug: foldername,
@@ -59,8 +52,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) { 
-  const mdPromise = await fetch(`https://www.gitlab.com/abehidek/posts/-/raw/main/${slug}/main.md`)
-  const md = await mdPromise.text()
+  const md = await fetchMarkdown(slug)
   const { data: frontmatter, content } = matter(md)
   return {
     props: {

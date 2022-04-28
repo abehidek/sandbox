@@ -1,7 +1,9 @@
-import Head from 'next/head'
-import matter from 'gray-matter';
-import Post from '../components/Post'
 import { sortByDate } from '../utils'
+import matter from 'gray-matter';
+import fetchRepoTree from '../lib/fetchRepoTree'
+import fetchMarkdown from '../lib/fetchMarkdown'
+import Head from 'next/head'
+import Post from '../components/Post'
 
 export default function Home({posts}) {
   return (
@@ -25,11 +27,10 @@ async function getPosts(folders) {
   const posts = [];
 
   for (const slug of files) {
-    const mdPromise = await fetch(`https://www.gitlab.com/abehidek/posts/-/raw/main/${slug}/main.md`)
-    const md = await mdPromise.text()
+    const md = await fetchMarkdown(slug)
     const { data: frontmatter } = matter(md)
     if (!frontmatter.cover_image.startsWith("http")){
-      frontmatter.cover_image = frontmatter.cover_image.replace(/^/, `https://www.gitlab.com/abehidek/posts/-/raw/main/${slug}/` )
+      frontmatter.cover_image = frontmatter.cover_image.replace(/^/, `${process.env.cdnRaw}/${slug}/` )
     }
     posts.push({
       slug: slug,
@@ -40,15 +41,7 @@ async function getPosts(folders) {
 }
 
 export async function getStaticProps() {
-  const contents = await fetch("https://gitlab.com/abehidek/posts/-/refs/main/logs_tree/?format=json&offset=0")
-  const response = await contents.json()
-  const folders = []
-
-  response.map(content => {
-    if (content.type == "tree"){
-      folders.push(content.file_name)
-    }
-  })
+  const folders = await fetchRepoTree()
   // Get slug and frontmatter
   const posts = await getPosts(folders)
   return {
