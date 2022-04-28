@@ -30,7 +30,12 @@ async function getPosts(folders) {
     const md = await fetchMarkdown(slug)
     const { data: frontmatter } = matter(md)
     if (!frontmatter.cover_image.startsWith("http")){
-      frontmatter.cover_image = frontmatter.cover_image.replace(/^/, `${process.env.cdnRaw}/${slug}/` )
+      if (frontmatter.cover_image.startsWith("/")) {
+        frontmatter.cover_image = frontmatter.cover_image.replace(/^/, `${process.env.cdnRaw}/${slug}` )
+      }
+      else {
+        frontmatter.cover_image = frontmatter.cover_image.replace(/^/, `${process.env.cdnRaw}/${slug}/` )
+      }
     }
     posts.push({
       slug: slug,
