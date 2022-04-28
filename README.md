@@ -1,4 +1,6 @@
-# Bosch-SmartAuto
+# Bosch-SmartAuto (Arquivado)
+
+**Este repositório está sendo arquivado pois há arquivos muito pesados**
 
 Este é um repositório contendo as atividades relacionadas ao curso de Smart Automation da Bosch.
 
