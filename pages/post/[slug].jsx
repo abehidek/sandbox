@@ -68,9 +68,22 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params: { slug } }) {
-  const md = await fetchMarkdown(slug);
-  const { data: frontmatter, content } = matter(md);
+export async function getStaticProps({ params: { slug } }) { 
+  const md = await fetchMarkdown(slug)
+  const { data: frontmatter, content } = matter(md)
+  if (!frontmatter.cover_image.startsWith('http')) {
+    if (frontmatter.cover_image.startsWith('/')) {
+      frontmatter.cover_image = frontmatter.cover_image.replace(
+        /^/,
+        `${process.env.cdnRaw}/${slug}`
+      );
+    } else {
+      frontmatter.cover_image = frontmatter.cover_image.replace(
+        /^/,
+        `${process.env.cdnRaw}/${slug}/`
+      );
+    }
+  }
   return {
     props: {
       slug,
