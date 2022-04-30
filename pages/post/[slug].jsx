@@ -32,15 +32,15 @@ export default function BlogPage({ slug, frontmatter, content }) {
                 <img style={{ maxWidth: '100%' }} {...props} />
               ),
               code: ({ node, ...props }) => (
-                <code
-                  style={{
-                    textOverflow: 'ellipsis',
-                    wordWrap: 'break-word',
-                    whiteSpace: 'pre-wrap',
-                    wordBreak: 'break-word',
-                  }}
-                  {...props}
-                />
+                <pre style={{ overflow: 'auto' }}>
+                  <code
+                    style={{
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'pre',
+                    }}
+                    {...props}
+                  />
+                </pre>
               ),
             }}
             transformImageUri={(uri) =>
@@ -68,9 +68,9 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params: { slug } }) { 
-  const md = await fetchMarkdown(slug)
-  const { data: frontmatter, content } = matter(md)
+export async function getStaticProps({ params: { slug } }) {
+  const md = await fetchMarkdown(slug);
+  const { data: frontmatter, content } = matter(md);
   if (!frontmatter.cover_image.startsWith('http')) {
     if (frontmatter.cover_image.startsWith('/')) {
       frontmatter.cover_image = frontmatter.cover_image.replace(

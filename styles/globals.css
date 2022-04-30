@@ -129,9 +129,6 @@ ol {
   .header {
     display: block;
   }
-  code {
-    font-size: 0.5rem;
-  }
   .posts {
     grid-template-columns: 1fr;
   }
