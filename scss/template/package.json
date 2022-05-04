@@ -1,0 +1,13 @@
+{
+  "name": "scss-template",
+  "version": "1.0.0",
+  "description": "Scroll snapping in css",
+  "scripts": {
+    "dev": "sass --watch css/main.scss css/main.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.51.0"
+  }
+}

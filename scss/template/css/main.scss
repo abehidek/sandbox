@@ -1,0 +1,10 @@
+@mixin background-preto-fonte-branca {
+    background-color: black;
+    color: white;
+}
+
+body {
+    .div1 {
+        @include background-preto-fonte-branca()
+    }
+}
