@@ -7,6 +7,7 @@ in pkgs.mkShell {
   buildInputs = [
     unstable.nodejs
     unstable.nodePackages.typescript
+    unstable.nodePackages.live-server
     # keep this line if you use bash
     pkgs.bashInteractive
   ];
