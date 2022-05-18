@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #2E3440;
+  padding: 2rem;
+}
+body h1 {
+  color: white;
+}
+
+.app {
+  margin-top: 2rem;
+  width: 60%;
+  height: 70vh;
+}
+
+.chat {
+  height: 100%;
+  width: 100%;
+  background-color: #3B4252;
+  border-radius: 1rem;
+  overflow-y: scroll;
+  padding: 1rem;
+}
+.chat ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.chat ul li {
+  list-style: none;
+  width: 10rem;
+  height: auto;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  word-wrap: break-word;
+}
+.chat ul li span {
+  font-weight: bold;
+}
+.chat ul li.receive {
+  background-color: #5E81AC;
+}
+.chat ul li.sent {
+  background-color: #B48EAD;
+  margin-left: auto;
+}
+
+.actions {
+  display: flex;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+.actions button {
+  width: 5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  outline: none;
+  border: 2px solid #D8DEE9;
+  background-color: #2E3440;
+  color: #D8DEE9;
+}
+.actions button:hover {
+  background-color: #D8DEE9;
+  color: #2E3440;
+}
+.actions input {
+  width: 60%;
+  outline: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+}
+
+@media only screen and (max-width: 900px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  .app {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
