@@ -48,6 +48,9 @@ body h1 {
 .chat ul li span {
   font-weight: bold;
 }
+.chat ul li * {
+  max-width: 100%;
+}
 .chat ul li.receive {
   background-color: #5E81AC;
 }
