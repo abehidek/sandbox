@@ -32,7 +32,8 @@ fetchChat.on("child_added", function (snapshot) {
 })
 
 const input = document.querySelector("input");
-document.querySelector("button").addEventListener("click", (e) =>{
+
+const sendMessage = (e) => {
     e.preventDefault();
     console.log("Send!")
     
@@ -44,4 +45,12 @@ document.querySelector("button").addEventListener("click", (e) =>{
         usr: username,
         msg: message,
     });
+}
+
+document.querySelector("button").addEventListener("click", (e) =>{ sendMessage(e); })
+
+document.querySelector("input").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        sendMessage(e)
+    }
 })
