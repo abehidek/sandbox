@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "dev": "concurrently \"sass --watch scss/main.scss public/css/styles.css\"",
+    "build": "sass css/main.scss public/css/main.css"
+  },
+  "dependencies": {
+    "concurrently": "^7.1.0",
+    "sass": "^1.51.0"
+  }
+}
