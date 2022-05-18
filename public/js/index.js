@@ -24,11 +24,7 @@ fetchChat.on("child_added", function (snapshot) {
     <span>${messages.usr}: </span> ${messages.msg}
     </li>`
     document.querySelector("#messages").innerHTML += message;
-    document.querySelector("#messages").scrollIntoView({
-        behavior: "smooth",
-        block: "end",
-        inline: "nearest"
-    });
+    document.querySelector("#chat").scrollTop = document.querySelector("#chat").scrollHeight
 })
 
 const input = document.querySelector("input");
