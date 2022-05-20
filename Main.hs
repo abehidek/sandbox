@@ -1,9 +1,11 @@
 -- http://learnyouahaskell.com/chapters
---main = do
-  --putStrLn "Hello"
-  --putStrLn "World"
-  --let sumMe x y = x + y
-  --putStrLn (show (sumMe 3 5))
+main = do
+  putStrLn "Hello"
+  putStrLn "World"
+  let sumMe x y = x + y
+  putStrLn (show (sumMe 3 5))
+
+  return ()
 
 doubleSmallNumber x = if x > 100 then x else x * 2
 
