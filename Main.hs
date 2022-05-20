@@ -70,3 +70,20 @@ bar = arr !! 0
 -- [x * 3 | x <- [1..15]]                              [3,6,9,12,15,18,21,24,27,30,33,36,39,42,45]
 -- [x * 3 | x <- [1..15], ((x * 3) `mod` 15) == 0]     [15,30,45]
 -- [x * 3 | x <- [1..15], (mod (x * 3) 15) == 0]       [15,30,45]
+
+-- daleDele xs = [ if even x then "DALE" else "DELE" | x <- xs, x < 20 ]
+-- daleDele [1..30] ["DELE","DALE","DELE","DALE","DELE","DALE","DELE","DALE","DELE","DALE","DELE","DALE","DELE","DALE","DELE","DALE","DELE","DALE","DELE"]
+
+-- you can use multiple conditions as well
+-- [ x | x <- [10..20], x /= 13, x /= 15, x /= 19]  
+-- [10,11,12,14,16,17,18,20]
+
+-- and combine one list to another (get all possible combinations)
+-- [ x*y | x <-[2,5,10], y<-[8,10,11] ] 
+-- [16,20,22,40,50,55,80,100,110]
+
+-- [ x*y | x <-[2,5,10], y<-[8,10,11,20] ]
+-- [16,20,22,40,40,50,55,100,80,100,110,200]
+
+-- a length function
+-- lenght' xs = sum 
