@@ -10,6 +10,7 @@ in pkgs.mkShell {
     unstable.nodePackages.live-server
     unstable.nodePackages.typescript
     unstable.yarn
+    unstable.insomnia
   ];
   shellHook = "";
 }
