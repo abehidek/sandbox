@@ -1,1 +1,12 @@
-console.log("Hello World!");
+import express from 'express';
+import config from 'config';
+
+const port = config.get<number>("port");
+
+const app = express();
+
+app.get("/", function (req, res) {
+  res.json({ hello: "World" })
+})
+
+app.listen(port, () => { console.log("Listening on port", port) })
