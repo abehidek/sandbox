@@ -1,4 +1,4 @@
 export default {
   port: 1337,
-  dbUri: '',
+  dbUri: 'mongodb://localhost:27017/mern',
 };

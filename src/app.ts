@@ -8,8 +8,8 @@ const app = express();
 
 app.use(express.json());
 
-app.listen(port, () => {
+app.listen(port, async () => {
   console.log('Listening on port', port);
-
+  await connect();
   routes(app);
 });
