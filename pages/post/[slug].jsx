@@ -20,6 +20,7 @@ export default function BlogPage({ slug, frontmatter, content }) {
         <div className='post-date'>{frontmatter.date}</div>
         <Image
           src={frontmatter.cover_image}
+          alt={`{"${frontmatter.title} cover image"}`}
           width='100%'
           height='70%'
           layout='responsive'
