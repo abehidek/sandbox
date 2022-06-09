@@ -5,16 +5,17 @@ import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   const {isLoading, error, data} = useQuery('hello', () => {
-    fetch("/api/hello").then(res => res.json());
-  })
+    return fetch("/api/hello/").then(res => res.json());
+  });
 
   if (isLoading) return <p>Loading...</p>
   if (error) return <p>error!!</p>
 
+  console.log(data)
+
   return (
     <div className={styles.container}>
-      <p>Hello</p>
-      <p>{ JSON.stringify(data) }</p>
+      <p>Hello { data.name }</p>
     </div>
   )
 }
