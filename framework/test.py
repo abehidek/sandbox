@@ -1,10 +1,10 @@
-from fwf.app import api 
+from fwf.app import endpoint
 
-@api
+@endpoint("/")
 def application(request, response):
     name = request.args.get("name", ""); print(name)
-    response.content_type = "text/html"
+    response.content_type = "application/json"
     response.message = [
-        f"<h1>{name}</h1>".encode("utf-8")
+        "{'name': '123'}".encode("utf-8")
     ]
     return response
