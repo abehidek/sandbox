@@ -1,9 +1,11 @@
+-- Useful resources:
+-- https://www.youtube.com/playlist?list=PLe7Ei6viL6jGp1Rfu0dil1JH1SHk9bgDV
 -- http://learnyouahaskell.com/chapters
 main = do
-  putStrLn "Hello"
-  putStrLn "World"
+  print "Hello"
+  print "World"
   let sumMe x y = x + y
-  putStrLn (show (sumMe 3 5))
+  print (show (sumMe 3 5))
 
   return ()
 
