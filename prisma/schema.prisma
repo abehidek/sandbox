@@ -11,17 +11,17 @@ datasource db {
 }
 
 model User {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String    @id @default(auto()) @map("_id") @db.ObjectId
   email       String    @unique
   name        String
   projectIDs  String[]  @db.ObjectId
-  projects    Project[] @relation(fields: [projectIDs], references: [id])
+  projects    Project[] @relation(fields: [projectIDs], references: [projectId])
 }
 
 model Project {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  projectId   String    @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   description String?
   userIDs     String[]  @db.ObjectId
-  users       User[]    @relation(fields: [userIDs], references: [id])
+  users       User[]    @relation(fields: [userIDs], references: [userId])
 }
