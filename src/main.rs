@@ -2,11 +2,13 @@
 
 // mod psrint;
 // mod vars;
-mod types;
+// mod types;
+mod strings;
 
 fn main() {
-  println!("Hello, world!");
+  // println!("Hello, world!");
   // print::run();
   // vars::run();
-  types::run();
+  // types::run();
+  strings::run();
 }
