@@ -1,10 +1,12 @@
 // Crash course https://www.youtube.com/watch?v=zF34dRivLOw
 
-// mod print;
-mod vars;
+// mod psrint;
+// mod vars;
+mod types;
 
 fn main() {
   println!("Hello, world!");
   // print::run();
-  vars::run();
+  // vars::run();
+  types::run();
 }
