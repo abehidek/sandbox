@@ -23,9 +23,9 @@ const Home: NextPage = () => {
       <p>Hello { data.name }</p>
       <h1>Users</h1>
       { 
-        usersQuery.data.map((user: {id: String, name: String, email: String}, index:Key) => (
+        usersQuery.data.map((user: {userId: String, name: String, email: String}, index:Key) => (
           <div key={index}>
-            <p>id: {user.id}</p>
+            <p>id: {user.userId}</p>
             <p>name: {user.name}</p>
             <p>email: {user.email}</p>
           </div>

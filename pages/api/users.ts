@@ -7,8 +7,8 @@ import { getAllUsers, getUser, createUser, updateUser, deleteUser } from '../../
 export default async function handler( req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET': {
-      if (req.query.id) {
-        const user = await getUser(req.query.id as string)
+      if (req.query.userId) {
+        const user = await getUser(req.query.userId as string)
         return res.status(200).json(user)
       } else { 
         const allUsers = await getAllUsers(); 
@@ -21,13 +21,13 @@ export default async function handler( req: NextApiRequest, res: NextApiResponse
       return res.status(200).json(user);
     }
     case 'PUT': {
-      const { id, ...updateData } = req.body;
-      const user = await updateUser(id, updateData);
+      const { userId, ...updateData } = req.body;
+      const user = await updateUser(userId, updateData);
       return res.status(200).json(user);
     }
     case 'DELETE': {
-      const { id } = req.body;
-      const user = await deleteUser(id);
+      const { userId } = req.body;
+      const user = await deleteUser(userId);
       return res.status(200).json(user)
     }
     default: break;
