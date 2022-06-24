@@ -13,8 +13,13 @@ pub fn run() {
   let mut age = 20;
 
   greet(name, age);
-  
   age = 38;
-
   greet(name, age);
+
+  // Define constant
+  const ID: i32 = 001;
+  println!("ID: {}", ID);
+
+  let ( another_name, another_age ) = ( "Eba", 30 );
+  println!("{} is {}", another_name, another_age)
 }
