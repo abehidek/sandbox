@@ -11,7 +11,7 @@ pub fn run() {
     println!("Another sum: {}", add_nums (3,3));
 }
 
-fn greet(file_name: &str) {
+pub fn greet(file_name: &str) {
     println!("Hello from file {}.rs", file_name);
 }
 

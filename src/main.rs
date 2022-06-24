@@ -1,6 +1,6 @@
 // Crash course https://www.youtube.com/watch?v=zF34dRivLOw
 
-// mod psrint;
+// mod print;
 // mod vars;
 // mod types;
 // mod strings;
@@ -10,6 +10,7 @@
 // mod conditionals;
 // mod loops;
 mod functions;
+mod pointers;
 
 fn main() {
   // println!("Hello, world!");
@@ -22,5 +23,6 @@ fn main() {
   // vectors::run();
   // conditionals::run();
   // loops::run();
-  functions::run();
+  // functions::run();
+  pointers::run(functions::greet);
 }
