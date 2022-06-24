@@ -1,0 +1,30 @@
+_id: req_da49db451d304cf7a1acb95c6ce65008
+type: Request
+parentId: fld_b06046527cdb45828f1ae061fd679a2d
+modified: 1656037194778
+created: 1656036001344
+url: http://localhost:3000/api/projects
+name: createProject
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"name": "Projeto 1",
+    	"userId": "62a3cbeeeea4f01e5a27414f"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_c56b40a1445b4d849d9ab9e74628e757
+authentication: {}
+metaSortKey: -1656036792793
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
