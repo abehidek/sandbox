@@ -10,7 +10,8 @@
 // mod conditionals;
 // mod loops;
 mod functions;
-mod pointers;
+// mod pointers;
+mod structs;
 
 fn main() {
   // println!("Hello, world!");
@@ -24,5 +25,6 @@ fn main() {
   // conditionals::run();
   // loops::run();
   // functions::run();
-  pointers::run(functions::greet);
+  // pointers::run(functions::greet);
+  structs::run(functions::greet);
 }
