@@ -101,9 +101,9 @@ Naming convetions can be found in:
 - https://rust-lang.github.io/api-guidelines/naming.html
 */
 
-mod tranversy_media_course;
+mod course_tranversy_media;
 
 fn main() {
   println!("Hello, world!");
-  tranversy_media_course::main();
+  course_tranversy_media::main();
 }

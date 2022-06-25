@@ -1,7 +1,7 @@
 use std::env;
 
 pub fn run() {
-    crate::tranversy_media_course::functions::greet("cli");
+    crate::course_tranversy_media::functions::greet("cli");
 
     let args: Vec<String> = env::args().collect();
 
