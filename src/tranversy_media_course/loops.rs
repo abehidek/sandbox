@@ -29,7 +29,7 @@ pub fn run() {
         if count == 20 { break; }
     }
     
-    // fizz_buzz(15);
+    fizz_buzz(15);
 
     // you can use for with range as well
     for x in 0..10 { println!("{}", x*2); }

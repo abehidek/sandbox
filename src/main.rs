@@ -101,36 +101,9 @@ Naming convetions can be found in:
 - https://rust-lang.github.io/api-guidelines/naming.html
 */
 
-// Crash course https://www.youtube.com/watch?v=zF34dRivLOw
-// mod print;
-// mod vars;
-// mod types;
-// mod strings;
-// mod tuples;
-// mod arrays;
-// mod vectors;
-// mod conditionals;
-// mod loops;
-mod functions;
-// mod pointers;
-// mod structs;
-// mod enums;
-mod cli;
+mod tranversy_media_course;
 
 fn main() {
-  // println!("Hello, world!");
-  // print::run();
-  // vars::run();
-  // types::run();
-  // strings::run();
-  // tuples::run();
-  // arrays::run();
-  // vectors::run();
-  // conditionals::run();
-  // loops::run();
-  // functions::run();
-  // pointers::run(functions::greet);
-  // structs::run(functions::greet);
-  // enums::run();
-  cli::run();
+  println!("Hello, world!");
+  tranversy_media_course::main();
 }
