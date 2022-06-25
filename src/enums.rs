@@ -13,8 +13,8 @@ fn move_avatar(m: Movement) {
     }
 }
 
-pub fn run(greet: fn(&str)) {
-    greet("enums");
+pub fn run() {
+    super::functions::greet("enums");
     let avatar1 = Movement::Left;
     let avatar2 = Movement::Right;
     let avatar3 = Movement::Up;

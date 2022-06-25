@@ -1,7 +1,7 @@
 use std::env;
 
-pub fn run(greet: fn(&str)) {
-    greet("cli");
+pub fn run() {
+    crate::functions::greet("cli");
 
     let args: Vec<String> = env::args().collect();
     let command = args[1].clone();
