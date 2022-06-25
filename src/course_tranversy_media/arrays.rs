@@ -15,7 +15,7 @@ pub fn run() {
 
     // numbers.len(); array len
     println!("{:?}", numbers);
-    
+
     // arrays are stack allocated
     println!("Array occuppies {} bytes", mem::size_of_val(&numbers));
 

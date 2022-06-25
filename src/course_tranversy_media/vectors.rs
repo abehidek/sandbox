@@ -28,7 +28,7 @@ pub fn run() {
 
     // loop and mutate values (similar to map)
     for x in numbers.iter_mut() {
-        *x *=2; // double every element in the array
+        *x *= 2; // double every element in the array
     }
     println!("{:?}", numbers);
 }

@@ -13,6 +13,7 @@ pub fn run() {
     println!("Hello from types.rs!");
     let x = 1; // By default this is going to be i32
     let y = 2.5; // ... f64
+
     // to do it explicitly:
     let z: i64 = 3271893021;
     // to find the max size:
@@ -25,9 +26,8 @@ pub fn run() {
     // get boolean from expression
     let is_greater: bool = 2 > 3; // false
 
-    let a1 = 'a'; 
+    let a1 = 'a';
     let a2 = '🤣'; // any unicode, you can use emoji lmao
 
-    println!("{:?}", ( x,y,z, is_active, is_greater, a1, a2 ));
-
+    println!("{:?}", (x, y, z, is_active, is_greater, a1, a2));
 }

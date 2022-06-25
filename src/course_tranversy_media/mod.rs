@@ -1,18 +1,18 @@
 // Crash course https://www.youtube.com/watch?v=zF34dRivLOw
-mod print;
-mod vars;
-mod types;
-mod strings;
-mod tuples;
 mod arrays;
-mod vectors;
+mod cli;
 mod conditionals;
+mod enums;
+mod functions;
 mod loops;
 mod pointers;
+mod print;
+mod strings;
 mod structs;
-mod enums;
-mod cli;
-mod functions;
+mod tuples;
+mod types;
+mod vars;
+mod vectors;
 
 pub fn main() {
     println!("Tranversy Media Course Rust Module!");

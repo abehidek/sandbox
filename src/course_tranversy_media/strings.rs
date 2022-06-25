@@ -36,18 +36,20 @@ pub fn run() {
     // assertion testing
     assert_eq!(2, s.len()); // pass
 
-    /* 
-    assert_eq!(3, s.len()); 
+    /*
+    assert_eq!(3, s.len());
     >   thread 'main' panicked at 'assertion failed: `(left == right)`
         left: `3`,
         right: `2`', src\strings.rs:38:5
     */
 
     // get len
-    println!("{:?}", (
-        hello,
-        //hello.len(),
-        world,
-        // world.len()
-    ))
+    println!(
+        "{:?}",
+        (
+            hello, //hello.len(),
+            world,
+            // world.len()
+        )
+    )
 }

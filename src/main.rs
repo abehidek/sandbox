@@ -96,16 +96,16 @@ documentations:
 
 */
 
-/* 
+/*
 Naming convetions can be found in:
 - https://rust-lang.github.io/api-guidelines/naming.html
 */
 
-// mod course_tranversy_media;
+mod course_tranversy_media;
 mod project_calculator;
 
 fn main() {
-  println!("Hello, world!");
-  // course_tranversy_media::main();
-  project_calculator::main();
+    println!("Hello, world!");
+    course_tranversy_media::main();
+    project_calculator::main();
 }

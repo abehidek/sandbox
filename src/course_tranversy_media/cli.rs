@@ -8,12 +8,11 @@ pub fn run() {
     println!("Args: {:?}", args);
     println!("Args Vector length: {}", args.len());
 
-    let command = 
-        if args.len() > 1 { 
-            args[1].clone()
-        } else { 
-            String::from("No arguments")
-        };
+    let command = if args.len() > 1 {
+        args[1].clone()
+    } else {
+        String::from("No arguments")
+    };
     let name = "Brad";
 
     println!("Arg: {:?}", command);
@@ -24,5 +23,7 @@ pub fn run() {
         println!("Status is 100%");
     } else if command == "No arguments" {
         println!("You typed no arguments!");
-    } else { println!("That is not a valid command") };
+    } else {
+        println!("That is not a valid command")
+    };
 }

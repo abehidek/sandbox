@@ -9,10 +9,17 @@ fn fizz_buzz(iterations: i32) {
     while n <= iterations {
         let div_by_3: bool = div_by(n, 3);
         let div_by_5: bool = div_by(n, 5);
-        if div_by_3 { print!("fizz"); }
-        if div_by_5 { print!("buzz"); }
-        if div_by_3 || div_by_5 { println!(""); }
-        else { println!("{}", n) }
+        if div_by_3 {
+            print!("fizz");
+        }
+        if div_by_5 {
+            print!("buzz");
+        }
+        if div_by_3 || div_by_5 {
+            println!("");
+        } else {
+            println!("{}", n)
+        }
         n += 1;
     }
 }
@@ -26,11 +33,15 @@ pub fn run() {
         count += 1;
         println!("Number: {}", count);
 
-        if count == 20 { break; }
+        if count == 20 {
+            break;
+        }
     }
-    
+
     fizz_buzz(15);
 
     // you can use for with range as well
-    for x in 0..10 { println!("{}", x*2); }
+    for x in 0..10 {
+        println!("{}", x * 2);
+    }
 }

@@ -4,6 +4,11 @@
 pub fn run() {
     println!("Hello from tuples.rs!");
 
-    let person: (&str, &str, i8) = ( "abe", "japan", 20 );
-    println!("{name} is from {country} and is {age}", name=person.0, country=person.1, age=person.2)
+    let person: (&str, &str, i8) = ("abe", "japan", 20);
+    println!(
+        "{name} is from {country} and is {age}",
+        name = person.0,
+        country = person.1,
+        age = person.2
+    )
 }
