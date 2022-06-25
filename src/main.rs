@@ -96,6 +96,11 @@ documentations:
 
 */
 
+/* 
+Naming convetions can be found in:
+- https://rust-lang.github.io/api-guidelines/naming.html
+*/
+
 // Crash course https://www.youtube.com/watch?v=zF34dRivLOw
 // mod print;
 // mod vars;
