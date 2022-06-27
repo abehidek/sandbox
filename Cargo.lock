@@ -274,6 +274,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
+name = "learning-rust"
+version = "0.1.0"
+dependencies = [
+ "image",
+]
+
+[[package]]
 name = "lebe"
 version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -320,13 +327,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6f5c75688da582b8ffc1f1799e9db273f32133c49e048f614d22ec3256773ccc"
 dependencies = [
  "adler",
-]
-
-[[package]]
-name = "my-project"
-version = "0.1.0"
-dependencies = [
- "image",
 ]
 
 [[package]]
