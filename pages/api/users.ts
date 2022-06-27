@@ -4,15 +4,15 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { stringify } from 'querystring';
 import { getAllUsers, getUser, createUser, updateUser, deleteUser } from '../../prisma/user';
 
-export default async function handler( req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET': {
       if (req.query.userId) {
         const user = await getUser(req.query.userId as string)
         return res.status(200).json(user)
-      } else { 
-        const allUsers = await getAllUsers(); 
-        return res.status(200).json(allUsers); 
+      } else {
+        const allUsers = await getAllUsers();
+        return res.status(200).json(allUsers);
       }
     }
     case 'POST': {

@@ -6,34 +6,27 @@ export const getAllProjects = async () => {
     return projects
 };
 
-export const createProject = async (name:string, userId:string) => {
-    const project = await prisma.project.create({
+export const createProject = async (name: string, userId: string) => {
+    const userAndProject = await prisma.user.update({
+        where: { userId },
         data: {
-            name: name,
-            userIDs: { set: [userId] }
+            projects: { create: { name: name, } }
         }
     });
 
-    const user = await prisma.user.update({
-        where: { userId },
-        data: { projectIDs: { push: project.projectId } }
-    });
-
-    return [project, user];
+    return userAndProject;
 };
 
-export const addProjectOwner = async (projectId:string, userId: string) => {
-    const project = await prisma.project.update({
+export const addProjectOwner = async (projectId: string, userId: string) => {
+
+    const projectAndUser = await prisma.project.update({
         where: { projectId },
         data: {
-            userIDs: { push: userId }
+            users: {
+                connect: { userId: userId }
+            }
         }
     });
 
-    const user = await prisma.user.update({
-        where: { userId },
-        data: { projectIDs: { push: projectId } }
-    });
-
-    return [project, user];
+    return projectAndUser;
 };
