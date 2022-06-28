@@ -1,7 +1,7 @@
 _id: req_88e24fb719174b07afc588e2d4d56fb7
 type: Request
 parentId: fld_b06046527cdb45828f1ae061fd679a2d
-modified: 1656037215669
+modified: 1656375621363
 created: 1656036792743
 url: http://localhost:3000/api/projects
 name: addProjectOwner
@@ -11,7 +11,8 @@ body:
   mimeType: application/json
   text: |-
     {
-    	"projectId": "62b51c804dfd941e64bc98c3",
+    	"operation": "add",
+    	"projectId": "62ba43d38d6a3711031a9521",
     	"userId": "62b51f154dfd941e64bc98c6"
     }
 parameters: []
