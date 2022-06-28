@@ -30,3 +30,24 @@ export const addProjectOwner = async (projectId: string, userId: string) => {
 
     return projectAndUser;
 };
+
+export const deleteProject = async (projectId: string) => {
+    const project = await prisma.project.delete({
+        where: { projectId },
+    });
+
+    const users = await prisma.user.findMany({})
+    users.forEach(async user => {
+        const project_user = await prisma.user.findFirst({
+            where: { userId: user.userId }
+        })
+        const updated_user = await prisma.user.update({
+            where: { userId: user.userId },
+            data: {
+                projectIDs: { set: project_user?.projectIDs.filter((id) => id !== projectId), }
+            }
+        })
+    })
+
+    return [project, users];
+}
