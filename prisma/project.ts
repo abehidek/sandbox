@@ -51,3 +51,16 @@ export const deleteProject = async (projectId: string) => {
 
     return [project, users];
 }
+
+export const removeProjectOwner = async (projectId: string, userId: string) => {
+    const projectAndUser = await prisma.project.update({
+        where: { projectId },
+        data: {
+            users: {
+                disconnect: { userId: userId }
+            }
+        }
+    });
+
+    return projectAndUser;
+}
