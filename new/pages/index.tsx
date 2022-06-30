@@ -1,14 +1,21 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.scss'
+import type { NextPage } from "next";
+import styles from "../styles/Home.module.scss";
 
-const Home: NextPage = () => {
-  return (
-    <div className={styles.container}>
-      <h1>Hello, World</h1>
-    </div>
-  )
+interface Post {
+  name: string;
+  excerpt: string;
+  slug: string;
+  date: string;
 }
 
-export default Home
+const Home: NextPage<Post> = (posts) => {
+  return (
+    <div className={styles.container}>
+      <h2>Posts</h2>
+    </div>
+  );
+};
+
+export async function getStaticProps() {}
+
+export default Home;
