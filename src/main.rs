@@ -103,11 +103,13 @@ Naming convetions can be found in:
 
 // mod course_tranversy_media;
 // mod project_calculator;
-mod course_freecodecamp;
+// mod course_freecodecamp;
+mod project_guessing_game;
 
 fn main() {
     println!("Hello, world!");
     // course_tranversy_media::main();
     // project_calculator::main();
-    course_freecodecamp::main();
+    // course_freecodecamp::main();
+    project_guessing_game::main();
 }
