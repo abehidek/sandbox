@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import { HomeBlogPost } from "../components/HomeBlogPost";
-import styles from "../styles/Home.module.scss";
 
 export interface Frontmatter {
   title: string;
@@ -18,9 +17,8 @@ export interface Post {
 interface Props { posts: Array<Post>; }
 
 const Home: NextPage<Props> = ({ posts }) => {
-  console.log(posts);
   return (
-    <div className={styles.container}>
+    <div>
       <h2>Posts:</h2>
       <div>
         {Array.from(posts).map((post, index) => (
