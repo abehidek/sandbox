@@ -15,8 +15,6 @@ export interface Post {
   content: string;
 }
 
-import fetchRepository from "../lib/fetchRepository";
-
 interface Props { posts: Array<Post>; }
 
 const Home: NextPage<Props> = ({ posts }) => {
@@ -33,12 +31,17 @@ const Home: NextPage<Props> = ({ posts }) => {
   );
 };
 
+// Server-side
+
+import fetchRepository from "../lib/fetchRepository";
+import { sortByDate } from '../lib/sort';
+
 export async function getStaticProps() {
   const posts = await fetchRepository();
   console.log(posts);
   return {
     props: {
-      posts
+      posts: posts.sort(sortByDate),
     }, revalidate: 10,
   }
 }
