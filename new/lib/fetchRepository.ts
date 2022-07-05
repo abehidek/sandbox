@@ -13,6 +13,11 @@ interface Api {
   tree: Content[];
 }
 
+interface Post {
+  slug?: string;
+  frontmatter?: { [key: string]: any };
+}
+
 export default async function fetchRepository() {
   const repositoryContentsUrl = `${process.env.TREE_API}`;
   const repositoryContents: Api = await fetch(repositoryContentsUrl, {
@@ -31,7 +36,7 @@ export default async function fetchRepository() {
     (content) => content.type == "tree"
   );
 
-  const posts = [];
+  const posts: Post[] = [];
   for (const repositoryFolder of repositoryFolders) {
     const { slug, frontmatter } = await fetchRepositoryFile(
       repositoryFolder.path
