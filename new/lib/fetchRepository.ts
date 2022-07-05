@@ -1,12 +1,43 @@
-export default async function fetchRepository() {
-  // const contents = await fetch(`${process.env.cdnRefs}`);
-  // const response = await contents.json();
-  // const folders = [];
-  // response.map((content) => {
-  //   if (content.type == 'tree') {
-  //     folders.push(content.file_name);
-  //   }
-  // });
-  // return folders;
+import matter from "gray-matter";
+import fetchRepositoryFile from "./fetchRepositoryFile";
+
+interface Content {
+  path: string;
+  mode: string;
+  type: string;
+  sha: string;
+  url: string;
 }
-  
+
+interface Api {
+  tree: Content[];
+}
+
+export default async function fetchRepository() {
+  const repositoryContentsUrl = `${process.env.TREE_API}`;
+  const repositoryContents: Api = await fetch(repositoryContentsUrl, {
+    method: "GET",
+    headers: {
+      Authorization: `token: ${process.env.GITHUB_TOKEN}`,
+      Accept: "application/vnd.github+json",
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log(err);
+    });
+
+  const repositoryFolders = repositoryContents.tree.filter(
+    (content) => content.type == "tree"
+  );
+
+  const posts = [];
+  for (const repositoryFolder of repositoryFolders) {
+    const { slug, frontmatter } = await fetchRepositoryFile(
+      repositoryFolder.path
+    );
+    posts.push({ slug, frontmatter });
+  }
+
+  return posts;
+}

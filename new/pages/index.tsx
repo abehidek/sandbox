@@ -1,13 +1,26 @@
 import type { NextPage } from "next";
 import { HomeBlogPost } from "../components/HomeBlogPost";
 import styles from "../styles/Home.module.scss";
-import { Post } from '../interfaces/Post.interface'
 
-interface Props {
-  posts: Array<Post>;
+export interface Frontmatter {
+  title: string;
+  date: string;
+  excerpt: string;
+  cover_image: string;
 }
 
+export interface Post {
+  slug: string;
+  frontmatter: Frontmatter;
+  content: string;
+}
+
+import fetchRepository from "../lib/fetchRepository";
+
+interface Props { posts: Array<Post>; }
+
 const Home: NextPage<Props> = ({ posts }) => {
+  console.log(posts);
   return (
     <div className={styles.container}>
       <h2>Posts:</h2>
@@ -21,23 +34,11 @@ const Home: NextPage<Props> = ({ posts }) => {
 };
 
 export async function getStaticProps() {
-  const samplePosts = [
-    {
-      name: "post 1",
-      excerpt: "sla",
-      slug: "sla",
-      date: "sla tmb"
-    },
-    {
-      name: "post 2",
-      excerpt: "sla",
-      slug: "sla",
-      date: "sla tmb"
-    }
-  ]
+  const posts = await fetchRepository();
+  console.log(posts);
   return {
     props: {
-      posts: samplePosts
+      posts
     }, revalidate: 10,
   }
 }
