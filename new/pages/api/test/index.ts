@@ -9,7 +9,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Tree | FetchError>
 ) {
-  const repo: Tree | FetchError = await fetchRepositoryPosts();
-  if (isFetchError(repo)) res.status(repo.status);
-  else res.status(200).json(repo);
+  const posts: Tree | FetchError = await fetchRepositoryPosts();
+  if (isFetchError(posts)) res.status(posts.status);
+  else res.status(200).json(posts);
 }
