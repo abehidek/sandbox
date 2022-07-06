@@ -19,11 +19,16 @@ interface Props {
   posts: Array<Post>;
 }
 
+export interface Post2 {
+  slug?: string;
+  frontmatter?: { [key: string]: any };
+}
+
 const Home: NextPage<Props> = ({ posts }) => {
   return (
     <div className="text-white">
       <Head>
-        <title>abehidek's blog</title>
+        <title>abehidek blog</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <h2>Posts:</h2>
@@ -42,7 +47,7 @@ import fetchRepository from "../lib/fetchRepository";
 import { sortByDate } from "../lib/sort";
 
 export async function getStaticProps() {
-  const posts = await fetchRepository();
+  const posts: Post2[] = await fetchRepository();
   console.log(posts);
   return {
     props: {

@@ -45,18 +45,18 @@ const TestPost: NextPage<Prop> = ({ post }) => {
 
 export async function getStaticPaths() {
   const paths = await fetchRepositoryPosts();
-  if (isFetchError(paths)) {
-    return {
-      paths: undefined,
-      fallback: false,
-    };
-  } else {
+  if (!isFetchError(paths)) {
     return {
       paths: paths.map((path) => ({
         params: {
           slug: path,
         },
       })),
+      fallback: false,
+    };
+  } else {
+    return {
+      paths: [],
       fallback: false,
     };
   }

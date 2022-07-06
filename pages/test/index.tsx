@@ -26,11 +26,8 @@ const Test: NextPage<Ok | FetchError> = (props) => {
     <div className="text-white">
       <p>Posts:</p>
       {props.posts.map((post, index) => (
-        <Link href={`/test/${post.slug}`}>
-          <div
-            key={index}
-            className="bg-slate-900 rounded px-4 py-2 cursor-pointer hover:bg-slate-700"
-          >
+        <Link key={index} href={`/test/${post.slug}`}>
+          <div className="bg-slate-900 rounded px-4 py-2 cursor-pointer hover:bg-slate-700">
             <p>{post.slug}</p>
             <p>{post.frontmatter.excerpt}</p>
           </div>
