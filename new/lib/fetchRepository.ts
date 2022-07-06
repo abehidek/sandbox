@@ -31,6 +31,7 @@ export default async function fetchRepository() {
     .catch((err) => {
       console.log(err);
     });
+  console.log(repositoryContents);
 
   const repositoryFolders = repositoryContents.tree.filter(
     (content) => content.type == "tree"

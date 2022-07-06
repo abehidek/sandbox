@@ -8,7 +8,7 @@ interface Props {
 
 export const PostCard: NextPage<Props> = ({ post }) => {
   return (
-    <div className="bg-slate-300 rounded">
+    <div className="bg-slate-800 rounded text-white px-4 py-2 cursor-pointer hover:bg-slate-700">
       <Link href={`/post/${post.slug}`}>
         <div>
           <h1>{post.slug}</h1>

@@ -21,13 +21,13 @@ interface Props {
 
 const Home: NextPage<Props> = ({ posts }) => {
   return (
-    <div>
+    <div className="text-white">
       <Head>
         <title>abehidek's blog</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <h2>Posts:</h2>
-      <div className="p-5 bg-gray-200">
+      <div className="py-3">
         {Array.from(posts).map((post, index) => (
           <PostCard key={index} post={post} />
         ))}

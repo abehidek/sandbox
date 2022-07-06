@@ -3,8 +3,8 @@ import type { NextPage } from "next";
 
 const Home: NextPage = () => {
   return (
-    <header className="bg-gray-300 text-3xl font-bold">
-      <h1>abehidek blog</h1>
+    <header className="">
+      <h1 className="text-3xl font-bold text-white">abehidek blog</h1>
     </header>
   );
 };
