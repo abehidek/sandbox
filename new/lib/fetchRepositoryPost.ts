@@ -28,6 +28,7 @@ export default async function fetchRepositoryPost(
   const response = await fetch(repoFileUrl, {
     method: "GET",
     headers: {
+      Authorization: `token: ${process.env.GITHUB_TOKEN}`,
       Accept: "application/vnd.github.VERSION.raw",
     },
   });

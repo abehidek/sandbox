@@ -31,11 +31,13 @@ export default async function fetchRepositoryPosts(): Promise<
   const response = await fetch(repoTreeUrl, {
     method: "GET",
     headers: {
+      Authorization: `token: ${process.env.GITHUB_TOKEN}`,
       Accept: "application/vnd.github+json",
     },
   });
 
   if (!response.ok) {
+    console.log(response);
     return { error: "Response not ok", status: 400 };
   }
 
