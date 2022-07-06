@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Link from "next/link";
 import fetchRepositoryPost, { Post } from "../../lib/fetchRepositoryPost";
 import fetchRepositoryPosts, {
   Tree,
@@ -25,10 +26,15 @@ const Test: NextPage<Ok | FetchError> = (props) => {
     <div className="text-white">
       <p>Posts:</p>
       {props.posts.map((post, index) => (
-        <div key={index} className="bg-slate-900 rounded px-4 py-2">
-          <p>{post.slug}</p>
-          <p>{post.frontmatter.excerpt}</p>
-        </div>
+        <Link href={`/test/${post.slug}`}>
+          <div
+            key={index}
+            className="bg-slate-900 rounded px-4 py-2 cursor-pointer hover:bg-slate-700"
+          >
+            <p>{post.slug}</p>
+            <p>{post.frontmatter.excerpt}</p>
+          </div>
+        </Link>
       ))}
     </div>
   );
