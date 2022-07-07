@@ -1,16 +1,12 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import fetchRepository from "../../../lib/fetchRepository";
-
-interface Post {
-  slug?: string;
-  frontmatter?: {};
-}
+import fetchRepositoryPosts from "../../../lib/fetchRepositoryPosts";
+import { PostsSlugs, FetchError, isFetchError } from "../../../common/types";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Post[]>
+  res: NextApiResponse<PostsSlugs | FetchError>
 ) {
-  const posts: Post[] = await fetchRepository();
-  res.status(200).json(posts);
+  const posts: PostsSlugs | FetchError = await fetchRepositoryPosts();
+  if (isFetchError(posts)) res.status(posts.status);
+  else res.status(200).json(posts);
 }

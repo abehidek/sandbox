@@ -1,28 +1,7 @@
-interface Response {
-  tree: [
-    {
-      path: string;
-      mode: string;
-      type: string;
-      sha: string;
-      url: string;
-    }
-  ];
-}
-
-export type Tree = string[];
-
-export interface FetchError {
-  error: string;
-  status: number;
-}
-
-export const isFetchError = (res: any): res is FetchError => {
-  return "error" in res;
-};
+import { GitTreeResponse, PostsSlugs, FetchError } from "../common/types";
 
 export default async function fetchRepositoryPosts(): Promise<
-  Tree | FetchError
+  PostsSlugs | FetchError
 > {
   if (process.env.TREE_API == undefined) {
     return { error: "TREE_API .env value missing", status: 500 };
@@ -31,7 +10,7 @@ export default async function fetchRepositoryPosts(): Promise<
   const response = await fetch(repoTreeUrl, {
     method: "GET",
     headers: {
-      Authorization: `token: ${process.env.GITHUB_TOKEN}`,
+      // Authorization: `token: ${process.env.GITHUB_TOKEN}`,
       Accept: "application/vnd.github+json",
     },
   });
@@ -41,7 +20,7 @@ export default async function fetchRepositoryPosts(): Promise<
     return { error: "Response not ok", status: 400 };
   }
 
-  const tree: Response = await response.json();
+  const tree: GitTreeResponse = await response.json();
   return tree.tree
     .filter((item) => item.type == "tree")
     .map(({ path, ...rest }) => {

@@ -1,11 +1,8 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import fetchRepositoryPost, { Post } from "../lib/fetchRepositoryPost";
-import fetchRepositoryPosts, {
-  Tree,
-  FetchError,
-  isFetchError,
-} from "../lib/fetchRepositoryPosts";
+import fetchRepositoryPost from "../lib/fetchRepositoryPost";
+import fetchRepositoryPosts from "../lib/fetchRepositoryPosts";
+import { PostsSlugs, Post, isFetchError, FetchError } from "../common/types";
 
 type Ok = {
   posts: Post[];
@@ -27,7 +24,7 @@ const Home: NextPage<Ok | FetchError> = (props) => {
     <div className="text-white">
       <p>Posts:</p>
       {props.posts.map((post, index) => (
-        <Link key={index} href={`/post/${post.slug}`}>
+        <Link key={index} href={`/posts/${post.slug}`}>
           <div className="bg-slate-900 rounded px-4 py-2 cursor-pointer hover:bg-slate-700">
             <p>{post.slug}</p>
             <p>{post.frontmatter.date}</p>
@@ -40,7 +37,7 @@ const Home: NextPage<Ok | FetchError> = (props) => {
 };
 
 export async function getStaticProps(): Promise<Props> {
-  const tree: Tree | FetchError = await fetchRepositoryPosts();
+  const tree: PostsSlugs | FetchError = await fetchRepositoryPosts();
   if (isFetchError(tree)) {
     return {
       props: tree,

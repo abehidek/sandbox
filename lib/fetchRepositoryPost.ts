@@ -1,24 +1,5 @@
 import matter from "gray-matter";
-
-export interface Post {
-  slug: string;
-  frontmatter: {
-    title: string;
-    date: string;
-    excerpt: string;
-    cover_image?: string;
-  };
-  content: string;
-}
-
-export interface FetchError {
-  error: string;
-  status: number;
-}
-
-export const isFetchError = (res: any): res is FetchError => {
-  return "error" in res;
-};
+import { Post, FetchError } from "../common/types";
 
 export default async function fetchRepositoryPost(
   postSlug: string
@@ -28,7 +9,7 @@ export default async function fetchRepositoryPost(
   const response = await fetch(repoFileUrl, {
     method: "GET",
     headers: {
-      Authorization: `token: ${process.env.GITHUB_TOKEN}`,
+      // Authorization: `token: ${process.env.GITHUB_TOKEN}`,
       Accept: "application/vnd.github.VERSION.raw",
     },
   });

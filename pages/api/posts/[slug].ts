@@ -1,13 +1,7 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { ParsedUrlQuery } from "querystring";
-import fetchRepositoryFile from "../../../lib/fetchRepositoryFile";
-
-interface Post {
-  slug?: string;
-  frontmatter?: {};
-  content?: string;
-}
+import fetchRepositoryPost from "../../../lib/fetchRepositoryPost";
+import { Post, FetchError, isFetchError } from "../../../common/types";
 
 interface UrlQuery extends ParsedUrlQuery {
   slug?: string;
@@ -15,17 +9,19 @@ interface UrlQuery extends ParsedUrlQuery {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Post>
+  res: NextApiResponse<Post | FetchError>
 ) {
-  const params: UrlQuery = req.query;
-
-  if (params.slug != undefined) {
-    const RepositoryFile = await fetchRepositoryFile(params.slug);
-    if (RepositoryFile.error) {
-      res.status(404);
-    }
-    const { slug, frontmatter, content } = RepositoryFile;
-    res.status(200).json({ slug, frontmatter, content });
+  const urlQuery: UrlQuery = req.query;
+  if (urlQuery.slug === undefined) {
+    res.status(400).json({
+      error: "Could not parse the url query string because is empty",
+      status: 400,
+    });
+  } else {
+    const response: Post | FetchError = await fetchRepositoryPost(
+      urlQuery.slug
+    );
+    if (isFetchError(response)) res.status(response.status).json(response);
+    else res.status(200).json(response);
   }
-  res.status(404);
 }

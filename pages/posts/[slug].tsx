@@ -1,11 +1,7 @@
 import type { NextPage } from "next";
-import fetchRepositoryPost, {
-  FetchError,
-  Post,
-} from "../../lib/fetchRepositoryPost";
-import fetchRepositoryPosts, {
-  isFetchError,
-} from "../../lib/fetchRepositoryPosts";
+import fetchRepositoryPost from "../../lib/fetchRepositoryPost";
+import fetchRepositoryPosts from "../../lib/fetchRepositoryPosts";
+import { Post, FetchError, isFetchError } from "../../common/types";
 
 interface PathRoute {
   params: {
