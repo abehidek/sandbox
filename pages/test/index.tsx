@@ -13,6 +13,7 @@ type Ok = {
 
 interface Props {
   props: Ok | FetchError;
+  revalidate: Number;
 }
 
 const Test: NextPage<Ok | FetchError> = (props) => {
@@ -42,6 +43,7 @@ export async function getStaticProps(): Promise<Props> {
   if (isFetchError(tree)) {
     return {
       props: tree,
+      revalidate: 30,
     };
   }
   const posts: Post[] = [];
@@ -56,6 +58,7 @@ export async function getStaticProps(): Promise<Props> {
     props: {
       posts,
     },
+    revalidate: 30,
   };
 }
 

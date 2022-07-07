@@ -18,6 +18,7 @@ type Prop = {
 
 interface Props {
   props: Prop;
+  revalidate: Number;
 }
 
 const TestPost: NextPage<Prop> = ({ post }) => {
@@ -72,6 +73,7 @@ export async function getStaticProps({
     props: {
       post,
     },
+    revalidate: 30,
   };
 }
 
