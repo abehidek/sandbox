@@ -50,7 +50,10 @@ export default async function fetchRepositoryPost(
         title: markdownMatter.data.title,
         date: markdownMatter.data.date,
         excerpt: markdownMatter.data.excerpt,
-        cover_image: markdownMatter.data.cover_image,
+        cover_image: handleCoverImageAddress(
+          markdownMatter.data.cover_image,
+          postSlug
+        ),
       },
       content: markdownMatter.content,
     };
@@ -58,4 +61,22 @@ export default async function fetchRepositoryPost(
   } catch (error) {
     return { error: "Error deserializing markdown text", status: 400 };
   }
+}
+
+function handleCoverImageAddress(imageAddress: string, postSlug: string) {
+  if (!imageAddress.startsWith("http")) {
+    if (imageAddress.startsWith("/")) {
+      imageAddress = imageAddress.replace(
+        /^/,
+        `${process.env.FILES_API}/${postSlug}`
+      );
+    } else {
+      imageAddress = imageAddress.replace(
+        /^/,
+        `${process.env.FILES_API}/${postSlug}/`
+      );
+    }
+  }
+
+  return imageAddress;
 }

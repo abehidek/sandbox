@@ -27,14 +27,16 @@ const TestPost: NextPage<Prop> = ({ post }) => {
   }
   return (
     <div className="text-white flex flex-col gap-5">
-      <header className="bg-slate-800 rounded p-2 h-48 flex flex-col">
-        <p>{post.frontmatter.title}</p>
-        <p>{post.frontmatter.date}</p>
-        <p>{post.frontmatter.excerpt}</p>
+      <header className="bg-slate-800 rounded p-2 h-48 flex justify-between">
+        <div className="flex flex-col">
+          <p>{post.frontmatter.title}</p>
+          <p>{post.frontmatter.date}</p>
+          <p>{post.frontmatter.excerpt}</p>
+        </div>
         <img
           src={post.frontmatter.cover_image}
           alt={post.frontmatter.title}
-          className="h-full object-contain self-start"
+          className="h-full object-scale-down"
         />
       </header>
 
