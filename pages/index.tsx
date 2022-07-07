@@ -1,59 +1,65 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import { PostCard } from "../components/PostCard";
+import Link from "next/link";
+import fetchRepositoryPost, { Post } from "../lib/fetchRepositoryPost";
+import fetchRepositoryPosts, {
+  Tree,
+  FetchError,
+  isFetchError,
+} from "../lib/fetchRepositoryPosts";
 
-export interface Frontmatter {
-  title: string;
-  date: string;
-  excerpt: string;
-  cover_image: string;
-}
-
-export interface Post {
-  slug: string;
-  frontmatter: Frontmatter;
-  content: string;
-}
+type Ok = {
+  posts: Post[];
+};
 
 interface Props {
-  posts: Array<Post>;
+  props: Ok | FetchError;
+  revalidate: Number;
 }
 
-export interface Post2 {
-  slug?: string;
-  frontmatter?: { [key: string]: any };
-}
+const Home: NextPage<Ok | FetchError> = (props) => {
+  if (isFetchError(props)) {
+    return <div>Error</div>;
+  }
 
-const Home: NextPage<Props> = ({ posts }) => {
+  console.log(props);
+
   return (
     <div className="text-white">
-      <Head>
-        <title>abehidek blog</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <h2>Posts:</h2>
-      <div className="py-3">
-        {Array.from(posts).map((post, index) => (
-          <PostCard key={index} post={post} />
-        ))}
-      </div>
+      <p>Posts:</p>
+      {props.posts.map((post, index) => (
+        <Link key={index} href={`/post/${post.slug}`}>
+          <div className="bg-slate-900 rounded px-4 py-2 cursor-pointer hover:bg-slate-700">
+            <p>{post.slug}</p>
+            <p>{post.frontmatter.date}</p>
+            <p>{post.frontmatter.excerpt}</p>
+          </div>
+        </Link>
+      ))}
     </div>
   );
 };
 
-// Server-side
+export async function getStaticProps(): Promise<Props> {
+  const tree: Tree | FetchError = await fetchRepositoryPosts();
+  if (isFetchError(tree)) {
+    return {
+      props: tree,
+      revalidate: 30,
+    };
+  }
+  const posts: Post[] = [];
+  for (const item of tree) {
+    const post = await fetchRepositoryPost(item);
+    if (!isFetchError(post)) {
+      posts.push(post);
+    }
+  }
 
-import fetchRepository from "../lib/fetchRepository";
-import { sortByDate } from "../lib/sort";
-
-export async function getStaticProps() {
-  const posts: Post2[] = await fetchRepository();
-  console.log(posts);
   return {
     props: {
-      posts: posts.sort(sortByDate),
+      posts,
     },
-    revalidate: 10,
+    revalidate: 30,
   };
 }
 
