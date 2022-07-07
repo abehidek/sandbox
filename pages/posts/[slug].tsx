@@ -8,16 +8,16 @@ interface PathRoute {
     slug: string;
   };
 }
-type Prop = {
+type Props = {
   post: Post | FetchError;
 };
 
-interface Props {
-  props: Prop;
+interface getStaticProps {
+  props: Props;
   revalidate: Number;
 }
 
-const TestPost: NextPage<Prop> = ({ post }) => {
+const TestPost: NextPage<Props> = ({ post }) => {
   console.log(post);
   if (isFetchError(post)) {
     return <div>Error fetching data</div>;
@@ -63,7 +63,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({
   params: { slug },
-}: PathRoute): Promise<Props> {
+}: PathRoute): Promise<getStaticProps> {
   const post: Post | FetchError = await fetchRepositoryPost(slug);
   return {
     props: {

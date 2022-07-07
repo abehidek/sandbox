@@ -4,17 +4,17 @@ import fetchRepositoryPost from "../lib/fetchRepositoryPost";
 import fetchRepositoryPosts from "../lib/fetchRepositoryPosts";
 import { PostsSlugs, Post, isFetchError, FetchError } from "../common/types";
 
-type Ok = {
-  posts: Post[];
-};
-
 interface Props {
-  props: Ok | FetchError;
+  posts: Post[] | FetchError;
+}
+
+interface getStaticProps {
+  props: Props;
   revalidate: Number;
 }
 
-const Home: NextPage<Ok | FetchError> = (props) => {
-  if (isFetchError(props)) {
+const Home: NextPage<Props> = (props) => {
+  if (isFetchError(props.posts)) {
     return <div>Error</div>;
   }
 
@@ -36,16 +36,18 @@ const Home: NextPage<Ok | FetchError> = (props) => {
   );
 };
 
-export async function getStaticProps(): Promise<Props> {
-  const tree: PostsSlugs | FetchError = await fetchRepositoryPosts();
-  if (isFetchError(tree)) {
+export async function getStaticProps(): Promise<getStaticProps> {
+  const postsSlugs: PostsSlugs | FetchError = await fetchRepositoryPosts();
+  if (isFetchError(postsSlugs)) {
     return {
-      props: tree,
+      props: {
+        posts: postsSlugs,
+      },
       revalidate: 30,
     };
   }
   const posts: Post[] = [];
-  for (const item of tree) {
+  for (const item of postsSlugs) {
     const post = await fetchRepositoryPost(item);
     if (!isFetchError(post)) {
       posts.push(post);
