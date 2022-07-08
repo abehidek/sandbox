@@ -9,7 +9,7 @@ interface PostsProps {
 const PostsComponent: NextPage<PostsProps> = ({ posts }) => {
   return (
     <article className="">
-      <p>Posts:</p>
+      <p className="text-2xl font-bold">Posts:</p>
       {posts.map((post, index) => (
         <PostCardComponent key={index} post={post} />
       ))}

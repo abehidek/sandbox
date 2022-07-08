@@ -9,10 +9,10 @@ interface PostProps {
 const PostCardComponent: NextPage<PostProps> = ({ post }) => {
   return (
     <Link href={`/posts/${post.slug}`}>
-      <div className="bg-slate-900 rounded px-4 py-2 cursor-pointer hover:bg-slate-700">
-        <p>{post.slug}</p>
+      <div className="bg-slate-900 rounded p-4 cursor-pointer hover:bg-slate-700 mt-4 flex flex-col gap-1">
+        <p className="text-2xl font-bold">{post.frontmatter.title}</p>
         <p>{post.frontmatter.date}</p>
-        <p>{post.frontmatter.excerpt}</p>
+        <p className="text-sm">{post.frontmatter.excerpt}</p>
       </div>
     </Link>
   );
