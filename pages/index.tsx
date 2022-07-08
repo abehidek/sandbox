@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import fetchRepositoryPost from "../lib/fetchRepositoryPost";
 import fetchRepositoryPosts from "../lib/fetchRepositoryPosts";
+import PostsComponent from "../components/PostComponent";
 import { PostsSlugs, Post, isFetchError, FetchError } from "../common/types";
 
 interface Props {
@@ -22,16 +23,7 @@ const Home: NextPage<Props> = (props) => {
 
   return (
     <div className="text-white">
-      <p>Posts:</p>
-      {props.posts.map((post, index) => (
-        <Link key={index} href={`/posts/${post.slug}`}>
-          <div className="bg-slate-900 rounded px-4 py-2 cursor-pointer hover:bg-slate-700">
-            <p>{post.slug}</p>
-            <p>{post.frontmatter.date}</p>
-            <p>{post.frontmatter.excerpt}</p>
-          </div>
-        </Link>
-      ))}
+      <PostsComponent posts={props.posts} />
     </div>
   );
 };

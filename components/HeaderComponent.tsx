@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
-// import styles from '../styles/Home.module.scss'
 
-const Home: NextPage = () => {
+const HeaderComponent: NextPage = () => {
   return (
     <header className="">
       <h1 className="text-3xl font-bold text-white">abehidek blog</h1>
@@ -9,4 +8,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default HeaderComponent;
