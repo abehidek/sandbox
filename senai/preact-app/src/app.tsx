@@ -1,32 +1,49 @@
-import { useState } from 'preact/hooks'
-import preactLogo from './assets/preact.svg'
-import './app.css'
+import { useState } from "preact/hooks";
+import "./app.css";
 
 export function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [label, setLabel] = useState("0");
+
+  const fizzBuzz = (operation: "+" | "-") => {
+    let newValue;
+    switch (operation) {
+      case "+":
+        newValue = count + 1;
+        break;
+      case "-":
+        newValue = count - 1;
+        break;
+    }
+    setCount(newValue);
+
+    if (newValue == 0) setLabel("0");
+    else if (newValue % 15 == 0) setLabel("FizzBuzz");
+    else if (newValue % 5 == 0) setLabel("Buzz");
+    else if (newValue % 3 == 0) setLabel("Fizz");
+    else setLabel(`${newValue}`);
+  };
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://preactjs.com" target="_blank">
-          <img src={preactLogo} class="logo preact" alt="Preact logo" />
-        </a>
-      </div>
-      <h1>Vite + Preact</h1>
-      <div class="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <h1>Real count {count}</h1>
+        <button
+          onClick={() => {
+            fizzBuzz("+");
+          }}
+        >
+          +
         </button>
-        <p>
-          Edit <code>src/app.tsx</code> and save to test HMR
-        </p>
+        <h1>{label}</h1>
+        <button
+          onClick={() => {
+            fizzBuzz("-");
+          }}
+        >
+          -
+        </button>
       </div>
-      <p class="read-the-docs">
-        Click on the Vite and Preact logos to learn more
-      </p>
     </>
-  )
+  );
 }
