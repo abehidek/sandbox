@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import fetchRepositoryPost from "../../lib/fetchRepositoryPost";
 import fetchRepositoryPosts from "../../lib/fetchRepositoryPosts";
 import { Post, FetchError, isFetchError } from "../../common/types";
+import Image from "next/image";
 
 interface PathRoute {
   params: {
@@ -22,19 +23,32 @@ const TestPost: NextPage<Props> = ({ post }) => {
   if (isFetchError(post)) {
     return <div>Error fetching data</div>;
   }
+  let coverImage;
+  if (post.frontmatter.cover_image != undefined) {
+    coverImage = (
+      <Image
+        src={post.frontmatter.cover_image}
+        alt={post.frontmatter.title}
+        width="100%"
+        height={60}
+        layout="responsive"
+        objectFit="cover"
+        className="w-full object-scale-down"
+      />
+    );
+  } else {
+    coverImage = <div>where is the image</div>;
+  }
+
   return (
     <div className="text-white flex flex-col gap-5">
-      <header className="bg-slate-800 rounded p-2 h-48 flex justify-between">
+      <header className="bg-slate-900 rounded p-4 justify-between">
         <div className="flex flex-col">
           <p>{post.frontmatter.title}</p>
           <p>{post.frontmatter.date}</p>
           <p>{post.frontmatter.excerpt}</p>
         </div>
-        <img
-          src={post.frontmatter.cover_image}
-          alt={post.frontmatter.title}
-          className="h-full object-scale-down"
-        />
+        {coverImage}
       </header>
 
       <p>{post.content}</p>
