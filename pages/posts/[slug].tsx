@@ -23,9 +23,10 @@ const TestPost: NextPage<Props> = ({ post }) => {
   if (isFetchError(post)) {
     return <div>Error fetching data</div>;
   }
-  let coverImage;
-  if (post.frontmatter.cover_image != undefined) {
-    coverImage = (
+
+  const renderCoverImage = () => {
+    if (post.frontmatter.cover_image == undefined) return <></>;
+    return (
       <Image
         src={post.frontmatter.cover_image}
         alt={post.frontmatter.title}
@@ -33,22 +34,18 @@ const TestPost: NextPage<Props> = ({ post }) => {
         height={60}
         layout="responsive"
         objectFit="cover"
-        className="w-full object-scale-down"
+        className="w-full object-scale-down rounded"
       />
     );
-  } else {
-    coverImage = <div>where is the image</div>;
-  }
+  };
 
   return (
-    <div className="text-white flex flex-col gap-5">
-      <header className="bg-slate-900 rounded p-4 justify-between">
-        <div className="flex flex-col">
-          <p>{post.frontmatter.title}</p>
-          <p>{post.frontmatter.date}</p>
-          <p>{post.frontmatter.excerpt}</p>
-        </div>
-        {coverImage}
+    <div className="text-white flex flex-col gap-8">
+      <header className="rounded flex flex-col gap-4">
+        <h1 className="text-5xl font-bold">{post.frontmatter.title}</h1>
+        <h2>{post.frontmatter.date}</h2>
+        <h3>{post.frontmatter.excerpt}</h3>
+        {renderCoverImage()}
       </header>
 
       <p>{post.content}</p>
@@ -58,21 +55,21 @@ const TestPost: NextPage<Props> = ({ post }) => {
 
 export async function getStaticPaths() {
   const paths = await fetchRepositoryPosts();
-  if (!isFetchError(paths)) {
-    return {
-      paths: paths.map((path) => ({
-        params: {
-          slug: path,
-        },
-      })),
-      fallback: false,
-    };
-  } else {
+
+  if (isFetchError(paths))
     return {
       paths: [],
       fallback: false,
     };
-  }
+
+  return {
+    paths: paths.map((path) => ({
+      params: {
+        slug: path,
+      },
+    })),
+    fallback: false,
+  };
 }
 
 export async function getStaticProps({
