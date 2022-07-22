@@ -26,15 +26,6 @@ body {
   color: var(--fg-color);
 }
 
-a {
-  text-decoration: none;
-  font-size: 2rem;
-  color: var(--fg-color);
-  &:hover {
-    color: var(--lfg-color);
-  }
-}
-
 p {
   line-height: 1.5;
 }
@@ -56,6 +47,16 @@ p {
 .navbar {
   padding-top: 1rem;
   background-color: var(--mg-color);
+
+  .link {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: var(--fg-color);
+    &:hover {
+      color: var(--lfg-color);
+    }
+  }
 }
 
 .home {

@@ -6,9 +6,11 @@ const HeaderComponent: NextPage = () => {
     <nav className="navbar">
       <div className="horizontal-padding">
         <h1>
-          <a href="https://www.abehidek.me">abehidek</a>{" "}
+          <a className="link" href="https://www.abehidek.me">
+            abehidek
+          </a>{" "}
           <Link href="/">
-            <span>blog</span>
+            <span className="link">blog</span>
           </Link>
         </h1>
       </div>
