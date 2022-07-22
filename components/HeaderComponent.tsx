@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Link from "next/link";
 
 const HeaderComponent: NextPage = () => {
   return (
@@ -6,9 +7,9 @@ const HeaderComponent: NextPage = () => {
       <div className="horizontal-padding">
         <h1>
           <a href="https://www.abehidek.me">abehidek</a>{" "}
-          <a href="/">
+          <Link href="/">
             <span>blog</span>
-          </a>
+          </Link>
         </h1>
       </div>
     </nav>
