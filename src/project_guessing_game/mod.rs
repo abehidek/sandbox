@@ -19,8 +19,8 @@ fn help() {
 Usage: cargo run -- [options] [arguments]
 Options:
     -h, --help, help                Show all the commands
-    -r=[range], --range=[range]     Define a range to secret number
-                                example:    --range=1..5    secret number will be between 1 and 5
+    --range=[range]                 Define a range to secret number
+                                        example:    --range=1..5    secret number will be between 1 and 5
 Arguments:
     For each number you add here, the program will be 
     generating a new secret number and comparing with 
