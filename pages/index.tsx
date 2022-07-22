@@ -1,8 +1,7 @@
 import type { NextPage } from "next";
-import Link from "next/link";
 import fetchRepositoryPost from "../lib/fetchRepositoryPost";
 import fetchRepositoryPosts from "../lib/fetchRepositoryPosts";
-import PostsComponent from "../components/PostComponent";
+import PostsComponent from "../components/PostsComponent";
 import { PostsSlugs, Post, isFetchError, FetchError } from "../common/types";
 
 interface Props {
@@ -19,10 +18,8 @@ const Home: NextPage<Props> = (props) => {
     return <div>Error</div>;
   }
 
-  console.log(props);
-
   return (
-    <div className="text-white">
+    <div className="horizontal-padding">
       <PostsComponent posts={props.posts} />
     </div>
   );

@@ -8,8 +8,8 @@ interface PostsProps {
 
 const PostsComponent: NextPage<PostsProps> = ({ posts }) => {
   return (
-    <article className="">
-      <p className="text-2xl font-bold">Posts:</p>
+    <article className="home">
+      <h1>Recent posts:</h1>
       {posts.map((post, index) => (
         <PostCardComponent key={index} post={post} />
       ))}

@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import fetchRepositoryPost from "../../lib/fetchRepositoryPost";
 import fetchRepositoryPosts from "../../lib/fetchRepositoryPosts";
 import { Post, FetchError, isFetchError } from "../../common/types";
+import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 
 interface PathRoute {
@@ -19,7 +20,6 @@ interface getStaticProps {
 }
 
 const TestPost: NextPage<Props> = ({ post }) => {
-  console.log(post);
   if (isFetchError(post)) {
     return <div>Error fetching data</div>;
   }
@@ -27,28 +27,56 @@ const TestPost: NextPage<Props> = ({ post }) => {
   const renderCoverImage = () => {
     if (post.frontmatter.cover_image == undefined) return <></>;
     return (
-      <Image
-        src={post.frontmatter.cover_image}
-        alt={post.frontmatter.title}
-        width="100%"
-        height={60}
-        layout="responsive"
-        objectFit="cover"
-        className="w-full object-scale-down rounded"
-      />
+      <div>
+        <Image
+          src={post.frontmatter.cover_image}
+          alt={post.frontmatter.title}
+          width="100%"
+          height={50}
+          layout="responsive"
+          objectFit="cover"
+          className="rounded"
+        />
+      </div>
     );
   };
 
   return (
-    <div className="text-white flex flex-col gap-8">
-      <header className="rounded flex flex-col gap-4">
-        <h1 className="text-5xl font-bold">{post.frontmatter.title}</h1>
-        <h2>{post.frontmatter.date}</h2>
-        <h3>{post.frontmatter.excerpt}</h3>
-        {renderCoverImage()}
+    <div className="post">
+      <header>
+        <div className="horizontal-padding">
+          <h1>{post.frontmatter.title}</h1>
+          <h2>{post.frontmatter.date}</h2>
+        </div>
       </header>
 
-      <p>{post.content}</p>
+      <main className="horizontal-padding">
+        <h1>{post.frontmatter.excerpt}</h1>
+        {renderCoverImage()}
+        <ReactMarkdown
+          components={{
+            img: ({ node, ...props }) => (
+              <img style={{ maxWidth: "100%" }} {...props} />
+            ),
+            code: ({ node, ...props }) => (
+              <pre style={{ overflow: "auto" }}>
+                <code
+                  style={{
+                    textOverflow: "ellipsis",
+                    whiteSpace: "pre",
+                  }}
+                  {...props}
+                />
+              </pre>
+            ),
+          }}
+          transformImageUri={(uri) =>
+            uri.replace(/^/, `${process.env.FILES_API}/${post.slug}/`)
+          }
+        >
+          {post.content}
+        </ReactMarkdown>
+      </main>
     </div>
   );
 };
