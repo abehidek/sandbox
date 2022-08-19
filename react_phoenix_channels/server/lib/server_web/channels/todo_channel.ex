@@ -3,6 +3,7 @@ defmodule ServerWeb.TodoChannel do
 
   @impl true
   def join("todo:lobby", payload, socket) do
+    IO.puts("> Joined todo:lobby")
     if authorized?(payload) do
       {:ok, socket}
     else
@@ -14,7 +15,8 @@ defmodule ServerWeb.TodoChannel do
   # by sending replies to requests from the client
   @impl true
   def handle_in("ping", payload, socket) do
-    {:reply, {:ok, payload}, socket}
+    IO.puts("> Someone Pinged")
+    {:reply, {:ok, %{response: "pong"}}, socket}
   end
 
   # It is also common to receive messages from the client and
@@ -27,8 +29,8 @@ defmodule ServerWeb.TodoChannel do
 
   @impl true
   def handle_in("added", payload, socket) do
-    IO.inspect("> Someone Added a Todo")
-    {:noreply, socket}
+    IO.inspect("> Someone Added a Todo, payload: #{payload}")
+    {:noreply, {:ok, payload},socket}
   end
 
   @impl true
