@@ -285,6 +285,11 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@types/phoenix@^1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@types/phoenix/-/phoenix-1.5.4.tgz#c08a1da6d7b4e365f6a1fe1ff9aada55f5356d24"
+  integrity sha512-L5eZmzw89eXBKkiqVBcJfU1QGx9y+wurRIEgt0cuLH0hwNtVUxtx+6cu0R2STwWj468sjXyBYPYDtGclUd1kjQ==
+
 "@types/prop-types@*":
   version "15.7.5"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
@@ -615,6 +620,11 @@ path-parse@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
   integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
+
+phoenix@^1.6.11:
+  version "1.6.11"
+  resolved "https://registry.yarnpkg.com/phoenix/-/phoenix-1.6.11.tgz#e29c3658c8fd6ba509e87130d2b1b20adc6a9a53"
+  integrity sha512-z/MSg9yY20JhTSj6tKmOYE9p+PuU+FVstYtgBfIZPGNLKhSuV9Zcs9LLLKWeiJ9EUzaXS/QeO8Po4+jJnyNfMw==
 
 picocolors@^1.0.0:
   version "1.0.0"

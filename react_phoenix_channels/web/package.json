@@ -9,10 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "phoenix": "^1.6.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@types/phoenix": "^1.5.4",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.1",
