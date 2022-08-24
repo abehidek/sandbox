@@ -33,5 +33,12 @@ body {
   background-color: whitesmoke;
   padding: 0.5rem;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+}
+
+.card-actions {
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
 }

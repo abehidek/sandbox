@@ -33,20 +33,25 @@ defmodule ServerWeb.TodoChannel do
     switcher = not Map.fetch!(todo, :completed)
     Todos.update_todo(todo, %{completed: switcher})
     broadcast!(socket, "get", %{"todos" => Todos.list_todos()})
-    {:reply, {:ok, %{"todos" => Todos.list_todos()}}, socket}
+    {:noreply, socket}
   end
 
   @impl true
   def handle_in("add", %{"todo" => todo_params}, socket) do
     IO.inspect("> Add a Todo")
-
     Todos.create_todo(todo_params)
     broadcast!(socket, "get", %{"todos" => Todos.list_todos()})
-
     {:noreply, socket}
   end
 
-
+  @impl true
+  def handle_in("delete", %{"todo" => %{"id" => id}}, socket) do
+    IO.inspect("> Delete a Todo")
+    todo = Todos.get_todo!(id);
+    Todos.delete_todo(todo)
+    broadcast!(socket, "get", %{"todos" => Todos.list_todos()})
+    {:noreply, socket}
+  end
 
   # Add authorization logic here as required.
   defp authorized?(_payload) do
