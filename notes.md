@@ -1,2 +1,0 @@
-https://api.github.com/repos/abehidek/posts/git/trees/main -> get all files and folders on the github root dir
-https://api.github.com/repos/abehidek/posts/contents/template.md -> get base64 encoded content
