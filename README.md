@@ -6,7 +6,22 @@
 
 Refactor the entire code (again) but using mdx and without fetching for external sources (such as another github repo), so this means switching the current model (a separate repo for blog posts) to a new model (one repo with all posts + mdx), still using github as a cms, so ISR (Incremental Static Regeneration) dont need to be used anymore.
 
-Another interesting feature is using tags (this can be accomplished reading from the markdown frontmatter I guess?) and provide a way to search by that.
+Another interesting feature is using tags (this can be accomplished reading from the markdown frontmatter I guess?) and provide a way to search by that. An idea is to create a /tag page that has all tags, and each tag has it's own font-size depending on the number of occurences.
+
+Subscribe to a newsletter is also a great idea.
+
+- A guestbook is welcome too, we can use NextAuth to verify someone.
+- View count for each post.
+- Integration with wakatime.
+- Page about my dev env.
+- Integrate all info in one page.
+- Rename this repo to website name (abehidek.me).
+- Persist auth and make it possible to a user like the post
+- Dashboard page.
+- Code Snippets
+- My Projects page
+- RSS feed
+- Consume some realtime API to provide an useful info.
 
 Same for year/date btw.
 
@@ -16,7 +31,8 @@ Same for year/date btw.
 - https://www.youtube.com/watch?v=J_0SBJMxmcw
 - https://www.youtube.com/watch?v=WCGopHwXnic
 - https://www.youtube.com/watch?v=iW39Merz0zE
-
+- https://www.youtube.com/watch?v=xXQsF0q8KUg
+- https://www.youtube.com/watch?v=h6wBYWWdyYQ
 ---
 
 ## Actual Model
