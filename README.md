@@ -21,6 +21,20 @@ Another interesting feature is using tags (this can be accomplished reading from
 - RSS feed
 - Consume some realtime API to provide an useful info.
 
+## Useful resources
+
+Here are some resources that we commonly refer to:
+
+- [Protecting routes with Next-Auth.js](https://next-auth.js.org/configuration/nextjs#unstable_getserversession)
+- [Providing precompiled bins for NixOS](https://github.com/prisma/prisma/issues/3026)
+- [MDX](https://mdxjs.com/)
+- https://www.youtube.com/watch?v=dsCfi0yRr1w
+- https://www.youtube.com/watch?v=J_0SBJMxmcw
+- https://www.youtube.com/watch?v=WCGopHwXnic
+- https://www.youtube.com/watch?v=iW39Merz0zE
+- https://www.youtube.com/watch?v=xXQsF0q8KUg
+- https://www.youtube.com/watch?v=h6wBYWWdyYQ
+
 ## Stack
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
@@ -48,14 +62,6 @@ Also checkout these awesome tutorials on `create-t3-app`.
 - [Build a Live Chat Application with the T3 Stack - TypeScript, Tailwind, tRPC](https://www.youtube.com/watch?v=dXRRY37MPuk)
 - [Build a full stack app with create-t3-app](https://www.nexxel.dev/blog/ct3a-guestbook)
 - [A first look at create-t3-app](https://dev.to/ajcwebdev/a-first-look-at-create-t3-app-1i8f)
-
-### Useful resources
-
-Here are some resources that we commonly refer to:
-
-- [Protecting routes with Next-Auth.js](https://next-auth.js.org/configuration/nextjs#unstable_getserversession)
-
-- [Providing precompiled bins for NixOS](https://github.com/prisma/prisma/issues/3026)
 
 ### How do I deploy this?
 
