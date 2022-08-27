@@ -29,7 +29,7 @@ function Articles({ articles }: { articles: ArticleMeta[] }) {
           <p>{article.excerpt}</p>
           <p>{article.date}</p>
           <p>
-            {article.tags.map(tag => <Link href={`/blog/tags/${tag}`}>{tag}</Link>)}
+            {article.tags.map(tag => <Link key={tag} href={`/blog/tags/${tag}`}>{tag}</Link>)}
           </p>
         </li>
       )
