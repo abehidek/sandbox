@@ -1,12 +1,14 @@
 import path from "path";
 import fs from "fs";
-import { sync } from "glob";
 import matter from "gray-matter"
 
-const ARTICLES_PATH = path.join(process.cwd(), "public/articles");
+const ARTICLES_PATH = path.join(process.cwd(), "public");
 
 export const getSlugs = (): string[] => {
-  const paths = sync(`${ARTICLES_PATH}/*.mdx`);
+  const filesPaths = fs.readdirSync(ARTICLES_PATH);
+  const paths = filesPaths
+    .filter(fileName => fileName.endsWith('.md') || fileName.endsWith('.mdx'))
+    .map(fileName => fileName.replace(/\.md$/, ''));
 
   return paths.map((path) => {
     const parts = path.split("/");
