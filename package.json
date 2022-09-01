@@ -13,7 +13,6 @@
     "@trpc/next": "^9.27.2",
     "@trpc/react": "^9.27.2",
     "@trpc/server": "^9.27.2",
-    "glob": "^8.0.3",
     "gray-matter": "^4.0.3",
     "next": "12.2.5",
     "next-mdx-remote": "^4.1.0",
