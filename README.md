@@ -20,6 +20,7 @@ Another interesting feature is using tags (this can be accomplished reading from
 - My Projects page
 - RSS feed
 - Consume some realtime API to provide an useful info.
+- Read time to each blog article
 
 ## Useful resources
 
