@@ -35,6 +35,7 @@ Here are some resources that we commonly refer to:
 - https://www.youtube.com/watch?v=iW39Merz0zE
 - https://www.youtube.com/watch?v=xXQsF0q8KUg
 - https://www.youtube.com/watch?v=h6wBYWWdyYQ
+- https://www.youtube.com/watch?v=syEWlxVFUrY <- With T3 Stack
 
 ## Stack
 
