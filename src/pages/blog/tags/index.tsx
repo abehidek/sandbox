@@ -7,7 +7,7 @@ import { useState } from "react";
 interface TagMeta {
   tag: string;
   occurences: number;
-};
+}
 export const getStaticProps: GetStaticProps = async () => {
   const tags = getAllArticles().map(article => article.meta.tags).flat();
 
@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 interface TagPageProps {
   tagsMeta: TagMeta[];
-};
+}
 
 const AllTagsPage: NextPage<TagPageProps> = ({ tagsMeta }) => {
   console.log(tagsMeta)

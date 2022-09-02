@@ -1,7 +1,6 @@
 import ArticlesComponent from "@/src/components/Articles";
 import { ArticleMeta, getAllArticles } from "@/src/server/static";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { useState } from "react";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const articles = getAllArticles();
@@ -23,7 +22,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 interface TagPageProps {
   tag: string;
   articles: ArticleMeta[]
-};
+}
 
 const TagPage: NextPage<TagPageProps> = ({ articles, tag }) => {
   console.log(articles)
