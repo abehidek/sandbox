@@ -45,18 +45,19 @@ const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
   const router = useRouter();
   const { slug } = router.query
 
-  const hello = trpc.useQuery(["articles.get-view"])
+  // make these two lines below execute one time only, need to trpc query without useEffect
+  const response = trpc.useQuery(["articles.get-view", slug?.toString()]);
+  console.log(response.data?.article)
 
   useEffect(() => {
     console.log("Adding one more view to " + slug);
-  }, [])
+  }, [slug])
 
   return (
     <>
       <Head>
         <title>{article.meta.title}</title>
       </Head>
-      {JSON.stringify(hello.data?.text)}
       <h1>{article.meta.title}</h1>
       <MDXRemote {...article.source} components={{ Image }} />
     </>
