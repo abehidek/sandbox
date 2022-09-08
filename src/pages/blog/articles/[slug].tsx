@@ -46,7 +46,10 @@ const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
   const { slug } = router.query
 
   // make these two lines below execute one time only, need to trpc query without useEffect
-  const response = trpc.useQuery(["articles.get-view", slug?.toString()]);
+  const response = trpc.useQuery(["articles.get-view", slug?.toString()], {
+    staleTime: Infinity,
+    cacheTime: Infinity
+  });
   console.log(response.data?.article)
 
   useEffect(() => {
