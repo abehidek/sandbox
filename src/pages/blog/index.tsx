@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import { getAllArticles, ArticleMeta } from "@/src/server/static";
+import { getAllArticles, ArticleMeta } from "@/src/server/services";
 import Link from "next/link";
 import ArticlesComponent from "@/src/components/Articles";
 

@@ -6,7 +6,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeHighlight from "rehype-highlight";
-import { getArticleFromSlug, getSlugs, ArticleMeta } from "@/src/server/static";
+import { getArticleFromSlug, getSlugs, ArticleMeta } from "@/src/server/services";
 import "highlight.js/styles/atom-one-dark.css";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";

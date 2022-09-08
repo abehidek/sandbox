@@ -1,5 +1,5 @@
 import ArticlesComponent from "@/src/components/Articles";
-import { ArticleMeta, getAllArticles } from "@/src/server/static";
+import { ArticleMeta, getAllArticles } from "@/src/server/services";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 export const getStaticPaths: GetStaticPaths = async () => {

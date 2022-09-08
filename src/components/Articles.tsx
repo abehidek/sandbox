@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArticleMeta } from "../server/static"
+import { ArticleMeta } from "../server/services"
 
 export default function ArticlesComponent({ articles }: { articles: ArticleMeta[] }) {
   return (

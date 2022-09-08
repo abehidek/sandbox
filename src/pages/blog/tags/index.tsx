@@ -1,5 +1,5 @@
 import ArticlesComponent from "@/src/components/Articles";
-import { ArticleMeta, getAllArticles } from "@/src/server/static";
+import { ArticleMeta, getAllArticles } from "@/src/server/services";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import { useState } from "react";
@@ -11,14 +11,14 @@ interface TagMeta {
 export const getStaticProps: GetStaticProps = async () => {
   const tags = getAllArticles().map(article => article.meta.tags).flat();
 
-  const tagsOccurencesMap: { [key: string]: number  } = tags.reduce((acc: any, curr: any) => {
+  const tagsOccurencesMap: { [key: string]: number } = tags.reduce((acc: any, curr: any) => {
     acc[curr] ??= 0;
     acc[curr]++;
-    
+
     return acc;
   }, {});
 
-  const tagsMeta: TagMeta[] =  Object.entries(tagsOccurencesMap).map(([tag, occurences]) => ({ tag, occurences }))
+  const tagsMeta: TagMeta[] = Object.entries(tagsOccurencesMap).map(([tag, occurences]) => ({ tag, occurences }))
 
   return { props: { tagsMeta } };
 };
@@ -41,7 +41,7 @@ const AllTagsPage: NextPage<TagPageProps> = ({ tagsMeta }) => {
             </li>
           ))}
         </ul>
-        
+
       </main>
     </>
   );
