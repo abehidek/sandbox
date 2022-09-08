@@ -16,7 +16,7 @@ export async function getStaticProps() {
   const allArticles = await getAllArticles();
   const articles = await Promise.all(allArticles.map(post => post.meta));
 
-  return { props: { articles } };
+  return { props: { articles }, revalidate: 30, };
 }
 
 export default BlogPage;

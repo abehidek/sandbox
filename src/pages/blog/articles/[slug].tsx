@@ -57,7 +57,7 @@ const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
         <title>{article.meta.title}</title>
       </Head>
       <h1>{article.meta.title}</h1>
-      <p>{article.meta.views + 1}</p>
+      <p>{response.data?.articleView}</p>
       <MDXRemote {...article.source} components={{ Image }} />
     </>
   );
