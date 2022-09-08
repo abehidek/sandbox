@@ -1,6 +1,7 @@
 import { createRouter } from "./context";
 import { z } from "zod";
 import { prisma } from "../db";
+import { upsertArticleViewCount } from "../services";
 
 export const articlesRouter = createRouter()
   .query("add-view", {
@@ -15,22 +16,10 @@ export const articlesRouter = createRouter()
     async resolve({ input }) {
       if (input == undefined) return { message: 'undefined input' }
 
-      const article = await prisma.article.upsert({
-        where: { slug: input, },
-        update: {
-          views: { increment: 1 }
-        },
-        create: {
-          slug: input,
-          views: 1,
-          updoots: 0
-        },
-      });
-
-      console.log(article)
+      const articleView = await upsertArticleViewCount(input);
 
       return {
-        article
+        articleView
       };
     },
   });

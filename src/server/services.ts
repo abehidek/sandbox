@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs";
 import matter from "gray-matter"
+import { prisma } from "./db";
 
 const ARTICLES_PATH = path.join(process.cwd(), "public");
 
@@ -18,8 +19,14 @@ export const getSlugs = (): string[] => {
   })
 }
 
-export const getAllArticles = () => {
-  return getSlugs().map(slug => getArticleFromSlug(slug)).sort((a, b) => {
+export const getAllArticles = async () => {
+  const allSlugs = getSlugs();
+
+  const allArticles = await Promise.all(allSlugs.map(async slug => {
+    return await getArticleFromSlug(slug)
+  }));
+
+  return allArticles.sort((a, b) => {
     if (a.meta.date > b.meta.date) return 1;
     if (a.meta.date < b.meta.date) return -1;
     return 0
@@ -32,6 +39,8 @@ export interface ArticleMeta {
   slug: string;
   tags: string[];
   date: string;
+  views: number;
+  updoots: number;
 }
 
 export interface Article {
@@ -39,10 +48,12 @@ export interface Article {
   meta: ArticleMeta;
 }
 
-export const getArticleFromSlug = (slug: string): Article => {
+export const getArticleFromSlug = async (slug: string): Promise<Article> => {
   const articlePath = path.join(ARTICLES_PATH, `${slug}.mdx`);
   const source = fs.readFileSync(articlePath);
   const { content, data } = matter(source);
+
+  const { views, updoots } = await getArticleDbMeta(slug);
 
   return {
     content,
@@ -51,7 +62,44 @@ export const getArticleFromSlug = (slug: string): Article => {
       title: data.title ?? slug,
       excerpt: data.excerpt ?? "",
       tags: (data.tags ?? []).sort(),
-      date: (data.date ?? new Date()).toString()
+      date: (data.date ?? new Date()).toString(),
+      views,
+      updoots
     }
   }
+}
+
+export interface ArticleDbMeta {
+  id: number;
+  slug: string;
+  views: number;
+  updoots: number;
+}
+
+export const getArticleDbMeta = async (slug: string): Promise<ArticleDbMeta> => {
+  const article = await prisma.article.upsert({
+    where: { slug, },
+    update: {},
+    create: {
+      slug,
+      views: 0,
+      updoots: 0
+    },
+  });
+  return article;
+}
+
+export const upsertArticleViewCount = async (slug: string): Promise<number> => {
+  const article = await prisma.article.upsert({
+    where: { slug, },
+    update: {
+      views: { increment: 1 }
+    },
+    create: {
+      slug,
+      views: 1,
+      updoots: 0
+    },
+  });
+  return article.views;
 }

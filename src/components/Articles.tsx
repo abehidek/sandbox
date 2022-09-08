@@ -15,6 +15,7 @@ export default function ArticlesComponent({ articles }: { articles: ArticleMeta[
             <p>
               {article.tags.map(tag => <Link key={tag} href={`/blog/tags/${tag}`}>{tag}</Link>)}
             </p>
+            <p>views: {article.views}</p>
           </li>
         );
       })}

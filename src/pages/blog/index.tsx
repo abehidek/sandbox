@@ -13,7 +13,8 @@ const BlogPage: NextPage<{ articles: ArticleMeta[] }> = ({ articles }) => {
 }
 
 export async function getStaticProps() {
-  const articles = getAllArticles().map(post => post.meta);
+  const allArticles = await getAllArticles();
+  const articles = await Promise.all(allArticles.map(post => post.meta));
 
   return { props: { articles } };
 }

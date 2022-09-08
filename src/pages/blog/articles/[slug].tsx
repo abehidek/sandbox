@@ -9,7 +9,7 @@ import rehypeHighlight from "rehype-highlight";
 import { getArticleFromSlug, getSlugs, ArticleMeta } from "@/src/server/services";
 import "highlight.js/styles/atom-one-dark.css";
 import type { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { trpc } from "@/src/utils/trpc";
 
@@ -28,7 +28,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params as { slug: string };
-  const { content, meta } = getArticleFromSlug(slug);
+  const { content, meta } = await getArticleFromSlug(slug);
   const mdxSource = await serialize(content, {
     mdxOptions: {
       rehypePlugins: [
@@ -50,11 +50,6 @@ const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
     staleTime: Infinity,
     cacheTime: Infinity
   });
-  console.log(response.data?.article)
-
-  useEffect(() => {
-    console.log("Adding one more view to " + slug);
-  }, [slug])
 
   return (
     <>
@@ -62,6 +57,7 @@ const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
         <title>{article.meta.title}</title>
       </Head>
       <h1>{article.meta.title}</h1>
+      <p>{article.meta.views + 1}</p>
       <MDXRemote {...article.source} components={{ Image }} />
     </>
   );
