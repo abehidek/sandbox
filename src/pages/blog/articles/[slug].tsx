@@ -9,7 +9,6 @@ import rehypeHighlight from "rehype-highlight";
 import { getArticleFromSlug, getSlugs, ArticleMeta } from "@/src/server/services";
 import "highlight.js/styles/atom-one-dark.css";
 import type { NextPage } from "next";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { trpc } from "@/src/utils/trpc";
 

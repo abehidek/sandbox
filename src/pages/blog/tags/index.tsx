@@ -1,8 +1,6 @@
-import ArticlesComponent from "@/src/components/Articles";
-import { ArticleMeta, getAllArticles } from "@/src/server/services";
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { getAllArticles } from "@/src/server/services";
+import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
-import { useState } from "react";
 
 interface TagMeta {
   tag: string;
