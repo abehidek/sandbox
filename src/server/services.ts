@@ -2,6 +2,7 @@ import path from "path";
 import fs from "fs";
 import matter from "gray-matter"
 import { prisma } from "./db";
+import readingTime from "reading-time";
 
 const ARTICLES_PATH = path.join(process.cwd(), "public");
 
@@ -41,6 +42,7 @@ export interface ArticleMeta {
   date: string;
   views: number;
   updoots: number;
+  readingTime: string;
 }
 
 export interface Article {
@@ -64,7 +66,8 @@ export const getArticleFromSlug = async (slug: string): Promise<Article> => {
       tags: (data.tags ?? []).sort(),
       date: (data.date ?? new Date()).toString(),
       views,
-      updoots
+      updoots,
+      readingTime: readingTime(content).text
     }
   }
 }
