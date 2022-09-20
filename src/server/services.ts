@@ -92,7 +92,7 @@ export const getArticleDbMeta = async (slug: string): Promise<ArticleDbMeta> => 
   return article;
 }
 
-export const upsertArticleViewCount = async (slug: string): Promise<number> => {
+export const upsertArticleViewCount = async (slug: string): Promise<string> => {
   const article = await prisma.article.upsert({
     where: { slug, },
     update: {
@@ -104,5 +104,5 @@ export const upsertArticleViewCount = async (slug: string): Promise<number> => {
       updoots: 0
     },
   });
-  return article.views;
+  return article.views + " views";
 }
