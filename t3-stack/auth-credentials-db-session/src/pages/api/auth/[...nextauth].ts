@@ -7,6 +7,10 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "../../../server/db/client";
 import { env } from "../../../env/server.mjs";
 import { NextApiRequest, NextApiResponse } from "next";
+import { randomUUID } from "crypto"
+import Cookies from "cookies";
+import { decode, encode } from "next-auth/jwt";
+
 
 export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const data = wrapper(req, res);
@@ -17,6 +21,12 @@ export default handler;
 
 export function wrapper(req: NextApiRequest, res: NextApiResponse): [req: NextApiRequest, res: NextApiResponse, opts: NextAuthOptions] {
   const sayHello = () => console.log("hello");
+
+  const generateSessionToken = () => {
+    // Use `randomUUID` if available. (Node 15.6++)
+    return randomUUID()
+  }
+
 
   const opts: NextAuthOptions = {
     // Include user.id on session
