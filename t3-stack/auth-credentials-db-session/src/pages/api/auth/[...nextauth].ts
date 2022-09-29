@@ -5,6 +5,12 @@ import GithubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "../../../server/db/client";
 import { env } from "../../../env/server.mjs";
+import { NextApiRequest, NextApiResponse } from "next";
+
+export default async function auth(req: NextApiRequest, res: NextApiResponse) {
+  const sayHello = () => console.log("hello");
+  return await NextAuth(req, res, authOptions);
+}
 
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
@@ -27,5 +33,3 @@ export const authOptions: NextAuthOptions = {
     // ...add more providers here
   ],
 };
-
-export default NextAuth(authOptions);
