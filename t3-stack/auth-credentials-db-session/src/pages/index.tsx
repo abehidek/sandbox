@@ -25,13 +25,10 @@ const Home: NextPage = () => {
       <main className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4">
         <div className="border-2 p-5 flex flex-col items-center justify-center">
           <div className="text-2xl text-blue-500 flex justify-center items-center w-full">
-            {data ? (
-              <p>{data}</p>
-            ) : isError ? (
-              <p>{error.message}</p>
-            ) : (
-              <p>Click below</p>
-            )}
+            {data ? <p>{data}</p>
+                  : isError ? <p>{error.message}</p> 
+                            : <p>Click below</p>
+            }
           </div>
           <button
             onClick={() => refetch()}
