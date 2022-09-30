@@ -1,0 +1,46 @@
+import ArticlesComponent from "@/src/components/Articles";
+import { ArticleMeta, getAllArticles } from "@/src/server/services/articles";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const articles = await getAllArticles();
+  const tags = new Set(articles.map((article) => article.meta.tags).flat());
+  const paths = Array.from(tags).map((tag) => ({ params: { tag: tag } }));
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { tag } = params as { tag: string };
+  const allArticles = await getAllArticles();
+  const allArticlesFromTag = allArticles.filter((article) =>
+    article.meta.tags.includes(tag)
+  );
+
+  return {
+    props: {
+      tag,
+      allArticlesMeta: allArticlesFromTag.map((article) => article.meta),
+    },
+  };
+};
+
+interface TagPageProps {
+  tag: string;
+  allArticlesMeta: ArticleMeta[];
+}
+
+const TagPage: NextPage<TagPageProps> = ({ allArticlesMeta, tag }) => {
+  return (
+    <>
+      <main>
+        <h1>Tag: {tag}</h1>
+        <ArticlesComponent allArticlesMeta={allArticlesMeta} />
+      </main>
+    </>
+  );
+};
+
+export default TagPage;
