@@ -17,11 +17,13 @@
     "@trpc/next": "^9.27.2",
     "@trpc/react": "^9.27.2",
     "@trpc/server": "^9.27.2",
+    "gray-matter": "^4.0.3",
     "next": "12.3.1",
     "next-auth": "^4.10.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-query": "^3.39.2",
+    "reading-time": "^1.5.0",
     "superjson": "^1.10.0",
     "zod": "^3.18.0"
   },

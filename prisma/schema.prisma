@@ -14,6 +14,13 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+model ArticleDynamicMeta {
+    id      Int    @id @default(autoincrement())
+    slug    String @unique
+    views   Int
+    updoots Int
+}
+
 model Example {
     id String @id @default(cuid())
 }
