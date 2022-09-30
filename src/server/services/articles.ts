@@ -81,3 +81,18 @@ export const getAllArticles = async (): Promise<Article[]> => {
     return 0
   }).reverse();
 }
+
+export const upsertArticleViewCount = async (slug: string): Promise<string> => {
+  const article = await prisma.articleDynamicMeta.upsert({
+    where: { slug, },
+    update: {
+      views: { increment: 1 }
+    },
+    create: {
+      slug,
+      views: 1,
+      updoots: 0
+    },
+  });
+  return article.views + " views";
+}
