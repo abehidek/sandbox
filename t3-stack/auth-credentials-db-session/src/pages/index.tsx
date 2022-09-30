@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Head from "next/head";
 import { trpc } from "../utils/trpc";
+import { useForm } from "react-hook-form";
 
 const Home: NextPage = () => {
   const { data, refetch, isError, error, remove } = trpc.useQuery(
@@ -14,6 +15,18 @@ const Home: NextPage = () => {
 
   const { data: session } = useSession();
 
+  const { mutate } = trpc.useMutation(["user.changePassword"], {
+    onSuccess: () => alert("Sent request to change pwd"),
+  });
+
+  type ChangePassword = {
+    password: string;
+  };
+
+  const { register, handleSubmit } = useForm<ChangePassword>();
+
+  const onSubmit = handleSubmit((data) => mutate(data));
+
   return (
     <>
       <Head>
@@ -25,10 +38,13 @@ const Home: NextPage = () => {
       <main className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4">
         <div className="border-2 p-5 flex flex-col items-center justify-center">
           <div className="text-2xl text-blue-500 flex justify-center items-center w-full">
-            {data ? <p>{data}</p>
-                  : isError ? <p>{error.message}</p> 
-                            : <p>Click below</p>
-            }
+            {data ? (
+              <p>{data}</p>
+            ) : isError ? (
+              <p>{error.message}</p>
+            ) : (
+              <p>Click below</p>
+            )}
           </div>
           <button
             onClick={() => refetch()}
@@ -41,12 +57,14 @@ const Home: NextPage = () => {
         <div className="mt-5 border-2 p-5 flex flex-col items-center justify-center">
           <h1>Auth</h1>
           {session ? (
-            <button
-              onClick={() => signOut()}
-              className="bg-blue-500 text-white px-3 py-3 mt-2"
-            >
-              Sign Out - {session.user?.name}
-            </button>
+            <>
+              <button
+                onClick={() => signOut()}
+                className="bg-blue-500 text-white px-3 py-3 mt-2"
+              >
+                Sign Out - {session.user?.name}
+              </button>
+            </>
           ) : (
             <>
               <button
@@ -63,6 +81,16 @@ const Home: NextPage = () => {
               </button>
             </>
           )}
+        </div>
+        <div className="mt-5 border-2 p-5 flex flex-col items-center justify-center">
+          <form onSubmit={onSubmit}>
+            <input type="password" {...register("password")} />
+            <input
+              className="bg-green-500 text-white px-3 py-3 mt-2"
+              type="submit"
+              value="Change password"
+            />
+          </form>
         </div>
       </main>
     </>
