@@ -98,6 +98,7 @@ export function requestWrapper(
     },
     // Configure one or more authentication providers
     secret: env.NEXTAUTH_SECRET,
+    debug: true,
     providers: [
       GithubProvider({
         clientId: env.GITHUB_CLIENT_ID,
