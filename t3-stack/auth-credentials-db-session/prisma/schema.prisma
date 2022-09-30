@@ -15,7 +15,9 @@ datasource db {
 }
 
 model Example {
-    id String @id @default(cuid())
+    id          String @id @default(cuid())
+    name        String
+    description String
 }
 
 // Necessary for Next auth

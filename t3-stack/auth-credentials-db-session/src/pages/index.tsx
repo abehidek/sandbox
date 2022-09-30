@@ -5,17 +5,24 @@ import { trpc } from "../utils/trpc";
 import { useForm } from "react-hook-form";
 
 const Home: NextPage = () => {
-  const { data, refetch, isError, error, remove } = trpc.useQuery(
-    ["auth.getSecretMessage"],
-    {
-      enabled: false,
-      retry: false,
-    }
+  const {
+    data: secretMessageData,
+    refetch: refetchSecretMessage,
+    isError: isErrorSecretMessage,
+    error: errorSecretMessage,
+  } = trpc.useQuery(["auth.getSecretMessage"], {
+    enabled: false,
+    retry: false,
+  });
+
+  const { data: allExample, refetch: refetchGetAll } = trpc.useQuery(
+    ["example.getAll"],
+    {}
   );
 
   const { data: session } = useSession();
 
-  const { mutate } = trpc.useMutation(["user.changePassword"], {
+  const { mutate: changePassword } = trpc.useMutation(["user.changePassword"], {
     onSuccess: () => alert("Sent request to change pwd"),
   });
 
@@ -23,9 +30,28 @@ const Home: NextPage = () => {
     password: string;
   };
 
-  const { register, handleSubmit } = useForm<ChangePassword>();
+  const {
+    register: registerChangePasswordField,
+    handleSubmit: handleChangePasswordSubmit,
+  } = useForm<ChangePassword>();
 
-  const onSubmit = handleSubmit((data) => mutate(data));
+  const onSubmitChangePassword = handleChangePasswordSubmit((data) =>
+    changePassword(data)
+  );
+
+  const { mutate: addOne } = trpc.useMutation(["example.addOne"], {
+    onSuccess: () => alert("Succefully created new one"),
+  });
+
+  type AddOne = {
+    name: string;
+    description: string;
+  };
+
+  const { register: registerAddOneField, handleSubmit: handleAddOneSubmit } =
+    useForm<AddOne>();
+
+  const onSubmitAddOne = handleAddOneSubmit((data) => addOne(data));
 
   return (
     <>
@@ -38,16 +64,16 @@ const Home: NextPage = () => {
       <main className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4">
         <div className="border-2 p-5 flex flex-col items-center justify-center">
           <div className="text-2xl text-blue-500 flex justify-center items-center w-full">
-            {data ? (
-              <p>{data}</p>
-            ) : isError ? (
-              <p>{error.message}</p>
+            {secretMessageData ? (
+              <p>{secretMessageData}</p>
+            ) : isErrorSecretMessage ? (
+              <p>{errorSecretMessage.message}</p>
             ) : (
               <p>Click below</p>
             )}
           </div>
           <button
-            onClick={() => refetch()}
+            onClick={() => refetchSecretMessage()}
             className="bg-blue-500 text-white px-5 py-3"
           >
             fetch from trpc
@@ -83,12 +109,37 @@ const Home: NextPage = () => {
           )}
         </div>
         <div className="mt-5 border-2 p-5 flex flex-col items-center justify-center">
-          <form onSubmit={onSubmit}>
-            <input type="password" {...register("password")} />
+          <form onSubmit={onSubmitChangePassword}>
+            <input
+              type="password"
+              {...registerChangePasswordField("password")}
+            />
             <input
               className="bg-green-500 text-white px-3 py-3 mt-2"
               type="submit"
               value="Change password"
+            />
+          </form>
+        </div>
+
+        <div className="mt-5 border-2 p-5 flex flex-col items-center justify-center">
+          <pre>{JSON.stringify(allExample, null, 2)}</pre>
+
+          <form onSubmit={onSubmitAddOne}>
+            <input
+              type="text"
+              {...registerAddOneField("name")}
+              placeholder="name..."
+            />
+            <input
+              type="text"
+              {...registerAddOneField("description")}
+              placeholder="description..."
+            />
+            <input
+              className="bg-green-500 text-white px-3 py-3 mt-2"
+              type="submit"
+              value="Add todo"
             />
           </form>
         </div>
