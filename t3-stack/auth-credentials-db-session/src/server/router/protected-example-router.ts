@@ -9,6 +9,6 @@ export const protectedExampleRouter = createProtectedRouter()
   })
   .query("getSecretMessage", {
     resolve({ ctx }) {
-      return "He who asks a question is a fool for five minutes; he who does not ask a question remains a fool forever.";
+      return "You are Authenticated as " + ctx.session.user.name;
     },
   });
