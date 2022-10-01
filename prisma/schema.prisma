@@ -15,10 +15,21 @@ datasource db {
 }
 
 model ArticleDynamicMeta {
-    id      Int    @id @default(autoincrement())
-    slug    String @unique
-    views   Int
-    updoots Int
+    id             Int              @id @default(autoincrement())
+    slug           String           @unique
+    views          Int
+    updoots        Int
+    ArticleUpdoots ArticleUpdoots[]
+}
+
+model ArticleUpdoots {
+    id        Int                @id @default(autoincrement())
+    articleId Int
+    userId    String
+    user      User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+    article   ArticleDynamicMeta @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+    @@unique([articleId, userId])
 }
 
 model Example {
@@ -53,13 +64,14 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
+    id             String           @id @default(cuid())
+    name           String?
+    email          String?          @unique
+    emailVerified  DateTime?
+    image          String?
+    accounts       Account[]
+    sessions       Session[]
+    ArticleUpdoots ArticleUpdoots[]
 }
 
 model VerificationToken {

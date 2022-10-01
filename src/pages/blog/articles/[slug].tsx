@@ -15,6 +15,7 @@ import "highlight.js/styles/atom-one-dark.css";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { trpc } from "@/src/utils/trpc";
+import { useEffect, useState } from "react";
 
 interface MDXArticle {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -47,23 +48,85 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
   const router = useRouter();
   const { slug } = router.query;
-
-  // make these two lines below execute one time only, need to trpc query without useEffect
-  const response = trpc.useQuery(
-    ["article.getView", { slug: slug?.toString() }],
+  const [updoots, setUpdoots] = useState<number>();
+  const [isUpdoot, setIsUpdoot] = useState<boolean>(false);
+  const articleDynamicMeta = trpc.useQuery(
+    ["article.getArticleDynamicMeta", { slug: slug?.toString() }],
     {
-      staleTime: Infinity,
       cacheTime: Infinity,
+      staleTime: Infinity,
+      onSuccess(data) {
+        if (!data) return;
+        setUpdoots(data.updoots);
+      },
     }
   );
+
+  const isUpdooted = trpc.useQuery(
+    ["articleUser.fetchUserUpdoot", { slug: slug?.toString() }],
+    {
+      cacheTime: Infinity,
+      staleTime: Infinity,
+      onSuccess: (data) => {
+        if (data) setIsUpdoot(data);
+      },
+    }
+  );
+  const { mutate: addUpdoot } = trpc.useMutation(["articleUser.addUpdoot"], {
+    onSuccess: (data) => {
+      setUpdoots((prev) => {
+        if (typeof prev === "number") return prev + 1;
+        return undefined;
+      });
+      setIsUpdoot(true);
+    },
+    onError(error) {
+      console.error(error);
+      if (error.data?.httpStatus === 401) {
+        alert("You need to login");
+        router.push("/");
+      }
+    },
+  });
+
+  const { mutate: removeUpdoot } = trpc.useMutation(
+    ["articleUser.removeUpdoot"],
+    {
+      onSuccess: (data) => {
+        setUpdoots((prev) => {
+          if (typeof prev === "number") return prev - 1;
+          return undefined;
+        });
+        setIsUpdoot(false);
+      },
+      onError(error) {
+        console.error(error);
+        if (error.data?.httpStatus === 401) {
+          alert("You need to login");
+          router.push("/");
+        }
+      },
+    }
+  );
+
+  const handleChange = () => {
+    if (!slug) return;
+    if (!isUpdoot) {
+      addUpdoot({ slug: slug.toString() });
+    } else {
+      removeUpdoot({ slug: slug.toString() });
+    }
+  };
 
   return (
     <>
       <Head>
         <title>{article.meta.title}</title>
       </Head>
+      <input type="checkbox" onChange={handleChange} checked={isUpdoot} />
       <h1>{article.meta.title}</h1>
-      <p>{response.data}</p>
+      <p>{articleDynamicMeta.data?.views} views</p>
+      <p>{updoots} updoots</p>
       <p>{article.meta.readingTime}</p>
       <MDXRemote {...article.source} components={{ Image }} />
     </>

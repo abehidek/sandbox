@@ -3,6 +3,7 @@ import fs from "fs";
 import matter from "gray-matter"
 import { prisma } from "../db/client";
 import readingTime from "reading-time";
+import { useId } from "react";
 
 const ARTICLES_PATH = path.join(process.cwd(), "public");
 
@@ -82,7 +83,7 @@ export const getAllArticles = async (): Promise<Article[]> => {
   }).reverse();
 }
 
-export const upsertArticleViewCount = async (slug: string): Promise<string> => {
+export const upsertArticleViewCount = async (slug: string) => {
   const article = await prisma.articleDynamicMeta.upsert({
     where: { slug, },
     update: {
@@ -94,5 +95,62 @@ export const upsertArticleViewCount = async (slug: string): Promise<string> => {
       updoots: 0
     },
   });
-  return article.views + " views";
+  return article;
 }
+
+export const fetchArticleUpdoots = async (articleId: number) => {
+  const allArticleUpdoots = await prisma.articleUpdoots.findMany({
+    where: {
+      articleId
+    }
+  })
+
+  return allArticleUpdoots.length
+}
+
+export const fetchArticleUserUpdoot = async (slug: string, userId: string) => {
+  const article = await getOneArticleDynamicMeta(slug);
+  return await prisma.articleUpdoots.findFirst({
+    where: {
+      articleId: article.id,
+      userId: userId,
+    }
+  })
+}
+
+export const incrementArticleUpdoot = async (slug: string, userId: string) => {
+  try {
+    return await prisma.articleUpdoots.create({
+      data: {
+        user: {
+          connect: {
+            id: userId
+          }
+        },
+        article: {
+          connect: {
+            slug: slug
+          }
+        },      
+      }
+    }) 
+  } catch (error) {
+    throw error
+  }
+}
+
+export const decrementArticleUpdoot = async (slug: string, userId: string) => {
+  try {
+    const article = await getOneArticleDynamicMeta(slug);
+    return await prisma.articleUpdoots.deleteMany({
+      where: {
+        userId,
+        articleId: article.id
+      }
+    }) 
+  } catch (error) {
+    throw error
+  }
+  
+}
+
