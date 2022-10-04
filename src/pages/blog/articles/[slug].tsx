@@ -15,7 +15,7 @@ import "highlight.js/styles/atom-one-dark.css";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { trpc } from "@/src/utils/trpc";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 
 interface MDXArticle {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -48,13 +48,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
   const router = useRouter();
   const { slug } = router.query;
+  const checkboxRef = useRef<any>();
   const [updoots, setUpdoots] = useState<number>();
   const [isUpdoot, setIsUpdoot] = useState<boolean>(false);
   const articleDynamicMeta = trpc.useQuery(
     ["article.getArticleDynamicMeta", { slug: slug?.toString() }],
     {
-      cacheTime: Infinity,
-      staleTime: Infinity,
+      refetchOnWindowFocus: false,
       onSuccess(data) {
         if (!data) return;
         setUpdoots(data.updoots);
@@ -62,11 +62,14 @@ const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
     }
   );
 
+  const setCheckbox = (value: boolean) => {
+    if (checkboxRef.current) checkboxRef.current.disabled = value;
+  };
+
   const isUpdooted = trpc.useQuery(
     ["articleUser.fetchUserUpdoot", { slug: slug?.toString() }],
     {
-      cacheTime: Infinity,
-      staleTime: Infinity,
+      refetchOnWindowFocus: false,
       onSuccess: (data) => {
         if (data) setIsUpdoot(data);
       },
@@ -79,6 +82,7 @@ const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
         return undefined;
       });
       setIsUpdoot(true);
+      setCheckbox(false);
     },
     onError(error) {
       console.error(error);
@@ -86,6 +90,7 @@ const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
         alert("You need to login");
         router.push("/");
       }
+      setCheckbox(false);
     },
   });
 
@@ -98,6 +103,7 @@ const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
           return undefined;
         });
         setIsUpdoot(false);
+        setCheckbox(false);
       },
       onError(error) {
         console.error(error);
@@ -105,12 +111,14 @@ const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
           alert("You need to login");
           router.push("/");
         }
+        setCheckbox(false);
       },
     }
   );
 
-  const handleChange = () => {
+  const handleChange = (e: any) => {
     if (!slug) return;
+    setCheckbox(true);
     if (!isUpdoot) {
       addUpdoot({ slug: slug.toString() });
     } else {
@@ -123,7 +131,15 @@ const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
       <Head>
         <title>{article.meta.title}</title>
       </Head>
-      <input type="checkbox" onChange={handleChange} checked={isUpdoot} />
+      <div className="flex">
+        <p>updoot</p>
+        <input
+          ref={checkboxRef}
+          type="checkbox"
+          onChange={handleChange}
+          checked={isUpdoot}
+        />
+      </div>
       <h1>{article.meta.title}</h1>
       <p>{articleDynamicMeta.data?.views} views</p>
       <p>{updoots} updoots</p>
