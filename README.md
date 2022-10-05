@@ -8,7 +8,7 @@ Another interesting feature is using tags (this can be accomplished reading from
 
 - [ ] years page
 
-  - [.] Functionality
+  - [x] Functionality
   - [ ] Styling
 
 - [ ] tags page
