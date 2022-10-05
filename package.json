@@ -17,6 +17,7 @@
     "@trpc/next": "^9.27.2",
     "@trpc/react": "^9.27.2",
     "@trpc/server": "^9.27.2",
+    "@types/rss": "^0.0.29",
     "gray-matter": "^4.0.3",
     "next": "12.3.1",
     "next-auth": "^4.10.3",
@@ -28,6 +29,7 @@
     "rehype-autolink-headings": "^6.1.1",
     "rehype-highlight": "^5.0.2",
     "rehype-slug": "^5.0.1",
+    "rss": "^1.2.2",
     "superjson": "^1.10.0",
     "zod": "^3.18.0"
   },

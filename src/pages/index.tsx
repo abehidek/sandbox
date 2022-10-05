@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Head from "next/head";
-import { trpc } from "../utils/trpc";
+import getRSS from "../lib/rss";
 
 const Home: NextPage = () => {
   const { data } = useSession();
@@ -38,5 +38,10 @@ const Home: NextPage = () => {
     </>
   );
 };
+
+export async function getStaticProps() {
+  await getRSS();
+  return { props: {} };
+}
 
 export default Home;

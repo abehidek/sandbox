@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[abehidek]]></title>
+        <description><![CDATA[Drafts and guides for compsci]]></description>
+        <link>http://localhost:3000</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Wed, 05 Oct 2022 02:10:39 GMT</lastBuildDate>
+        <atom:link href="http://localhost:3000/feed.xml" rel="self" type="application/rss+xml"/>
+        <pubDate>Wed, 05 Oct 2022 02:10:39 GMT</pubDate>
+        <copyright><![CDATA[All rights reserved 2022, Abe Hidek]]></copyright>
+        <language><![CDATA[en]]></language>
+        <item>
+            <title><![CDATA[Second Post]]></title>
+            <description><![CDATA[My second blog post on the internet]]></description>
+            <link>http://localhost:3000/blog/articles/second</link>
+            <guid isPermaLink="true">http://localhost:3000/blog/articles/second</guid>
+            <pubDate>Fri, 15 Apr 2022 03:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[First Post]]></title>
+            <description><![CDATA[My first blog post on the internet]]></description>
+            <link>http://localhost:3000/blog/articles/first</link>
+            <guid isPermaLink="true">http://localhost:3000/blog/articles/first</guid>
+            <pubDate>Fri, 15 Apr 2022 03:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>
