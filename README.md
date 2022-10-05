@@ -8,7 +8,7 @@ Another interesting feature is using tags (this can be accomplished reading from
 
 - [ ] years page
 
-  - [x] Functionality
+  - [ ] Functionality
   - [ ] Styling
 
 - [ ] tags page
@@ -28,6 +28,8 @@ Another interesting feature is using tags (this can be accomplished reading from
 - [ ] Persist auth and make it possible to a user like the post
 - [ ] Dashboard page.
 - [ ] Code Snippets
+  - [x] Functionality
+  - [ ] Styling
 - [ ] My Projects page
 - [x] RSS feed
 - [ ] Sitemap

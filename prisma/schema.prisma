@@ -16,7 +16,14 @@ datasource db {
     referentialIntegrity = "prisma"
 }
 
+model SnippetViews {
+    id    String @id @default(cuid())
+    slug  String @unique
+    views Int
+}
+
 model ArticleViews {
+    id    String @id @default(cuid())
     slug  String @unique
     views Int
 }
