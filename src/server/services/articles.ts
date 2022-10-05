@@ -4,7 +4,7 @@ import matter from "gray-matter"
 import { prisma } from "../db/client";
 import readingTime from "reading-time";
 
-const ARTICLES_PATH = path.join(process.cwd(), "public");
+const ARTICLES_PATH = path.join(process.cwd(), "public/articles");
 
 export const getAllArticlesSlugs = (): string[] => {
   const articlesPathFiles = fs.readdirSync(ARTICLES_PATH);
