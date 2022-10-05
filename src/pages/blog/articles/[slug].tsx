@@ -51,9 +51,6 @@ const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
   const { slug } = useRouter().query;
   return (
     <Base>
-      <div className="flex">
-        <p>updoot</p>
-      </div>
       <h1>{article.meta.title}</h1>
       <ViewCounterComponent slug={slug} route="article.getViews" />
       <p>{article.meta.readingTime}</p>

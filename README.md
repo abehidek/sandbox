@@ -34,7 +34,8 @@ Another interesting feature is using tags (this can be accomplished reading from
 - [x] RSS feed
 - [ ] Sitemap
 - [ ] Navbar
-  - [ ] Functionality
+  - [x] Functionality
+  - [ ] Mobile menu
   - [ ] Styling
 - [ ] Consume some realtime API to provide an useful info.
 - [x] Read time to each blog article
