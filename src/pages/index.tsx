@@ -4,7 +4,6 @@ import Head from "next/head";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
   const { data } = useSession();
 
   return (
@@ -20,26 +19,17 @@ const Home: NextPage = () => {
           Create <span className="text-purple-300">T3</span> App
         </h1>
         <div className="mt-3 grid gap-3 pt-3 text-center md:grid-cols-2 lg:w-2/3"></div>
-        <div className="flex w-full items-center justify-center pt-6 text-2xl text-blue-500">
-          {hello.data ? (
-            <p>
-              {hello.data.greeting}, {data ? data.user?.name : "Stranger!"}
-            </p>
-          ) : (
-            <p>Loading..</p>
-          )}
-        </div>
         {data ? (
           <button
             className="bg-blue-500 px-5 py-3 text-white "
             onClick={() => signOut()}
           >
-            Sign Out
+            Sign Out {data.user?.name}
           </button>
         ) : (
           <button
             className="bg-blue-500 px-5 py-3 text-white "
-            onClick={() => signIn()}
+            onClick={() => signIn("github")}
           >
             Sign In
           </button>

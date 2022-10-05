@@ -27,7 +27,6 @@ export default function ArticlesComponent({
             </p>
             <p>reading time {article.readingTime}</p>
             <p>views: {article.views}</p>
-            <p>updoots: {article.updoots}</p>
           </li>
         );
       })}

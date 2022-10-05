@@ -12,6 +12,7 @@
         buildInputs = with pkgs; [
           nodePackages.prisma
           nodejs-16_x
+          pscale
           (yarn.override { nodejs = nodejs-16_x;  })
         ];
         shellHook = with pkgs; ''

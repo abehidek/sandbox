@@ -3,7 +3,6 @@ import fs from "fs";
 import matter from "gray-matter"
 import { prisma } from "../db/client";
 import readingTime from "reading-time";
-import { useId } from "react";
 
 const ARTICLES_PATH = path.join(process.cwd(), "public");
 
@@ -27,8 +26,7 @@ export type ArticleMeta = {
   excerpt: string;
   tags: string[];
   date: string;
-  views: number;
-  updoots: number;
+  views: number; // dynamic data
   readingTime: string;
 
 }
@@ -38,17 +36,16 @@ export type Article = {
   content: string;
 }
 
-export const getOneArticleDynamicMeta = async (slug: string) => {
-  const articleDynamicMeta = await prisma.articleDynamicMeta.upsert({
+export const getOneArticleViews = async (slug: string) => {
+  const articleViews = await prisma.articleViews.upsert({
     where: { slug, },
     update: {},
     create: {
       slug,
       views: 0,
-      updoots: 0
     },
   });
-  return articleDynamicMeta;
+  return articleViews;
 }
 
 export const getOneArticle = async (slug: string): Promise<Article> => {
@@ -56,7 +53,7 @@ export const getOneArticle = async (slug: string): Promise<Article> => {
   const articlePath = isMDX ? path.join(ARTICLES_PATH, `${slug}.mdx`) : path.join(ARTICLES_PATH, `${slug}.md`);
   const articleSource = fs.readFileSync(articlePath)
   const { content, data } = matter(articleSource);
-  const { views, updoots } = await getOneArticleDynamicMeta(slug);
+  const { views } = await getOneArticleViews(slug);
   return {
     content,
     meta: {
@@ -66,7 +63,6 @@ export const getOneArticle = async (slug: string): Promise<Article> => {
       tags: (data.tags ?? []).sort(),
       date: (data.date ?? new Date()).toString(),
       views,
-      updoots,
       readingTime: readingTime(content).text
     }
   }
@@ -84,7 +80,7 @@ export const getAllArticles = async (): Promise<Article[]> => {
 }
 
 export const upsertArticleViewCount = async (slug: string) => {
-  const article = await prisma.articleDynamicMeta.upsert({
+  const article = await prisma.articleViews.upsert({
     where: { slug, },
     update: {
       views: { increment: 1 }
@@ -92,65 +88,7 @@ export const upsertArticleViewCount = async (slug: string) => {
     create: {
       slug,
       views: 1,
-      updoots: 0
     },
   });
   return article;
 }
-
-export const fetchArticleUpdoots = async (articleId: number) => {
-  const allArticleUpdoots = await prisma.articleUpdoots.findMany({
-    where: {
-      articleId
-    }
-  })
-
-  return allArticleUpdoots.length
-}
-
-export const fetchArticleUserUpdoot = async (slug: string, userId: string) => {
-  const article = await getOneArticleDynamicMeta(slug);
-  return await prisma.articleUpdoots.findFirst({
-    where: {
-      articleId: article.id,
-      userId: userId,
-    }
-  })
-}
-
-export const incrementArticleUpdoot = async (slug: string, userId: string) => {
-  try {
-    return await prisma.articleUpdoots.create({
-      data: {
-        user: {
-          connect: {
-            id: userId
-          }
-        },
-        article: {
-          connect: {
-            slug: slug
-          }
-        },      
-      }
-    }) 
-  } catch (error) {
-    throw error
-  }
-}
-
-export const decrementArticleUpdoot = async (slug: string, userId: string) => {
-  try {
-    const article = await getOneArticleDynamicMeta(slug);
-    return await prisma.articleUpdoots.deleteMany({
-      where: {
-        userId,
-        articleId: article.id
-      }
-    }) 
-  } catch (error) {
-    throw error
-  }
-  
-}
-
