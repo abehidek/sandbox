@@ -1,4 +1,4 @@
-import SnippetsComponent from "@/src/components/Snippets";
+import ListSnippetsComponent from "@/src/components/ListSnippets";
 import { getAllSnippets, SnippetMeta } from "@/src/server/services/snippets";
 import type { NextPage } from "next";
 import { useSession, signIn, signOut } from "next-auth/react";
@@ -19,7 +19,7 @@ const SnippetsPage: NextPage<{ allSnippetsMeta: SnippetMeta[] }> = ({
 
       <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
         <p>Snippets</p>
-        <SnippetsComponent allSnippetsMeta={allSnippetsMeta} />
+        <ListSnippetsComponent allSnippetsMeta={allSnippetsMeta} />
       </main>
     </>
   );

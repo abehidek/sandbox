@@ -1,4 +1,4 @@
-import ArticlesComponent from "@/src/components/Articles";
+import ListArticlesComponent from "@/src/components/ListArticles";
 import { ArticleMeta, getAllArticles } from "@/src/server/services/articles";
 import moment from "moment";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
@@ -42,7 +42,7 @@ const YearPage: NextPage<YearPageProps> = ({ allArticlesMeta, year }) => {
     <>
       <main>
         <h1>Year: {year}</h1>
-        <ArticlesComponent allArticlesMeta={allArticlesMeta} />
+        <ListArticlesComponent allArticlesMeta={allArticlesMeta} />
       </main>
     </>
   );

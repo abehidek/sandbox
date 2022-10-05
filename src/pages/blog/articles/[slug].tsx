@@ -16,6 +16,7 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { trpc } from "@/src/utils/trpc";
 import { useRef, useState } from "react";
+import ViewCounterComponent from "@/src/components/ViewCounter";
 
 interface MDXArticle {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -47,12 +48,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
   const { slug } = useRouter().query;
-  const articleViews = trpc.useQuery(
-    ["article.getViews", { slug: slug?.toString() }],
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
   return (
     <>
       <Head>
@@ -62,7 +57,7 @@ const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
         <p>updoot</p>
       </div>
       <h1>{article.meta.title}</h1>
-      <p>{articleViews.data?.views} views</p>
+      <ViewCounterComponent slug={slug} route="article.getViews" />
       <p>{article.meta.readingTime}</p>
       <MDXRemote {...article.source} components={{ Image }} />
     </>

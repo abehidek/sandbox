@@ -15,6 +15,7 @@ import {
   getOneSnippet,
   SnippetMeta,
 } from "@/src/server/services/snippets";
+import ViewCounterComponent from "@/src/components/ViewCounter";
 
 interface MDXSnippet {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -46,19 +47,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const SnippetPage: NextPage<{ snippet: MDXSnippet }> = ({ snippet }) => {
   const { slug } = useRouter().query;
-  const articleViews = trpc.useQuery(
-    ["snippet.getViews", { slug: slug?.toString() }],
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
   return (
     <>
       <Head>
         <title>{snippet.meta.title}</title>
       </Head>
       <h1>{snippet.meta.title}</h1>
-      <p>{articleViews.data?.views} views</p>
+      <ViewCounterComponent route="snippet.getViews" slug={slug} />
       <p>{snippet.meta.description}</p>
       <p>{snippet.meta.date}</p>
       <MDXRemote {...snippet.source} components={{ Image }} />

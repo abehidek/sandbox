@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SnippetMeta } from "../server/services/snippets";
 
-export default function SnippetsComponent({
+export default function ListSnippetsComponent({
   allSnippetsMeta,
 }: {
   allSnippetsMeta: SnippetMeta[];

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArticleMeta } from "@/src/server/services/articles";
 
-export default function ArticlesComponent({
+export default function ListArticlesComponent({
   allArticlesMeta: articles,
 }: {
   allArticlesMeta: ArticleMeta[];
