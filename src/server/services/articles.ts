@@ -3,6 +3,7 @@ import fs from "fs";
 import matter from "gray-matter"
 import { prisma } from "../db/client";
 import readingTime from "reading-time";
+import moment from "moment"
 
 const ARTICLES_PATH = path.join(process.cwd(), "public/articles");
 
@@ -61,7 +62,7 @@ export const getOneArticle = async (slug: string): Promise<Article> => {
       title: data.title ?? slug,
       excerpt: data.excerpt ?? "",
       tags: (data.tags ?? []).sort(),
-      date: (data.date ?? new Date()).toString(),
+      date: moment((data.date ?? new Date()).toString()).format('MMMM Do, YYYY'),
       views,
       readingTime: readingTime(content).text
     }
