@@ -1,3 +1,4 @@
+import Base from "@/src/components/Base";
 import ListArticlesComponent from "@/src/components/ListArticles";
 import { ArticleMeta, getAllArticles } from "@/src/server/services/articles";
 import moment from "moment";
@@ -39,12 +40,10 @@ interface YearPageProps {
 
 const YearPage: NextPage<YearPageProps> = ({ allArticlesMeta, year }) => {
   return (
-    <>
-      <main>
-        <h1>Year: {year}</h1>
-        <ListArticlesComponent allArticlesMeta={allArticlesMeta} />
-      </main>
-    </>
+    <Base>
+      <h1>Year: {year}</h1>
+      <ListArticlesComponent allArticlesMeta={allArticlesMeta} />
+    </Base>
   );
 };
 

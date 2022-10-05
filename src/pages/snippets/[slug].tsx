@@ -16,6 +16,7 @@ import {
   SnippetMeta,
 } from "@/src/server/services/snippets";
 import ViewCounterComponent from "@/src/components/ViewCounter";
+import Base from "@/src/components/Base";
 
 interface MDXSnippet {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -48,16 +49,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const SnippetPage: NextPage<{ snippet: MDXSnippet }> = ({ snippet }) => {
   const { slug } = useRouter().query;
   return (
-    <>
-      <Head>
-        <title>{snippet.meta.title}</title>
-      </Head>
+    <Base>
       <h1>{snippet.meta.title}</h1>
       <ViewCounterComponent route="snippet.getViews" slug={slug} />
       <p>{snippet.meta.description}</p>
       <p>{snippet.meta.date}</p>
       <MDXRemote {...snippet.source} components={{ Image }} />
-    </>
+    </Base>
   );
 };
 

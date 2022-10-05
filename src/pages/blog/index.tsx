@@ -1,15 +1,16 @@
 import { NextPage } from "next";
 import { getAllArticles, ArticleMeta } from "@/src/server/services/articles";
 import ListArticlesComponent from "@/src/components/ListArticles";
+import Base from "@/src/components/Base";
 
 const BlogPage: NextPage<{ allArticlesMeta: ArticleMeta[] }> = ({
   allArticlesMeta,
 }) => {
   return (
-    <div>
+    <Base>
       <h1>Blog Articles</h1>
       <ListArticlesComponent allArticlesMeta={allArticlesMeta} />
-    </div>
+    </Base>
   );
 };
 

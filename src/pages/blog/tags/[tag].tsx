@@ -1,3 +1,4 @@
+import Base from "@/src/components/Base";
 import ListArticlesComponent from "@/src/components/ListArticles";
 import { ArticleMeta, getAllArticles } from "@/src/server/services/articles";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
@@ -34,12 +35,10 @@ interface TagPageProps {
 
 const TagPage: NextPage<TagPageProps> = ({ allArticlesMeta, tag }) => {
   return (
-    <>
-      <main>
-        <h1>Tag: {tag}</h1>
-        <ListArticlesComponent allArticlesMeta={allArticlesMeta} />
-      </main>
-    </>
+    <Base>
+      <h1>Tag: {tag}</h1>
+      <ListArticlesComponent allArticlesMeta={allArticlesMeta} />
+    </Base>
   );
 };
 

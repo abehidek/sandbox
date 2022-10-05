@@ -1,3 +1,4 @@
+import Base from "@/src/components/Base";
 import { getAllArticles } from "@/src/server/services/articles";
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
@@ -32,19 +33,17 @@ interface TagPageProps {
 
 const AllTagsPage: NextPage<TagPageProps> = ({ tagsMeta }) => {
   return (
-    <>
-      <main>
-        <h1>All Tags</h1>
-        <ul>
-          {tagsMeta.map((tag) => (
-            <li key={tag.tag}>
-              <Link href={`/blog/tags/${tag.tag}`}>{tag.tag}</Link>
-              <p>Ocurrences: {tag.occurences}</p>
-            </li>
-          ))}
-        </ul>
-      </main>
-    </>
+    <Base>
+      <h1>All Tags</h1>
+      <ul>
+        {tagsMeta.map((tag) => (
+          <li key={tag.tag}>
+            <Link href={`/blog/tags/${tag.tag}`}>{tag.tag}</Link>
+            <p>Ocurrences: {tag.occurences}</p>
+          </li>
+        ))}
+      </ul>
+    </Base>
   );
 };
 

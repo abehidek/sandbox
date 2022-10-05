@@ -2,6 +2,7 @@ import { getAllArticles } from "@/src/server/services/articles";
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import moment from "moment";
+import Base from "@/src/components/Base";
 
 interface YearMeta {
   year: string;
@@ -36,17 +37,15 @@ interface YearsPageProps {
 const YearsPage: NextPage<YearsPageProps> = ({ yearsMeta }) => {
   console.log(yearsMeta);
   return (
-    <>
-      <main>
-        <h1>All Years</h1>
-        {yearsMeta.map((year) => (
-          <li key={year.year}>
-            <Link href={`/blog/years/${year.year}`}>{year.year}</Link>
-            <p>Ocurrences: {year.occurences}</p>
-          </li>
-        ))}
-      </main>
-    </>
+    <Base>
+      <h1>All Years</h1>
+      {yearsMeta.map((year) => (
+        <li key={year.year}>
+          <Link href={`/blog/years/${year.year}`}>{year.year}</Link>
+          <p>Ocurrences: {year.occurences}</p>
+        </li>
+      ))}
+    </Base>
   );
 };
 
