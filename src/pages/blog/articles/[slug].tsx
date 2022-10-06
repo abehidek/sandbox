@@ -18,6 +18,7 @@ import { trpc } from "@/src/utils/trpc";
 import { useRef, useState } from "react";
 import ViewCounterComponent from "@/src/components/ViewCounter";
 import Base from "@/src/components/Base";
+import Giscus from "@giscus/react";
 
 interface MDXArticle {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -55,6 +56,21 @@ const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
       <ViewCounterComponent slug={slug} route="article.getViews" />
       <p>{article.meta.readingTime}</p>
       <MDXRemote {...article.source} components={{ Image }} />
+      <Giscus
+        id="comments"
+        repo="abehidek/blog"
+        repoId="R_kgDOHFmzhw"
+        category="Articles"
+        categoryId="DIC_kwDOHFmzh84CRygt"
+        mapping="pathname"
+        term="Welcome to @giscus/react component!"
+        reactionsEnabled="1"
+        emitMetadata="0"
+        inputPosition="top"
+        theme="light"
+        lang="en"
+        loading="lazy"
+      />
     </Base>
   );
 };

@@ -20,8 +20,9 @@ const NavbarComponent = () => {
       <h1>abehidek</h1>
       <div className="flex gap-2">
         <NavItemComponent href="/" text="Home" />
-        <NavItemComponent href="/blog" text="blog" />
+        <NavItemComponent href="/blog" text="Blog" />
         <NavItemComponent href="/snippets" text="Snippets" />
+        <NavItemComponent href="/guestbook" text="Guestbook" />
       </div>
     </nav>
   );

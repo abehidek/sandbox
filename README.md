@@ -16,16 +16,17 @@ Another interesting feature is using tags (this can be accomplished reading from
   - [x] Functionality
   - [ ] Styling
 
+- [ ] Dark/Light Mode Switch
 - [ ] A creative 3D animation to show off
 - [ ] Animation and smooth page transitions
 - [ ] Subscribe to a newsletter
-- [ ] A guestbook is welcome too, we can use NextAuth to verify someone.
+- [x] A guestbook is welcome too, we can use NextAuth to verify someone.
 - [x] View count for each post.
 - [ ] Integration with wakatime.
 - [ ] Page about my dev env.
 - [ ] Integrate all info in one page.
 - [ ] Rename this repo to website name (abehidek.me).
-- [ ] Persist auth and make it possible to a user like the post
+- [x] Persist auth and make it possible to a user like the post
 - [ ] Dashboard page.
 - [ ] Code Snippets
   - [x] Functionality

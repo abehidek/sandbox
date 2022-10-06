@@ -5,7 +5,7 @@ import { prisma } from "../db/client";
 import readingTime from "reading-time";
 import moment from "moment"
 
-const ARTICLES_PATH = path.join(process.cwd(), "public/articles");
+const ARTICLES_PATH = path.join(process.cwd(), "content/articles");
 
 export const getAllArticlesSlugs = (): string[] => {
   const articlesPathFiles = fs.readdirSync(ARTICLES_PATH);

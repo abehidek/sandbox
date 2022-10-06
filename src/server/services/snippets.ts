@@ -3,7 +3,7 @@ import fs from 'fs';
 import { prisma } from "../db/client";
 import matter from "gray-matter";
 
-const SNIPPETS_PATH = path.join(process.cwd(), "public/snippets");
+const SNIPPETS_PATH = path.join(process.cwd(), "content/snippets");
 
 export const getAllSnippetsSlugs = (): string[] => {
   const snippetsPathFiles = fs.readdirSync(SNIPPETS_PATH);
