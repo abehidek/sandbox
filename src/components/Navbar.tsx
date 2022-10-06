@@ -23,6 +23,7 @@ const NavbarComponent = () => {
         <NavItemComponent href="/blog" text="Blog" />
         <NavItemComponent href="/snippets" text="Snippets" />
         <NavItemComponent href="/guestbook" text="Guestbook" />
+        <NavItemComponent href="/projects" text="Projects" />
       </div>
     </nav>
   );

@@ -22,23 +22,27 @@ Another interesting feature is using tags (this can be accomplished reading from
 - [ ] Subscribe to a newsletter
 - [x] A guestbook is welcome too, we can use NextAuth to verify someone.
 - [x] View count for each post.
-- [ ] Integration with wakatime.
 - [ ] Page about my dev env.
 - [ ] Integrate all info in one page.
 - [ ] Rename this repo to website name (abehidek.me).
 - [x] Persist auth and make it possible to a user like the post
-- [ ] Dashboard page.
+- [ ] Dashboard page that consumes some realtime API to provide an useful info
+  - [ ] Integration with wakatime.
+  - [ ] Integration with Github.
+  - [ ] Integration with twitter.
+  - [ ] Integration with spotify.
 - [ ] Code Snippets
   - [x] Functionality
   - [ ] Styling
 - [ ] My Projects page
+  - [x] Functionality
+  - [ ] Styling
 - [x] RSS feed
 - [ ] Sitemap
 - [ ] Navbar
   - [x] Functionality
   - [ ] Mobile menu
   - [ ] Styling
-- [ ] Consume some realtime API to provide an useful info.
 - [x] Read time to each blog article
 
 ## Useful resources
