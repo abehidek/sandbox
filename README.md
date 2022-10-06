@@ -23,6 +23,8 @@ Another interesting feature is using tags (this can be accomplished reading from
 - [x] A guestbook is welcome too, we can use NextAuth to verify someone.
 - [x] View count for each post.
 - [ ] Page about my dev env.
+  - [x] Functionality
+  - [ ] Styling
 - [ ] Integrate all info in one page.
 - [ ] Rename this repo to website name (abehidek.me).
 - [x] Persist auth and make it possible to a user like the post

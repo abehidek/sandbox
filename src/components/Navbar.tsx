@@ -24,6 +24,7 @@ const NavbarComponent = () => {
         <NavItemComponent href="/snippets" text="Snippets" />
         <NavItemComponent href="/guestbook" text="Guestbook" />
         <NavItemComponent href="/projects" text="Projects" />
+        <NavItemComponent href="/uses" text="Uses" />
       </div>
     </nav>
   );
