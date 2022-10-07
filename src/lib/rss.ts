@@ -2,9 +2,9 @@ import { getAllArticlesMeta } from "../server/services/articles";
 import RSS from "rss";
 import { writeFileSync } from "fs";
 
-export default function getRSS() {
+export default async function getRSS() {
   const url = process.env.VERCEL_URL ?? "http://localhost:3000";
-  const allArticles = getAllArticlesMeta();
+  const allArticles = await getAllArticlesMeta();
 
   const feed = new RSS({
     title: "abehidek",
