@@ -29,10 +29,12 @@ export const upsertArticleViewCount = async (slug: string) => {
 
 export type ArticleMeta = Omit<Article, "body">;
 
-export const getAllArticlesMeta = (): ArticleMeta[] => {
-  console.log(allArticles);
-  return allArticles.map((article) => {
-    const { body: _, ...meta } = article;
-    return meta;
-  });
+export const getAllArticlesMeta = async (): Promise<ArticleMeta[]> => {
+  return Promise.all(
+    allArticles.map(async (article) => {
+      article.views = (await getOneArticleViews(article.slug)).views;
+      const { body: _, ...meta } = article;
+      return meta;
+    })
+  );
 };

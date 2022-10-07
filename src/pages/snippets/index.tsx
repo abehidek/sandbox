@@ -18,7 +18,10 @@ const SnippetsPage: NextPage<{ allSnippetsMeta: SnippetMeta[] }> = ({
 };
 
 export async function getStaticProps() {
-  return { props: { allSnippetsMeta: getAllSnippetsMeta() }, revalidate: 30 };
+  return {
+    props: { allSnippetsMeta: await getAllSnippetsMeta() },
+    revalidate: 30,
+  };
 }
 
 export default SnippetsPage;

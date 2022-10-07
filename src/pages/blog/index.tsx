@@ -4,6 +4,7 @@ import Base from "@/src/components/Base";
 import {
   getAllArticlesMeta,
   ArticleMeta,
+  getOneArticleViews,
 } from "@/src/server/services/articles";
 
 const BlogPage: NextPage<{
@@ -18,7 +19,7 @@ const BlogPage: NextPage<{
 };
 
 export async function getStaticProps() {
-  const allArticlesMeta = getAllArticlesMeta();
+  const allArticlesMeta = await getAllArticlesMeta();
   return { props: { allArticlesMeta }, revalidate: 30 };
 }
 

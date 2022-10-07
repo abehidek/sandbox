@@ -3,11 +3,14 @@ import { allSnippets, Snippet } from "contentlayer/generated";
 
 export type SnippetMeta = Omit<Snippet, "body">;
 
-export const getAllSnippetsMeta = (): SnippetMeta[] => {
-  return allSnippets.map((article) => {
-    const { body: _, ...meta } = article;
-    return meta;
-  });
+export const getAllSnippetsMeta = async (): Promise<SnippetMeta[]> => {
+  return Promise.all(
+    allSnippets.map(async (snippet) => {
+      snippet.views = (await getOneSnippetViews(snippet.slug)).views;
+      const { body: _, ...meta } = snippet;
+      return meta;
+    })
+  );
 };
 
 export const getOneSnippetViews = async (slug: string) => {
