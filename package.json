@@ -31,9 +31,13 @@
     "react-dom": "18.2.0",
     "react-query": "^3.39.2",
     "reading-time": "^1.5.0",
+    "rehype-accessible-emojis": "^0.3.2",
     "rehype-autolink-headings": "^6.1.1",
+    "rehype-code-titles": "^1.1.0",
     "rehype-highlight": "^5.0.2",
+    "rehype-prism-plus": "^1.5.0",
     "rehype-slug": "^5.0.1",
+    "remark-gfm": "^3.0.1",
     "rss": "^1.2.2",
     "superjson": "^1.10.0",
     "zod": "^3.18.0"

@@ -2,6 +2,10 @@ import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypeHighlight from "rehype-highlight";
+import remarkGfm from "remark-gfm";
+import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
+import rehypePrism from "rehype-prism-plus";
+import rehypeCodeTitles from "rehype-code-titles";
 import path from "path";
 import readingTime from "reading-time";
 import { getOneArticleViews } from "./src/server/services/articles";
@@ -66,14 +70,14 @@ const source = makeSource({
   contentDirPath: "content",
   documentTypes: [Article],
   mdx: {
-    // remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm],
     rehypePlugins: [
       // meta,
       rehypeSlug,
-      rehypeAutolinkHeadings,
-      rehypeHighlight,
-      // rehypeCodeTitles,
-      // highlight,
+      rehypeAccessibleEmojis,
+      rehypeCodeTitles, // should always be before rehypePrism.
+      rehypePrism,
+      // rehypeHighlight,
       [
         rehypeAutolinkHeadings,
         [
