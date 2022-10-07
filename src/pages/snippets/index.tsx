@@ -1,6 +1,9 @@
 import Base from "@/src/components/Base";
 import ListSnippetsComponent from "@/src/components/ListSnippets";
-import { getAllSnippets, SnippetMeta } from "@/src/server/services/snippets";
+import {
+  getAllSnippetsMeta,
+  SnippetMeta,
+} from "@/src/server/services/snippets";
 import type { NextPage } from "next";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Head from "next/head";
@@ -8,8 +11,6 @@ import Head from "next/head";
 const SnippetsPage: NextPage<{ allSnippetsMeta: SnippetMeta[] }> = ({
   allSnippetsMeta,
 }) => {
-  const { data } = useSession();
-
   return (
     <Base>
       <p>Snippets</p>
@@ -19,12 +20,7 @@ const SnippetsPage: NextPage<{ allSnippetsMeta: SnippetMeta[] }> = ({
 };
 
 export async function getStaticProps() {
-  const allSnippets = await getAllSnippets();
-  const allSnippetsMeta = await Promise.all(
-    allSnippets.map((snippet) => snippet.meta)
-  );
-
-  return { props: { allSnippetsMeta }, revalidate: 30 };
+  return { props: { allSnippetsMeta: getAllSnippetsMeta() }, revalidate: 30 };
 }
 
 export default SnippetsPage;

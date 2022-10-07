@@ -9,6 +9,48 @@ import rehypeCodeTitles from "rehype-code-titles";
 import path from "path";
 import readingTime from "reading-time";
 import { getOneArticleViews } from "./src/server/services/articles";
+import { getOneSnippetViews } from "./src/server/services/snippets";
+
+export const Snippet = defineDocumentType(() => ({
+  name: "Snippet",
+  contentType: "mdx",
+  filePathPattern: `snippets/*.mdx`,
+  fields: {
+    title: {
+      type: "string",
+      description: "The title of the post",
+      required: true,
+    },
+    description: {
+      type: "string",
+      description: "The description of the post",
+      required: true,
+    },
+    date: {
+      type: "date",
+      description: "The date of the post",
+      required: true,
+    },
+  },
+  computedFields: {
+    url: {
+      type: "string",
+      resolve: (snippet) => `/${snippet._raw.flattenedPath}`,
+    },
+    slug: {
+      type: "string",
+      resolve: (snippet) => path.parse(snippet._raw.sourceFileName).name,
+    },
+    views: {
+      type: "number",
+      resolve: async (snippet) => {
+        return await (
+          await getOneSnippetViews(path.parse(snippet._raw.sourceFileName).name)
+        ).views;
+      },
+    },
+  },
+}));
 
 export const Article = defineDocumentType(() => ({
   name: "Article",
@@ -68,7 +110,7 @@ export const Article = defineDocumentType(() => ({
 
 const source = makeSource({
   contentDirPath: "content",
-  documentTypes: [Article],
+  documentTypes: [Article, Snippet],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
