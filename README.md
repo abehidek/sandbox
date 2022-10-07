@@ -9,13 +9,13 @@ Another interesting feature is using tags (this can be accomplished reading from
 - [ ] years page
 
   - [x] Functionality
-  - [ ] Refactor to contentlayer
+  - [x] Refactor to contentlayer
   - [ ] Styling
 
 - [ ] tags page
 
   - [x] Functionality
-  - [ ] Refactor to contentlayer
+  - [x] Refactor to contentlayer
   - [ ] Styling
 
 - [ ] Dark/Light Mode Switch
