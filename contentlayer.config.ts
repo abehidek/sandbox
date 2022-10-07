@@ -11,10 +11,38 @@ import readingTime from "reading-time";
 import { getOneArticleViews } from "./src/server/services/articles";
 import { getOneSnippetViews } from "./src/server/services/snippets";
 
+export const Use = defineDocumentType(() => ({
+  name: "Use",
+  contentType: "mdx",
+  filePathPattern: `uses/*.mdx`,
+  fields: {
+    title: {
+      type: "string",
+      description: "The title of the post",
+      required: true,
+    },
+    description: {
+      type: "string",
+      description: "The description of the post",
+      required: true,
+    },
+  },
+  computedFields: {
+    url: {
+      type: "string",
+      resolve: (use) => `/${use._raw.flattenedPath}`,
+    },
+    slug: {
+      type: "string",
+      resolve: (use) => path.parse(use._raw.sourceFileName).name,
+    },
+  },
+}));
+
 export const Snippet = defineDocumentType(() => ({
   name: "Snippet",
   contentType: "mdx",
-  filePathPattern: `snippets/*.mdx`,
+  filePathPattern: `uses/*.mdx`,
   fields: {
     title: {
       type: "string",
@@ -110,7 +138,7 @@ export const Article = defineDocumentType(() => ({
 
 const source = makeSource({
   contentDirPath: "content",
-  documentTypes: [Article, Snippet],
+  documentTypes: [Article, Snippet, Use],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [

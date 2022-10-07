@@ -1,7 +1,8 @@
+import { allUses } from "contentlayer/generated";
 import Base from "@/src/components/Base";
 import ListUsesComponent from "@/src/components/ListUses";
-import { getAllUses, UseMeta } from "@/src/server/services/uses";
-import type { NextPage } from "next";
+import { Use } from "contentlayer/generated";
+import type { GetStaticProps, NextPage } from "next";
 
 const SnippetsPage: NextPage<{ allUsesMeta: UseMeta[] }> = ({
   allUsesMeta,
@@ -14,11 +15,18 @@ const SnippetsPage: NextPage<{ allUsesMeta: UseMeta[] }> = ({
   );
 };
 
-export async function getStaticProps() {
-  const allUses = await getAllUses();
-  const allUsesMeta = await Promise.all(allUses.map((snippet) => snippet.meta));
+export type UseMeta = Omit<Use, "body">;
 
-  return { props: { allUsesMeta }, revalidate: 30 };
+export function getStaticProps() {
+  return {
+    props: {
+      allUsesMeta: allUses.map((use) => {
+        const { body: _, ...meta } = use;
+        return meta;
+      }),
+    },
+    revalidate: 30,
+  };
 }
 
 export default SnippetsPage;

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { UseMeta } from "../server/services/uses";
+import { UseMeta } from "../pages/uses";
 
 export default function ListUsesComponent({
   allUsesMeta,
@@ -12,7 +12,7 @@ export default function ListUsesComponent({
         return (
           <li key={use.slug}>
             <div>
-              <Link href={`/uses/${use.slug}`}>{use.title}</Link>
+              <Link href={use.url}>{use.title}</Link>
             </div>
             <p>{use.description}</p>
           </li>

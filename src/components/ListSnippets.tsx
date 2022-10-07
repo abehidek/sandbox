@@ -12,7 +12,7 @@ export default function ListSnippetsComponent({
         return (
           <li key={snippet.slug}>
             <div>
-              <Link href={`/snippets/${snippet.slug}`}>{snippet.title}</Link>
+              <Link href={snippet.url}>{snippet.title}</Link>
             </div>
             <p>{snippet.description}</p>
             <p>{snippet.date}</p>

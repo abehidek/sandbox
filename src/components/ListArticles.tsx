@@ -13,9 +13,7 @@ export default function ListArticlesComponent({
         return (
           <li key={article.slug}>
             <div>
-              <Link href={`/blog/articles/${article.slug}`}>
-                {article.title}
-              </Link>
+              <Link href={article.url}>{article.title}</Link>
             </div>
             <p>{article.excerpt}</p>
             <p>{format(parseISO(article.date), "LLLL d, yyyy")}</p>
