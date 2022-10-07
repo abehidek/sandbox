@@ -7,9 +7,11 @@ import {
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = getAllArticlesMeta();
+  const allArticles = await getAllArticlesMeta();
   const years = new Set(
-    articles.map((article) => new Date(article.date).getFullYear().toString())
+    allArticles.map((article) =>
+      new Date(article.date).getFullYear().toString()
+    )
   );
   const paths = Array.from(years).map((year) => ({ params: { year: year } }));
   return {
@@ -20,7 +22,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { year } = params as { year: string };
-  const allArticles = getAllArticlesMeta();
+  const allArticles = await getAllArticlesMeta();
   const allArticlesFromTag = allArticles.filter(
     (article) => new Date(article.date).getFullYear().toString() === year
   );

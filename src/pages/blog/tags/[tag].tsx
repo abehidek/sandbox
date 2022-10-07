@@ -7,7 +7,7 @@ import {
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = getAllArticlesMeta();
+  const articles = await getAllArticlesMeta();
   const tags = new Set(articles.map((article) => article.tags).flat());
   const paths = Array.from(tags).map((tag) => ({ params: { tag: tag } }));
   return {
@@ -18,7 +18,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { tag } = params as { tag: string };
-  const allArticlesMeta = getAllArticlesMeta();
+  const allArticlesMeta = await getAllArticlesMeta();
   const allArticlesFromTag = allArticlesMeta.filter((article) =>
     article.tags.includes(tag)
   );
