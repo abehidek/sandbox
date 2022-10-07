@@ -1,5 +1,5 @@
 import Base from "@/src/components/Base";
-import { getAllArticles } from "@/src/server/services/articles";
+import { getAllArticlesMeta } from "@/src/server/services/articles";
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 
@@ -8,8 +8,8 @@ interface TagMeta {
   occurences: number;
 }
 export const getStaticProps: GetStaticProps = async () => {
-  const allArticles = await getAllArticles();
-  const tags = allArticles.map((article) => article.meta.tags).flat();
+  const allArticles = await getAllArticlesMeta();
+  const tags = allArticles.map((article) => article.tags).flat();
 
   const tagsOccurencesMap: { [key: string]: number } = tags.reduce(
     (acc: any, curr: any) => {

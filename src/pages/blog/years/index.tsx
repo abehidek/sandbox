@@ -1,4 +1,4 @@
-import { getAllArticles } from "@/src/server/services/articles";
+import { getAllArticlesMeta } from "@/src/server/services/articles";
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import moment from "moment";
@@ -9,9 +9,9 @@ interface YearMeta {
   occurences: number;
 }
 export const getStaticProps: GetStaticProps = async () => {
-  const allArticles = await getAllArticles();
+  const allArticles = await getAllArticlesMeta();
   const years = allArticles.map((article) =>
-    moment(article.meta.date, "MMMM Do, YYYY").format("YYYY")
+    new Date(article.date).getFullYear().toString()
   );
 
   const yearOccurencesMap: { [key: string]: number } = years.reduce(

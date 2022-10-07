@@ -1,32 +1,17 @@
 import type { GetStaticProps, GetStaticPaths } from "next";
 import Image from "next/image";
-import Head from "next/head";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeHighlight from "rehype-highlight";
-import {
-  getOneArticle,
-  getAllArticlesSlugs,
-  ArticleMeta,
-} from "@/src/server/services/articles";
+import { getAllArticles, ArticleFull } from "@/src/server/services/articles";
 import "highlight.js/styles/atom-one-dark.css";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import { trpc } from "@/src/utils/trpc";
-import { useRef, useState } from "react";
 import ViewCounterComponent from "@/src/components/ViewCounter";
 import Base from "@/src/components/Base";
 import Giscus from "@giscus/react";
-
-interface MDXArticle {
-  source: MDXRemoteSerializeResult<Record<string, unknown>>;
-  meta: ArticleMeta;
-}
+import { allArticles } from "contentlayer/generated";
+import { useMDXComponent } from "next-contentlayer/hooks";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllArticlesSlugs().map((slug) => ({ params: { slug } }));
+  const paths = allArticles.map((article) => article.url);
   return {
     paths,
     fallback: false,
@@ -35,27 +20,32 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params as { slug: string };
-  const { content, meta } = await getOneArticle(slug);
-  const mdxSource = await serialize(content, {
-    mdxOptions: {
-      rehypePlugins: [
-        rehypeSlug,
-        [rehypeAutolinkHeadings, { behavior: "wrap" }],
-        rehypeHighlight,
-      ],
-    },
-  });
-  return { props: { article: { source: mdxSource, meta } } };
+  const article = await (
+    await getAllArticles()
+  ).find((article) => article.slug === slug);
+  return { props: { article } };
+  // const { content, meta } = await getOneArticle(slug);
+  // const mdxSource = await serialize(content, {
+  //   mdxOptions: {
+  //     rehypePlugins: [
+  //       rehypeSlug,
+  //       [rehypeAutolinkHeadings, { behavior: "wrap" }],
+  //       rehypeHighlight,
+  //     ],
+  //   },
+  // });
+  // return { props: { article: { source: mdxSource, meta } } };
 };
 
-const ArticlePage: NextPage<{ article: MDXArticle }> = ({ article }) => {
+const ArticlePage: NextPage<{ article: ArticleFull }> = ({ article }) => {
   const { slug } = useRouter().query;
+  const MDXContent = useMDXComponent(article.body.code);
+
   return (
     <Base>
-      <h1>{article.meta.title}</h1>
       <ViewCounterComponent slug={slug} route="article.getViews" />
-      <p>{article.meta.readingTime}</p>
-      <MDXRemote {...article.source} components={{ Image }} />
+      {/* <MDXRemote {...article.source} components={{ Image }} /> */}
+      <MDXContent components={{ Image }} />
       <Giscus
         id="comments"
         repo="abehidek/blog"
