@@ -1,8 +1,4 @@
-import path from "path";
-import fs from "fs";
-import matter from "gray-matter";
 import { prisma } from "../db/client";
-import readingTime from "reading-time";
 import { allArticles, Article } from "contentlayer/generated";
 
 export const getOneArticleViews = async (slug: string) => {
@@ -31,33 +27,11 @@ export const upsertArticleViewCount = async (slug: string) => {
   return article;
 };
 
-export type ArticleFull = Article & {
-  views: number;
-  readingTime: string;
-  slug: string;
-};
+export type ArticleMeta = Omit<Article, "body">;
 
-export type ArticleMeta = Omit<ArticleFull, "body">;
-
-export const getAllArticles = async (): Promise<ArticleFull[]> => {
-  return await Promise.all(
-    allArticles.map(async (article) => {
-      const slug = path.parse(article._raw.sourceFileName).name;
-      const { views } = await getOneArticleViews(slug);
-      return {
-        ...article,
-        views,
-        slug,
-        readingTime: readingTime(article.body.raw).text,
-      };
-    })
-  );
-};
-
-export const getAllArticlesMeta = async (): Promise<ArticleMeta[]> => {
-  return await (
-    await getAllArticles()
-  ).map((article) => {
+export const getAllArticlesMeta = (): ArticleMeta[] => {
+  console.log(allArticles);
+  return allArticles.map((article) => {
     const { body: _, ...meta } = article;
     return meta;
   });

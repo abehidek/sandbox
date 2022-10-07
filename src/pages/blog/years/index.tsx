@@ -8,7 +8,7 @@ interface YearMeta {
   occurences: number;
 }
 export const getStaticProps: GetStaticProps = async () => {
-  const allArticles = await getAllArticlesMeta();
+  const allArticles = getAllArticlesMeta();
   const years = allArticles.map((article) =>
     new Date(article.date).getFullYear().toString()
   );

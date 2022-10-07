@@ -2,6 +2,9 @@ import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypeHighlight from "rehype-highlight";
+import path from "path";
+import readingTime from "reading-time";
+import { getOneArticleViews } from "./src/server/services/articles";
 
 export const Article = defineDocumentType(() => ({
   name: "Article",
@@ -38,7 +41,23 @@ export const Article = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: "string",
-      resolve: (post) => `/blog/${post._raw.flattenedPath}`,
+      resolve: (article) => `/blog/${article._raw.flattenedPath}`,
+    },
+    slug: {
+      type: "string",
+      resolve: (article) => path.parse(article._raw.sourceFileName).name,
+    },
+    views: {
+      type: "number",
+      resolve: async (article) => {
+        return await (
+          await getOneArticleViews(path.parse(article._raw.sourceFileName).name)
+        ).views;
+      },
+    },
+    readingTime: {
+      type: "string",
+      resolve: (article) => readingTime(article.body.raw).text,
     },
   },
 }));

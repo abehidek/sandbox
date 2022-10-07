@@ -2,13 +2,12 @@ import Base from "@/src/components/Base";
 import ListArticlesComponent from "@/src/components/ListArticles";
 import {
   ArticleMeta,
-  getAllArticles,
   getAllArticlesMeta,
 } from "@/src/server/services/articles";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = await getAllArticlesMeta();
+  const articles = getAllArticlesMeta();
   const tags = new Set(articles.map((article) => article.tags).flat());
   const paths = Array.from(tags).map((tag) => ({ params: { tag: tag } }));
   return {
@@ -19,7 +18,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { tag } = params as { tag: string };
-  const allArticlesMeta = await getAllArticlesMeta();
+  const allArticlesMeta = getAllArticlesMeta();
   const allArticlesFromTag = allArticlesMeta.filter((article) =>
     article.tags.includes(tag)
   );

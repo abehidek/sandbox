@@ -1,13 +1,12 @@
 import type { GetStaticProps, GetStaticPaths } from "next";
 import Image from "next/image";
-import { getAllArticles, ArticleFull } from "@/src/server/services/articles";
 import "highlight.js/styles/atom-one-dark.css";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import ViewCounterComponent from "@/src/components/ViewCounter";
 import Base from "@/src/components/Base";
 import Giscus from "@giscus/react";
-import { allArticles } from "contentlayer/generated";
+import { allArticles, Article } from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -20,13 +19,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params as { slug: string };
-  const article = await (
-    await getAllArticles()
-  ).find((article) => article.slug === slug);
+  const article = allArticles.find((article) => article.slug === slug);
   return { props: { article } };
 };
 
-const ArticlePage: NextPage<{ article: ArticleFull }> = ({ article }) => {
+const ArticlePage: NextPage<{ article: Article }> = ({ article }) => {
   const { slug } = useRouter().query;
   const MDXContent = useMDXComponent(article.body.code);
 

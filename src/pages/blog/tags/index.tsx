@@ -8,7 +8,7 @@ interface TagMeta {
   occurences: number;
 }
 export const getStaticProps: GetStaticProps = async () => {
-  const allArticles = await getAllArticlesMeta();
+  const allArticles = getAllArticlesMeta();
   const tags = allArticles.map((article) => article.tags).flat();
 
   const tagsOccurencesMap: { [key: string]: number } = tags.reduce(

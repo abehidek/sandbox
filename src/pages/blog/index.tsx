@@ -18,7 +18,7 @@ const BlogPage: NextPage<{
 };
 
 export async function getStaticProps() {
-  const allArticlesMeta = await getAllArticlesMeta();
+  const allArticlesMeta = getAllArticlesMeta();
   return { props: { allArticlesMeta }, revalidate: 30 };
 }
 
