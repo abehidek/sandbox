@@ -1,21 +1,25 @@
-import { NextPage } from "next"
-import { getAllArticles, ArticleMeta } from "@/src/server/services";
-import ArticlesComponent from "@/src/components/Articles";
+import { NextPage } from "next";
+import ListArticlesComponent from "@/src/components/ListArticles";
+import Base from "@/src/components/Base";
+import {
+  getAllArticlesMeta,
+  ArticleMeta,
+} from "@/src/server/services/articles";
 
-const BlogPage: NextPage<{ articles: ArticleMeta[] }> = ({ articles }) => {
+const BlogPage: NextPage<{
+  allArticlesMeta: ArticleMeta[];
+}> = ({ allArticlesMeta }) => {
   return (
-    <div>
+    <Base>
       <h1>Blog Articles</h1>
-      <ArticlesComponent articles={articles} />
-    </div>
+      <ListArticlesComponent allArticlesMeta={allArticlesMeta} />
+    </Base>
   );
-}
+};
 
 export async function getStaticProps() {
-  const allArticles = await getAllArticles();
-  const articles = await Promise.all(allArticles.map(post => post.meta));
-
-  return { props: { articles }, revalidate: 30, };
+  const allArticlesMeta = getAllArticlesMeta();
+  return { props: { allArticlesMeta }, revalidate: 30 };
 }
 
 export default BlogPage;

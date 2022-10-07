@@ -1,8 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# proxy dev env
-package-lock.json
-
 # dependencies
 /node_modules
 /.pnp
@@ -21,6 +18,13 @@ package-lock.json
 
 # production
 /build
+
+# RSS
+/public/feed.xml
+
+# Sitemap
+/public/sitemap*.xml
+/public/robots.txt
 
 # misc
 .DS_Store
@@ -42,5 +46,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# direnv
+# nix
 .direnv
+
+# Contentlayer
+.contentlayer

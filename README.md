@@ -1,26 +1,53 @@
 # Abe Hidek's Blog
 
-
 ## Development
 
-Refactor the entire code (again) but using mdx and without fetching for external sources (such as another github repo), so this means switching the current model (a separate repo for blog posts) to a new model (one repo with all posts + mdx), still using github as a cms, so ISR (Incremental Static Regeneration) dont need to be used anymore.
+Refactor the entire code (again) but using mdx and without fetching for external sources (such as another github repo), so this means switching the current model (a separate repo for blog posts) to a new model (one repo with all posts + mdx), still using github as a cms, so ISR (Incremental Static Regeneration) dont need to be used anymore, only SSG with some dynamic data fetching (such as view counter).
 
 Another interesting feature is using tags (this can be accomplished reading from the markdown frontmatter I guess?) and provide a way to search by that. An idea is to create a /tag page that has all tags, and each tag has it's own font-size depending on the number of occurences. Same for year/date btw.
 
-- Subscribe to a newsletter
-- A guestbook is welcome too, we can use NextAuth to verify someone.
-- View count for each post.
-- Integration with wakatime.
-- Page about my dev env.
-- Integrate all info in one page.
-- Rename this repo to website name (abehidek.me).
-- Persist auth and make it possible to a user like the post
-- Dashboard page.
-- Code Snippets
-- My Projects page
-- RSS feed
-- Consume some realtime API to provide an useful info.
-- Read time to each blog article
+- [ ] years page
+
+  - [x] Functionality
+  - [x] Refactor to contentlayer
+  - [ ] Styling
+
+- [ ] tags page
+
+  - [x] Functionality
+  - [x] Refactor to contentlayer
+  - [ ] Styling
+
+- [ ] Dark/Light Mode Switch
+- [ ] A creative 3D animation to show off
+- [ ] Animation and smooth page transitions
+- [ ] Subscribe to a newsletter
+- [x] A guestbook is welcome too, we can use NextAuth to verify someone.
+- [x] View count for each post.
+- [ ] Page about my dev env.
+  - [x] Functionality
+  - [ ] Styling
+- [ ] Integrate all info in one page.
+- [ ] Rename this repo to website name (abehidek.me).
+- [x] Persist auth and make it possible to a user like the post
+- [ ] Dashboard page that consumes some realtime API to provide an useful info
+  - [ ] Integration with wakatime.
+  - [ ] Integration with Github.
+  - [ ] Integration with twitter.
+  - [ ] Integration with spotify.
+- [ ] Code Snippets
+  - [x] Functionality
+  - [ ] Styling
+- [ ] My Projects page
+  - [x] Functionality
+  - [ ] Styling
+- [x] RSS feed
+- [x] Sitemap
+- [ ] Navbar
+  - [x] Functionality
+  - [ ] Mobile menu
+  - [ ] Styling
+- [x] Read time to each blog article
 
 ## Useful resources
 
@@ -29,6 +56,7 @@ Here are some resources that we commonly refer to:
 - [Protecting routes with Next-Auth.js](https://next-auth.js.org/configuration/nextjs#unstable_getserversession)
 - [Providing precompiled bins for NixOS](https://github.com/prisma/prisma/issues/3026)
 - [MDX](https://mdxjs.com/)
+- https://blog.maximeheckel.com/
 - https://www.youtube.com/watch?v=dsCfi0yRr1w
 - https://www.youtube.com/watch?v=J_0SBJMxmcw
 - https://www.youtube.com/watch?v=WCGopHwXnic

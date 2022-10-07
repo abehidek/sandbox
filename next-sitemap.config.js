@@ -1,9 +1,9 @@
-const url = "https://abehidek.me";
-
+/** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  url,
-  generateRobotsTxt: true,
+  siteUrl: process.env.VERCEL_URL || "https://localhost:3000",
+  generateRobotsTxt: true, // (optional)
   robotsTxtOptions: {
     policies: [{ userAgent: "*", allow: "/" }],
   },
+  // ...other options
 };

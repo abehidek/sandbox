@@ -1,13 +1,24 @@
 import type { NextPage } from "next";
+import { useSession, signIn, signOut } from "next-auth/react";
+import Head from "next/head";
+import Base from "../components/Base";
+import getRSS from "../lib/rss";
 
-const HomePage: NextPage = () => {
+const Home: NextPage = () => {
+  const { data } = useSession();
+
   return (
-    <>
-      <main>
-        <h1>Home</h1>
-      </main>
-    </>
+    <Base>
+      <div>
+        <h1>Index page</h1>
+      </div>
+    </Base>
   );
 };
 
-export default HomePage;
+export async function getStaticProps() {
+  await getRSS();
+  return { props: {} };
+}
+
+export default Home;

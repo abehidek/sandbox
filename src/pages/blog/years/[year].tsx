@@ -4,12 +4,14 @@ import {
   ArticleMeta,
   getAllArticlesMeta,
 } from "@/src/server/services/articles";
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const articles = getAllArticlesMeta();
-  const tags = new Set(articles.map((article) => article.tags).flat());
-  const paths = Array.from(tags).map((tag) => ({ params: { tag: tag } }));
+  const years = new Set(
+    articles.map((article) => new Date(article.date).getFullYear().toString())
+  );
+  const paths = Array.from(years).map((year) => ({ params: { year: year } }));
   return {
     paths,
     fallback: false,
@@ -17,32 +19,32 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { tag } = params as { tag: string };
-  const allArticlesMeta = getAllArticlesMeta();
-  const allArticlesFromTag = allArticlesMeta.filter((article) =>
-    article.tags.includes(tag)
+  const { year } = params as { year: string };
+  const allArticles = getAllArticlesMeta();
+  const allArticlesFromTag = allArticles.filter(
+    (article) => new Date(article.date).getFullYear().toString() === year
   );
 
   return {
     props: {
-      tag,
+      year,
       allArticlesMeta: allArticlesFromTag,
     },
   };
 };
 
-interface TagPageProps {
-  tag: string;
+interface YearPageProps {
+  year: string;
   allArticlesMeta: ArticleMeta[];
 }
 
-const TagPage: NextPage<TagPageProps> = ({ allArticlesMeta, tag }) => {
+const YearPage: NextPage<YearPageProps> = ({ allArticlesMeta, year }) => {
   return (
     <Base>
-      <h1>Tag: {tag}</h1>
+      <h1>Year: {year}</h1>
       <ListArticlesComponent allArticlesMeta={allArticlesMeta} />
     </Base>
   );
 };
 
-export default TagPage;
+export default YearPage;
