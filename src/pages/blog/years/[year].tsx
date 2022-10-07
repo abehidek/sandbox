@@ -4,7 +4,6 @@ import {
   ArticleMeta,
   getAllArticlesMeta,
 } from "@/src/server/services/articles";
-import moment from "moment";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 export const getStaticPaths: GetStaticPaths = async () => {

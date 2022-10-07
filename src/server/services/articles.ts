@@ -3,48 +3,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import { prisma } from "../db/client";
 import readingTime from "reading-time";
-import moment from "moment";
 import { allArticles, Article } from "contentlayer/generated";
-
-// const ARTICLES_PATH = path.join(process.cwd(), "content/articles");
-
-// export const getAllArticlesSlugs = (): string[] => {
-//   const articlesPathFiles = fs.readdirSync(ARTICLES_PATH);
-//   const articlePaths = articlesPathFiles
-//     .filter((fileName) => fileName.endsWith(".md") || fileName.endsWith(".mdx"))
-//     .map((fileName) => fileName.replace(/\.md$/, ""));
-
-//   return articlePaths.map((articlePath) => {
-//     const parts = articlePath.split("/");
-//     const fileName = parts[parts.length - 1] ?? "";
-//     const [slug, _ext] = fileName.split(".");
-//     return slug ?? "";
-//   });
-// };
-
-// export const getOneArticle = async (slug: string): Promise<Article> => {
-//   const isMDX = fs.existsSync(path.join(ARTICLES_PATH, `${slug}.mdx`));
-//   const articlePath = isMDX
-//     ? path.join(ARTICLES_PATH, `${slug}.mdx`)
-//     : path.join(ARTICLES_PATH, `${slug}.md`);
-//   const articleSource = fs.readFileSync(articlePath);
-//   const { content, data } = matter(articleSource);
-//   const { views } = await getOneArticleViews(slug);
-//   return {
-//     content,
-//     meta: {
-//       slug,
-//       title: data.title ?? slug,
-//       excerpt: data.excerpt ?? "",
-//       tags: (data.tags ?? []).sort(),
-//       date: moment((data.date ?? new Date()).toString()).format(
-//         "MMMM Do, YYYY"
-//       ),
-//       views,
-//       readingTime: readingTime(content).text,
-//     },
-//   };
-// };
 
 export const getOneArticleViews = async (slug: string) => {
   const articleViews = await prisma.articleViews.upsert({

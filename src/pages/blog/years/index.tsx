@@ -1,7 +1,6 @@
 import { getAllArticlesMeta } from "@/src/server/services/articles";
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
-import moment from "moment";
 import Base from "@/src/components/Base";
 
 interface YearMeta {

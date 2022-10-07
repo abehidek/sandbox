@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArticleMeta } from "@/src/server/services/articles";
+import { format, parseISO } from "date-fns";
 
 export default function ListArticlesComponent({
   allArticlesMeta: articles,
@@ -17,7 +18,7 @@ export default function ListArticlesComponent({
               </Link>
             </div>
             <p>{article.excerpt}</p>
-            <p>{article.date}</p>
+            <p>{format(parseISO(article.date), "LLLL d, yyyy")}</p>
             <p>
               {article.tags.map((tag) => (
                 <Link key={tag} href={`/blog/tags/${tag}`}>

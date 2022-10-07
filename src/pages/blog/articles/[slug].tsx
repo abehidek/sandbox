@@ -24,17 +24,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     await getAllArticles()
   ).find((article) => article.slug === slug);
   return { props: { article } };
-  // const { content, meta } = await getOneArticle(slug);
-  // const mdxSource = await serialize(content, {
-  //   mdxOptions: {
-  //     rehypePlugins: [
-  //       rehypeSlug,
-  //       [rehypeAutolinkHeadings, { behavior: "wrap" }],
-  //       rehypeHighlight,
-  //     ],
-  //   },
-  // });
-  // return { props: { article: { source: mdxSource, meta } } };
 };
 
 const ArticlePage: NextPage<{ article: ArticleFull }> = ({ article }) => {

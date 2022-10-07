@@ -54,6 +54,7 @@ Here are some resources that we commonly refer to:
 - [Protecting routes with Next-Auth.js](https://next-auth.js.org/configuration/nextjs#unstable_getserversession)
 - [Providing precompiled bins for NixOS](https://github.com/prisma/prisma/issues/3026)
 - [MDX](https://mdxjs.com/)
+- https://blog.maximeheckel.com/
 - https://www.youtube.com/watch?v=dsCfi0yRr1w
 - https://www.youtube.com/watch?v=J_0SBJMxmcw
 - https://www.youtube.com/watch?v=WCGopHwXnic
