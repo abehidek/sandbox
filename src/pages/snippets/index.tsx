@@ -5,8 +5,6 @@ import {
   SnippetMeta,
 } from "@/src/server/services/snippets";
 import type { NextPage } from "next";
-import { useSession, signIn, signOut } from "next-auth/react";
-import Head from "next/head";
 
 const SnippetsPage: NextPage<{ allSnippetsMeta: SnippetMeta[] }> = ({
   allSnippetsMeta,
