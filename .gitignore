@@ -18,7 +18,13 @@
 
 # production
 /build
+
+# RSS
 /public/feed.xml
+
+# Sitemap
+/public/sitemap*.xml
+/public/robots.txt
 
 # misc
 .DS_Store

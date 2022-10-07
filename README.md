@@ -9,11 +9,13 @@ Another interesting feature is using tags (this can be accomplished reading from
 - [ ] years page
 
   - [x] Functionality
+  - [ ] Refactor to contentlayer
   - [ ] Styling
 
 - [ ] tags page
 
   - [x] Functionality
+  - [ ] Refactor to contentlayer
   - [ ] Styling
 
 - [ ] Dark/Light Mode Switch
@@ -40,7 +42,7 @@ Another interesting feature is using tags (this can be accomplished reading from
   - [x] Functionality
   - [ ] Styling
 - [x] RSS feed
-- [ ] Sitemap
+- [x] Sitemap
 - [ ] Navbar
   - [x] Functionality
   - [ ] Mobile menu
