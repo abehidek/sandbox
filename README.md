@@ -51,7 +51,25 @@ Another interesting feature is using tags (this can be accomplished reading from
 
 ## Useful resources
 
-Here are some resources that we commonly refer to:
+Here are some resources:
+
+### Design
+
+interesting fonts for my blog
+
+- IBM Plex Sans (used on leerob.io)
+- Inconsolata (monospace font good for reading)
+- Raleway
+- Inter
+- GT Walsheim
+
+- https://www.youtube.com/watch?v=EK-pHkc5EL4
+- [Design system in tailwind](https://www.youtube.com/watch?v=cZc4Jn5nK3k)
+- [Sans typograph that (probably) will be used](https://fonts.google.com/specimen/Zen+Kaku+Gothic+New?category=Sans+Serif&sort=date#styles)
+- [Open source alternative to Figma](https://penpot.app/)
+- [Another good alternative to Figma](https://icons8.com/lunacy)
+
+### Functionality
 
 - [Protecting routes with Next-Auth.js](https://next-auth.js.org/configuration/nextjs#unstable_getserversession)
 - [Providing precompiled bins for NixOS](https://github.com/prisma/prisma/issues/3026)
