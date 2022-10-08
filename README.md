@@ -19,6 +19,7 @@ Another interesting feature is using tags (this can be accomplished reading from
   - [ ] Styling
 
 - [ ] Dark/Light Mode Switch
+- [ ] Command palete
 - [ ] A creative 3D animation to show off
 - [ ] Animation and smooth page transitions
 - [ ] Subscribe to a newsletter
