@@ -72,6 +72,7 @@ interesting fonts for my blog
 
 ### Functionality
 
+- [API that fetch the pinned repos from a github profile w/ languageColor](https://gh-pinned-repos.egoist.sh/?username=abehidek)
 - [Protecting routes with Next-Auth.js](https://next-auth.js.org/configuration/nextjs#unstable_getserversession)
 - [Providing precompiled bins for NixOS](https://github.com/prisma/prisma/issues/3026)
 - [MDX](https://mdxjs.com/)
