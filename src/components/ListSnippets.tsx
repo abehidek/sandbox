@@ -1,3 +1,4 @@
+import { format, parseISO } from "date-fns";
 import Link from "next/link";
 import { SnippetMeta } from "../server/services/snippets";
 
@@ -15,7 +16,7 @@ export default function ListSnippetsComponent({
               <Link href={snippet.url}>{snippet.title}</Link>
             </div>
             <p>{snippet.description}</p>
-            <p>{snippet.date}</p>
+            <p>{format(parseISO(snippet.date), "LLLL d, yyyy")}</p>
             <p>views: {snippet.views}</p>
           </li>
         );
