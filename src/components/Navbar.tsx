@@ -16,9 +16,8 @@ const NavItemComponent = ({ href, text }: { href: string; text: string }) => {
 
 const NavbarComponent = () => {
   return (
-    <nav className="flex gap-4">
-      <h1>abehidek</h1>
-      <div className="flex gap-2">
+    <nav className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         <NavItemComponent href="/" text="Home" />
         <NavItemComponent href="/blog" text="Blog" />
         <NavItemComponent href="/snippets" text="Snippets" />

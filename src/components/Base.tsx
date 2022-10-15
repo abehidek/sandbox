@@ -21,7 +21,7 @@ const Base = ({ children, metaProps }: Props) => {
   };
 
   return (
-    <div>
+    <div className="mx-auto max-w-3xl bg-slate-300">
       <Head>
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
@@ -40,13 +40,15 @@ const Base = ({ children, metaProps }: Props) => {
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
       </Head>
-      <div>
-        <NavbarComponent />
+      <div className="w-full gap-4 md:flex">
+        <div className="md:sticky md:top-0 md:h-screen">
+          <NavbarComponent />
+        </div>
+        <main className="w-full">
+          {children}
+          <FooterComponent />
+        </main>
       </div>
-      <main>
-        {children}
-        <FooterComponent />
-      </main>
     </div>
   );
 };
