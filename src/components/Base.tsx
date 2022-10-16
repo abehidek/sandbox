@@ -21,7 +21,7 @@ const Base = ({ children, metaProps }: Props) => {
   };
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-3xl flex-col bg-slate-300">
+    <div className="mx-auto flex min-h-screen max-w-4xl flex-col bg-slate-300">
       <Head>
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
