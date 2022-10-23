@@ -25,3 +25,6 @@ dist-ssr
 
 # direnv
 .direnv
+
+# Storybook
+storybook-static
