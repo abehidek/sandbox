@@ -1,0 +1,30 @@
+name: Deploy Storybook
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-n-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install deps
+        run: yarn install --frozen-lockfile
+
+      - name: Build Storybook
+        run: yarn build-storybook
+
+      - name: Deploy Storybook
+        run: yarn deploy-storybook -- --ci --existing-output-dir=storybook-static
+        env:
+          GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
