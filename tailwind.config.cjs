@@ -26,6 +26,9 @@ module.exports = {
       fontFamily: {
         sans: "Zen Kaku Gothic New, sans-serif",
       },
+      gridTemplateColumns: {
+        main: "1fr 768px 1fr",
+      },
     },
   },
   plugins: [],
