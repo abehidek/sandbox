@@ -3,11 +3,13 @@ import NextLink from "next/link";
 
 const NavItemComponent = ({ href, text }: { href: string; text: string }) => {
   const router = useRouter();
-  const isActive = router.asPath === href;
+  const isActive =
+    (router.asPath === "/" && href === "/") ||
+    (href !== "/" && router.asPath.includes(href));
 
   return (
     <NextLink href={href}>
-      <a className={isActive ? "font-semibold" : "font-normal"}>
+      <a className={isActive ? "font-semibold" : "font-normal text-gray-600"}>
         <span className="capsize text-[40px]">{text}</span>
       </a>
     </NextLink>
