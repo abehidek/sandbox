@@ -21,7 +21,7 @@ const Base = ({ children, metaProps }: Props) => {
   };
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-4xl flex-col bg-slate-300">
+    <div className="mx-auto flex min-h-screen max-w-6xl flex-col bg-gray-800">
       <Head>
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
@@ -44,7 +44,7 @@ const Base = ({ children, metaProps }: Props) => {
         <div className="md:sticky md:top-0 md:h-full">
           <NavbarComponent />
         </div>
-        <main className="w-full">{children}</main>
+        <main className="w-full ">{children}</main>
       </div>
       <FooterComponent />
     </div>

@@ -8,7 +8,7 @@ const NavItemComponent = ({ href, text }: { href: string; text: string }) => {
   return (
     <NextLink href={href}>
       <a className={isActive ? "font-semibold" : "font-normal"}>
-        <span className="capsize">{text}</span>
+        <span className="capsize text-[40px]">{text}</span>
       </a>
     </NextLink>
   );
