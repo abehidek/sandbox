@@ -1,21 +1,21 @@
 import Link from "next/link";
 
 export interface PbCollectionResponse {
-  page:       number;
-  perPage:    number;
+  page: number;
+  perPage: number;
   totalItems: number;
   totalPages: number;
-  items:      Items[];
+  items: Items[];
 }
 
 export interface Items {
-  "@collectionId":   string;
+  "@collectionId": string;
   "@collectionName": string;
-  content:           string;
-  created:           Date;
-  id:                string;
-  title:             string;
-  updated:           Date;
+  content: string;
+  created: Date;
+  id: string;
+  title: string;
+  updated: Date;
 }
 
 
@@ -28,9 +28,9 @@ async function getNotes(): Promise<PbCollectionResponse> {
 export default async function NotesPage() {
   const notes = await getNotes();
 
+
   return (
     <div>
-      <h1>Notes</h1>
       {notes?.items.map((note) => (
         <Note key={note.id} note={note} />
       ))}
@@ -40,8 +40,6 @@ export default async function NotesPage() {
 
 function Note({ note }: any) {
   const { id, title, content, created } = note || {};
-
-  console.log(note)
 
   return (
     <Link href={`/notes/${id}`}>

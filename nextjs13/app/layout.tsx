@@ -20,6 +20,9 @@ export default function RootLayout({
             <Link href="/notes">
               Notes
             </Link>
+            <Link href="/nextjs">
+              Next.js
+            </Link>
           </nav>
           {children}
         </main>
