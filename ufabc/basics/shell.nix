@@ -7,6 +7,7 @@ in pkgs.mkShell {
   buildInputs = [
     unstable.ghc
     unstable.haskell-language-server
+    unstable.ghcid
 
     # keep this line if you use bash
     pkgs.bashInteractive
