@@ -11,6 +11,7 @@
         nativeBuildInputs = [ pkgs.bashInteractive ];
         buildInputs = with pkgs; [
           nodePackages.prisma
+          nodePackages.mermaid-cli
           nodejs-16_x
           (yarn.override { nodejs = nodejs-16_x;  })
         ];
@@ -20,6 +21,7 @@
           export PRISMA_QUERY_ENGINE_LIBRARY="${prisma-engines}/lib/libquery_engine.node"
           export PRISMA_INTROSPECTION_ENGINE_BINARY="${prisma-engines}/bin/introspection-engine"
           export PRISMA_FMT_BINARY="${prisma-engines}/bin/prisma-fmt"
+          export PUPPETEER_EXECUTABLE_PATH="${pkgs.chromium}/bin/chromium"
         '';
       };
     });
