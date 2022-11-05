@@ -13,7 +13,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text>Home!!</Text>
+      <Text>Home!</Text>
       <Text>{JSON.stringify(query.data)}</Text>
       <StatusBar style="auto" />
     </View>
