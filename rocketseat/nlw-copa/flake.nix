@@ -12,6 +12,7 @@
         buildInputs = with pkgs; [
           nodePackages.prisma
           nodePackages.mermaid-cli
+          nodePackages.expo-cli
           nodejs-16_x
           (yarn.override { nodejs = nodejs-16_x;  })
         ];
