@@ -8,6 +8,8 @@ import HomeScreen from './src/screens/Home';
 import { Loading } from './src/components/Loading';
 import SignInScreen from './src/screens/SignIn';
 
+import { AuthContextProvider } from './src/contexts/AuthContext';
+
 
 const queryClient = new QueryClient()
 
@@ -17,14 +19,16 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <NativeBaseProvider theme={THEME}>
-        <StatusBar
-          barStyle="light-content"
-          backgroundColor="transparent"
-          translucent
-        />
+        <AuthContextProvider>
+          <StatusBar
+            barStyle="light-content"
+            backgroundColor="transparent"
+            translucent
+          />
 
-        {/* {fontsLoaded ? <HomeScreen /> : <Loading />} */}
-        {fontsLoaded ? <SignInScreen /> : <Loading />}
+          {/* {fontsLoaded ? <HomeScreen /> : <Loading />} */}
+          {fontsLoaded ? <SignInScreen /> : <Loading />}
+        </AuthContextProvider>
       </NativeBaseProvider>
     </QueryClientProvider>
   );
