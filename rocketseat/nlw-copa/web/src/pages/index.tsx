@@ -5,6 +5,7 @@ import iconCheckImg from '../assets/icon-check.svg'
 
 import Image from 'next/image'
 import { api } from '../lib/axios'
+import { FormEvent, useState } from 'react'
 
 interface Props {
   poolCount: number
@@ -13,6 +14,29 @@ interface Props {
 }
 
 export default function Home(props: Props) {
+  const [poolTitle, setPoolTitle] = useState<string>('')
+
+  async function createPool(event: FormEvent) {
+    event.preventDefault();
+
+    try {
+      const response = await api.post('pools', {
+        title: poolTitle
+      })
+
+      const { code: poolCode } = response.data;
+
+      await navigator.clipboard.writeText(poolCode)
+
+      alert("Bolão criado com sucesso, o código foi copiado para área de transferência!")
+
+      setPoolTitle('')
+    } catch (error) {
+      console.error(error)
+      alert("Falha ao criar o bolão, tente novamente!")
+    }
+  }
+
   return (
     <div className='max-w-[1124px] h-screen mx-auto grid grid-cols-2 items-center gap-28'>
       <main>
@@ -28,12 +52,14 @@ export default function Home(props: Props) {
           </strong>
         </div>
 
-        <form className='mt-10 flex gap-2'>
+        <form onSubmit={createPool} className='mt-10 flex gap-2'>
           <input
-            className='flex-1 px-6 py-4 rounded bg-gray-800 border border-gray-600 text-sm'
+            className='flex-1 px-6 py-4 rounded bg-gray-800 border border-gray-600 text-sm text-gray-100'
             type="text"
             required
             placeholder='Qual nome do seu bolão?'
+            value={poolTitle}
+            onChange={event => setPoolTitle(event.target.value)}
           />
           <button
             className='bg-yellow-500 px-6 py-4 rounded text-gray-900 font-bold uppercase text-sm hover:bg-yellow-700'
