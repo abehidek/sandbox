@@ -9,8 +9,6 @@ import { useAuth } from "../hooks/useAuth";
 export default function SignInScreen() {
   const { signIn, user } = useAuth();
 
-  console.log('user data: ', user)
-
   return (
     <Center flex={1} bgColor="gray.900" p={7}>
       <Text>Sign In</Text>
