@@ -6,6 +6,7 @@ import iconCheckImg from '../assets/icon-check.svg'
 import Image from 'next/image'
 import { api } from '../lib/axios'
 import { FormEvent, useState } from 'react'
+import { GetStaticProps } from 'next'
 
 interface Props {
   poolCount: number
@@ -99,7 +100,7 @@ export default function Home(props: Props) {
   )
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const [poolCountResponse, guessCountResponse, userCountResponse] = await Promise.all([
     api.get("pools/count"),
     api.get("guesses/count"),
@@ -111,6 +112,7 @@ export const getServerSideProps = async () => {
       poolCount: poolCountResponse.data.count,
       guessCount: guessCountResponse.data.count,
       userCount: userCountResponse.data.count
-    }
+    },
+    revalidate: 10,
   }
 }
