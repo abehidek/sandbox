@@ -10,6 +10,10 @@ import Config
 config :inmana,
   ecto_repos: [Inmana.Repo]
 
+config :inmana, Inmana.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :inmana, InmanaWeb.Endpoint,
   url: [host: "localhost"],
