@@ -65,3 +65,37 @@ Inmana.Repo.delete_all(Inmana.Restaurant)
   responsible: "Daniel"
 }
 |> Inmana.create_supply()
+
+{:ok, burgerking} = %{name: "Burger King", email: "burger@king.com"} |> Inmana.create_restaurant()
+
+%{
+  restaurant_id: burgerking.id,
+  description: "Hamburguer",
+  expiration_date: "2022-11-09",
+  responsible: "Breno"
+}
+|> Inmana.create_supply()
+
+%{
+  restaurant_id: burgerking.id,
+  description: "Pão",
+  expiration_date: "2022-11-10",
+  responsible: "Gustavo"
+}
+|> Inmana.create_supply()
+
+%{
+  restaurant_id: burgerking.id,
+  description: "Chocolate",
+  expiration_date: "2022-11-13",
+  responsible: "Guilherme"
+}
+|> Inmana.create_supply()
+
+%{
+  restaurant_id: burgerking.id,
+  description: "Molho rose",
+  expiration_date: "2022-11-15",
+  responsible: "Gabriel"
+}
+|> Inmana.create_supply()
