@@ -1,3 +1,3 @@
 defmodule Inmana.Mailer do
-  use Swoosh.Mailer, otp_app: :inmana
+  use Bamboo.Mailer, otp_app: :inmana
 end
