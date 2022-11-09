@@ -8,4 +8,5 @@ defmodule Inmana do
   """
 
   defdelegate create_restaurant(params), to: Inmana.Restaurants.Create, as: :call
+  defdelegate create_supply(params), to: Inmana.Supplies.Create, as: :call
 end

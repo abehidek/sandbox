@@ -1,18 +1,20 @@
-defmodule Inmana.Restaurant do
+defmodule Inmana.Supply do
   use Ecto.Schema
   import Ecto.Changeset
 
   @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
 
-  @required_params [:email, :name]
+  @required_params [:description, :expiration_date, :responsible, :restaurant_id]
 
   @derive {Jason.Encoder, only: @required_params ++ [:id]}
 
-  schema "restaurants" do
-    field :email, :string
-    field :name, :string
+  schema "supplies" do
+    field :description, :string
+    field :expiration_date, :date
+    field :responsible, :string
 
-    has_many :supplies, Inmana.Supply
+    belongs_to :restaurant, Inmana.Restaurant
 
     timestamps()
   end
@@ -21,7 +23,5 @@ defmodule Inmana.Restaurant do
     %__MODULE__{}
     |> cast(params, @required_params)
     |> validate_required(@required_params)
-    |> validate_format(:email, ~r/@/)
-    |> unique_constraint([:email])
   end
 end
