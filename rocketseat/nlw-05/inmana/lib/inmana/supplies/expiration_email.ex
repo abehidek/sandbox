@@ -8,6 +8,7 @@ defmodule Inmana.Supplies.ExpirationEmail do
       to: to_email,
       from: "app@inmana.com.br",
       subject: "Supplies that are about to be expired",
+      html_body: "<h1>Teste html<h1>",
       text_body: email_text(supplies)
     )
   end
