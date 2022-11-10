@@ -15,9 +15,11 @@ defmodule Inmana.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Inmana.PubSub},
       # Start the Endpoint (http/https)
-      InmanaWeb.Endpoint
+      InmanaWeb.Endpoint,
       # Start a worker by calling: Inmana.Worker.start_link(arg)
       # {Inmana.Worker, arg}
+      # Cronjob
+      Inmana.Supplies.Scheduler
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
