@@ -1,23 +1,31 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { NativeBaseProvider } from 'native-base';
-import { StatusBar } from 'react-native';
-import { THEME } from "./src/styles/theme"
-import { useFonts, Roboto_400Regular, Roboto_500Medium, Roboto_700Bold } from "@expo-google-fonts/roboto"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { NativeBaseProvider } from "native-base";
+import { StatusBar } from "react-native";
+import { THEME } from "./src/styles/theme";
+import {
+  useFonts,
+  Roboto_400Regular,
+  Roboto_500Medium,
+  Roboto_700Bold,
+} from "@expo-google-fonts/roboto";
 
-import HomeScreen from './src/screens/Home';
-import { Loading } from './src/components/Loading';
-import SignInScreen from './src/screens/SignIn';
+import HomeScreen from "./src/screens/Home";
+import { Loading } from "./src/components/Loading";
+import SignInScreen from "./src/screens/SignIn";
 
-import { AuthContextProvider } from './src/contexts/AuthContext';
-import NewScreen from './src/screens/New';
-import FindScreen from './src/screens/Find';
-import PoolsScreen from './src/screens/Pools';
+import { AuthContextProvider } from "./src/contexts/AuthContext";
+import NewScreen from "./src/screens/New";
+import FindScreen from "./src/screens/Find";
+import PoolsScreen from "./src/screens/Pools";
 
-
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 export default function App() {
-  const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_500Medium, Roboto_700Bold });
+  const [fontsLoaded] = useFonts({
+    Roboto_400Regular,
+    Roboto_500Medium,
+    Roboto_700Bold,
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -30,10 +38,9 @@ export default function App() {
           />
 
           {/* {fontsLoaded ? <HomeScreen /> : <Loading />} */}
-          {fontsLoaded ? <PoolsScreen /> : <Loading />}
+          {fontsLoaded ? <SignInScreen /> : <Loading />}
         </AuthContextProvider>
       </NativeBaseProvider>
     </QueryClientProvider>
   );
 }
-
