@@ -21,8 +21,8 @@ model Pool {
   createdAt DateTime @default(now())
   ownerId   String?  @map("userId")
 
-  participant Participant[]
-  owner       User?         @relation(fields: [ownerId], references: [id])
+  participants Participant[]
+  owner        User?         @relation(fields: [ownerId], references: [id])
 }
 
 model Participant {
