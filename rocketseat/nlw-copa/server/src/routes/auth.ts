@@ -3,8 +3,19 @@ import ShortUniqueId from "short-unique-id";
 import { prisma } from "../lib/prisma";
 import { FastifyInstance } from "fastify";
 import fetch from "node-fetch";
+import { authenticate } from "../plugins/authenticate";
 
 export async function authRoutes(fastify: FastifyInstance) {
+  fastify.get(
+    "/me",
+    {
+      onRequest: [authenticate],
+    },
+    async (req) => {
+      return { user: req.user };
+    }
+  );
+
   fastify.post("/users", async (req) => {
     const createUserBody = z.object({
       access_token: z.string(),
@@ -52,8 +63,17 @@ export async function authRoutes(fastify: FastifyInstance) {
       });
     }
 
-    
+    const token = fastify.jwt.sign(
+      {
+        name: user.name,
+        avatar: user.avatarUrl,
+      },
+      {
+        sub: user.id,
+        expiresIn: "7 days", // implement refresh token
+      }
+    );
 
-    return { userInfo };
+    return { token };
   });
 }

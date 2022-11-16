@@ -1,6 +1,7 @@
 import Fastify from "fastify";
 import fastifyCors from "@fastify/cors";
 import dotenv from "dotenv";
+import jwt from "@fastify/jwt";
 
 dotenv.config();
 console.log(process.env.DATABASE_URL);
@@ -18,6 +19,9 @@ async function bootstrap() {
 
   await fastify.register(fastifyCors, { origin: true });
 
+  await fastify.register(jwt, {
+    secret: process.env.JWT_SECRET as string,
+  });
 
   await fastify.register(poolRoutes);
   await fastify.register(userRoutes);
