@@ -14,6 +14,7 @@
           nodePackages.mermaid-cli
           nodePackages.expo-cli
           nodejs-16_x
+          sqlite
           (yarn.override { nodejs = nodejs-16_x;  })
         ];
         shellHook = with pkgs; ''
