@@ -4,6 +4,7 @@ import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from "expo-web-browser";
 import { GOOGLE_CLIENT_ID } from "@env";
 import { api } from "../services/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -15,6 +16,7 @@ export type UserProps = {
 
 export type AuthContextDataProps = {
   user: UserProps | undefined;
+  jwt: string | undefined;
   isUserLoading: boolean;
   signIn: () => Promise<void>;
 };
@@ -26,6 +28,7 @@ export const AuthContext = createContext<AuthContextDataProps | undefined>(
 export function AuthContextProvider({ children }: { children: ReactNode }) {
   const [isUserLoading, setIsUserLoading] = useState(false);
   const [user, setUser] = useState<UserProps | undefined>(undefined);
+  const [jwt, setJwt] = useState<string | undefined>(undefined);
 
   const [request, response, promptAsync] = Google.useAuthRequest({
     clientId: GOOGLE_CLIENT_ID,
@@ -52,13 +55,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
         access_token,
       });
 
-      api.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${jwtResponse.data.token}`;
-
-      const userInfoResponse = await api.get("/me");
-
-      setUser(userInfoResponse.data.user);
+      setJwt(jwtResponse.data.token);
     } catch (error) {
       console.error(error);
       throw error;
@@ -66,6 +63,34 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
       setIsUserLoading(false);
     }
   }
+
+  useEffect(() => {
+    if (!jwt) return;
+    setIsUserLoading(true);
+    api.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
+    AsyncStorage.setItem("@jwt_token", jwt);
+    api
+      .get("/me")
+      .then((res) => setUser(res.data.user))
+      .then(() => setIsUserLoading(false))
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [jwt]);
+
+  useEffect(() => {
+    setIsUserLoading(true);
+    const fetchLocalSession = async () => {
+      const value = await AsyncStorage.getItem("@jwt_token");
+      console.log("Valor armazenado anteriormente:", value);
+      if (value !== null) {
+        setJwt(value);
+      }
+    };
+
+    fetchLocalSession();
+    setIsUserLoading(false);
+  }, []);
 
   useEffect(() => {
     if (response?.type === "success" && response.authentication?.accessToken) {
@@ -79,6 +104,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
         signIn,
         isUserLoading,
         user,
+        jwt,
       }}
     >
       {children}

@@ -8,6 +8,8 @@ import { AppRoutes } from "./app.routes";
 export default function Routes() {
   const { user, isUserLoading } = useAuth();
 
+  if (isUserLoading) return <Loading />;
+
   return (
     <Box flex={1} bg="gray.900">
       <NavigationContainer>
