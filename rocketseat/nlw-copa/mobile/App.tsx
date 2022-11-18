@@ -17,6 +17,7 @@ import { AuthContextProvider } from "./src/contexts/AuthContext";
 import NewScreen from "./src/screens/New";
 import FindScreen from "./src/screens/Find";
 import PoolsScreen from "./src/screens/Pools";
+import Routes from "./src/routes";
 
 const queryClient = new QueryClient();
 
@@ -38,7 +39,7 @@ export default function App() {
           />
 
           {/* {fontsLoaded ? <HomeScreen /> : <Loading />} */}
-          {fontsLoaded ? <SignInScreen /> : <Loading />}
+          {fontsLoaded ? <Routes /> : <Loading />}
         </AuthContextProvider>
       </NativeBaseProvider>
     </QueryClientProvider>
