@@ -20,9 +20,9 @@ export function AppRoutes() {
         tabBarLabelPosition: "beside-icon",
         tabBarActiveTintColor: colors.yellow[500],
         tabBarInactiveTintColor: colors.gray[300],
+        tabBarHideOnKeyboard: true,
         tabBarStyle: {
-          position: "absolute",
-          height: sizes[22],
+          height: sizes['22'],
           borderTopWidth: 0,
           backgroundColor: colors.gray[800],
         },

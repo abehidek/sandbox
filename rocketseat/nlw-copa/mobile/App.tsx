@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { NativeBaseProvider } from "native-base";
 import { StatusBar } from "react-native";
-import { THEME } from "./src/styles/theme";
+import { theme } from "./src/styles/theme";
 import {
   useFonts,
   Roboto_400Regular,
@@ -30,7 +30,7 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <NativeBaseProvider theme={THEME}>
+      <NativeBaseProvider theme={theme}>
         <AuthContextProvider>
           <StatusBar
             barStyle="light-content"
