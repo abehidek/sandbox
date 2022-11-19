@@ -1,32 +1,32 @@
+import { useNavigation } from '@react-navigation/native';
 import { Row, Text, Pressable } from 'native-base';
 
-interface Props {
-  code: string;
-}
-
-export function EmptyMyPoolList({ code }: Props) {
+export function EmptyPoolList() {
+  const { navigate } = useNavigation();
   return (
-    <Row flexWrap="wrap" justifyContent="center" p={4}>
-      <Text color="gray.200" fontSize="sm">
-        Esse bolão ainda não tem participantes, que tal
+    <Row flexWrap="wrap" justifyContent="center">
+      <Text color="white" fontSize="sm" textAlign="center">
+        Você ainda não está participando de {'\n'} nenhum bolão, que tal
       </Text>
 
-      <Pressable onPress={() => {}}>
+      <Pressable onPress={() => navigate('find')}>
           <Text textDecorationLine="underline" color="yellow.500" textDecoration="underline">
-          compartilhar o código
+            buscar um por código
           </Text>
       </Pressable>
 
-      <Text color="gray.200" fontSize="sm" mx={1}>
-        do bolão com alguém?
+      <Text color="white" fontSize="sm" textAlign="center" mx={1}>
+        ou
       </Text>
 
-      <Text color="gray.200" mr={1}>
-        Use o código
-      </Text>
+      <Pressable onPress={() => navigate('new')}>
+        <Text textDecorationLine="underline"  color="yellow.500">
+          criar um novo
+        </Text>
+      </Pressable>
 
-      <Text color="gray.200" fontSize="sm" textAlign="center" fontFamily="heading">
-        {code}
+      <Text color="white" fontSize="sm" textAlign="center">
+        ?
       </Text>
     </Row>
   );
