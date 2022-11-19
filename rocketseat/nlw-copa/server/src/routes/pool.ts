@@ -12,7 +12,7 @@ export async function poolRoutes(fastify: FastifyInstance) {
 
   fastify.post("/pools", async (req, reply) => {
     const createPoolBody = z.object({
-      title: z.string(),
+      title: z.string().min(5),
     });
 
     const { title } = createPoolBody.parse(req.body);
