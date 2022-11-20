@@ -1,10 +1,14 @@
-import { Button, HStack, Text, useTheme, VStack } from 'native-base';
+import { Button, HStack, Text, useTheme, useToast, VStack } from 'native-base';
 import { X, Check } from 'phosphor-react-native';
 import { getName } from 'country-list';
 
 import { Team } from './Team';
+import dayjs from 'dayjs';
+import ptBR from 'dayjs/locale/pt-br'
+import { useState } from 'react';
+import { api } from '../services/api';
 
-interface GuessProps {
+export interface GuessProps {
   id: string;
   gameId: string;
   createdAt: string;
@@ -15,6 +19,7 @@ interface GuessProps {
 
 export interface GameProps {
   id: string;
+  date: string;
   firstTeamCountryCode: string;
   secondTeamCountryCode: string;
   guess: null | GuessProps;
@@ -22,13 +27,45 @@ export interface GameProps {
 
 interface Props {
   data: GameProps;
-  onGuessConfirm: () => void;
-  setFirstTeamPoints: (value: string) => void;
-  setSecondTeamPoints: (value: string) => void;
+  poolId: string;
+  fetchGames: () => Promise<void>
 };
 
-export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessConfirm }: Props) {
+export function Game({ data, poolId, fetchGames }: Props) {
   const { colors, sizes } = useTheme();
+  const [firstTeamPoints, setFirstTeamPoints] = useState('');
+  const [secondTeamPoints, setSecondTeamPoints] = useState('');
+  const toast = useToast();
+  const [isLoading, setIsLoading] = useState(true)
+
+  const handleGuessConfirm = async (gameId: string) => {
+    try {
+      if (!firstTeamPoints.trim() || !secondTeamPoints.trim()) return toast.show({
+        title: 'Informe o placar do palpite',
+        placement: 'top',
+        bgColor: 'red.500'
+      })
+
+      await api.post(`/pools/${poolId}/games/${gameId}/guesses`, {
+        firstTeamPoints: Number(firstTeamPoints),
+        secondTeamPoints: Number(secondTeamPoints)
+      })
+
+      toast.show({
+        title: 'Palpite realizado com sucesso',
+        placement: 'top',
+        bgColor: 'green.500'
+      })
+
+      fetchGames();
+    } catch (error) {
+      toast.show({
+        title: 'Não enviar o seu palpite',
+        placement: 'top',
+        bgColor: 'red.500'
+      })
+    }
+  }
 
   return (
     <VStack
@@ -46,14 +83,16 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
       </Text>
 
       <Text color="gray.200" fontSize="xs">
-        22 de Novembro de 2022 às 16:00h
+        {dayjs(data.date).locale(ptBR).format('DD [de] MMMM [de] YYYY [às] HH:00[h]')}
       </Text>
 
       <HStack mt={4} w="full" justifyContent="space-between" alignItems="center">
         <Team
           code={data.firstTeamCountryCode}
           position="right"
-          onChangeText={setFirstTeamPoints}
+          guess={data.guess?.firstTeamPoints}
+          teamPoints={firstTeamPoints}
+          onChangeTeamPoints={setFirstTeamPoints}
         />
 
         <X color={colors.gray[300]} size={sizes[6]} />
@@ -61,13 +100,15 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
         <Team
           code={data.secondTeamCountryCode}
           position="left"
-          onChangeText={setSecondTeamPoints}
+          guess={data.guess?.secondTeamPoints}
+          teamPoints={secondTeamPoints}
+          onChangeTeamPoints={setSecondTeamPoints}
         />
       </HStack>
 
       {
         !data.guess &&
-        <Button size="xs" w="full" bgColor="green.500" mt={4} onPress={onGuessConfirm}>
+        <Button size="xs" w="full" bgColor="green.500" mt={4} onPress={() => handleGuessConfirm(data.id)}>
           <HStack alignItems="center">
             <Text color="white" fontSize="xs" fontFamily="heading" mr={3}>
               CONFIRMAR PALPITE

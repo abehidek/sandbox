@@ -9,6 +9,7 @@ import NewScreen from "../screens/New";
 import PoolsScreen from "../screens/Pools";
 import FindScreen from "../screens/Find";
 import SignInScreen from "../screens/SignIn";
+import DetailsScreen from "../screens/Details";
 
 export function AppRoutes() {
   const { colors, sizes } = useTheme();
@@ -58,6 +59,12 @@ export function AppRoutes() {
       <Screen
         name="signin"
         component={SignInScreen}
+        options={{ tabBarButton: () => null }}
+      />
+
+      <Screen
+        name="details"
+        component={DetailsScreen}
         options={{ tabBarButton: () => null }}
       />
     </Navigator>
