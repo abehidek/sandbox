@@ -19,6 +19,7 @@ export type AuthContextDataProps = {
   jwt: string | undefined;
   isUserLoading: boolean;
   signIn: () => Promise<void>;
+  signOut: () => Promise<void>
 };
 
 export const AuthContext = createContext<AuthContextDataProps | undefined>(
@@ -64,6 +65,21 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  async function signOut() {
+    try {
+      setIsUserLoading(true);
+      await AsyncStorage.removeItem('@jwt_token')
+      api.defaults.headers.common["Authorization"] = '';
+      setUser(undefined)
+      setJwt(undefined)
+    } catch (error) {
+      console.error(error)
+      throw error
+    } finally {
+      setIsUserLoading(false);
+    }
+  }
+
   useEffect(() => {
     if (!jwt) return;
     setIsUserLoading(true);
@@ -102,6 +118,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
     <AuthContext.Provider
       value={{
         signIn,
+        signOut,
         isUserLoading,
         user,
         jwt,
