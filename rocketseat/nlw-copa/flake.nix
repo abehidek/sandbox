@@ -6,16 +6,25 @@
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
+      devPkgs = import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+        overlays = [(
+          final: prev: {
+            nodejs = prev.nodejs-16_x;
+          }
+        )];
+      };
     in {
       devShell = pkgs.mkShell {
         nativeBuildInputs = [ pkgs.bashInteractive ];
-        buildInputs = with pkgs; [
+        buildInputs = with devPkgs; [
           nodePackages.prisma
-          nodePackages.mermaid-cli
+          pkgs.nodePackages.mermaid-cli
           nodePackages.expo-cli
-          nodejs-16_x
+          nodejs
           sqlite
-          (yarn.override { nodejs = nodejs-16_x;  })
+          yarn
         ];
         shellHook = with pkgs; ''
           export PRISMA_MIGRATION_ENGINE_BINARY="${prisma-engines}/bin/migration-engine"
@@ -25,6 +34,7 @@
           export PRISMA_FMT_BINARY="${prisma-engines}/bin/prisma-fmt"
           export PUPPETEER_EXECUTABLE_PATH="${pkgs.chromium}/bin/chromium"
         '';
+        # devPkgs
       };
     });
 }
