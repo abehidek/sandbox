@@ -1,0 +1,18 @@
+run = ["cargo", "run"]
+
+entrypoint = "src/main.rs"
+
+[packager]
+language = "rust"
+
+[packager.features]
+packageSearch = true
+
+[languages.rust]
+pattern = "**/*.rs"
+
+[languages.rust.languageServer]
+start = "rust-analyzer"
+
+[nix]
+channel = "stable-21_11"
