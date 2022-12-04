@@ -1,0 +1,10 @@
+x = input('Type anything: ')
+print('The primitive type of this value is ', type(x))
+print('Is it numeric? ', x.isnumeric())
+print('Is it alphabetic? ', x.isalpha())
+print('Is it alphanumeric? ', x.isalnum())
+print('Is it uppercase? ', x.isupper())
+print('Is it lowercase? ', x.islower())
+print('Has only spaces? ', x.isspace())
+print('Is capitalized? ', x.istitle())
+print('Is capitalized?  {}'.format(x.istitle()))  # it's possible to use the .format function for boolean values as well
