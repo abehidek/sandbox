@@ -1,0 +1,10 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "javascript.validate.enable": true,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  }
+}

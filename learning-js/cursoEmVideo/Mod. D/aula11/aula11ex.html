@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício - Aula 11</title>
+</head>
+<body>
+    <h1>Exercício da Aula 11</h1>
+    <p>Verificação se o usuário é brasileiro ou não</p>
+    Digite aonde você nasceu <input id="nacionalidade" type="text">
+    <input type="button" value="Verificar" onclick="getNacionalidade()">
+    <div id="res"></div>
+    <script>
+        function getNacionalidade ()
+        {
+            var nac = document.querySelector('input#nacionalidade').value
+            var res = document.querySelector('div#res')
+            if (nac == "Brasil" || nac == "brasil")
+            {
+                res.innerHTML = 'Você nasceu no brasil'
+            }
+            else {
+                res.innerHTML = 'Você é estrangeiro'
+            }
+        }
+    </script>
+</body>
+</html>

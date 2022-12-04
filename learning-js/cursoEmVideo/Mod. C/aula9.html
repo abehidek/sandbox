@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilizando o DOM</title>
+    <style>
+        body {
+            background-color:rgb(43, 96, 165);
+            color: white;
+            font: normal 18pt Arial;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1 name="title">DOM</h1>
+    <p>Título grande</p>
+    <p id="learn">Aprendendo a usar o <strong>DOM</strong> em Javascript</p>
+    <div id="msg">Clique em mim</div>
+    <hr>
+    <br>
+<script>
+    /* AULA 9 - INTRODUÇÃO AO DOM 
+
+            // DOM É UMA PROPRIEDADE DOS SITES QUE RENDERIZA OS ELEMENTOS DE UM SITE
+
+            window.document.write('Texto escrito em Javascript')
+            document.write("<br>")
+            window.document.write(window.document.charset)
+            document.write("<br>")
+            window.document.write(window.navigator.appName)
+            document.write("<br>")
+            window.document.write(document.URL)
+            document.write("<br>")
+            document.write("<br>")
+            window.document.write("Fim")
+            document.write("<br>")
+            document.write("<hr>")
+            document.write("<br>")
+
+            // TUDO QUE PERTENCE A ARVORE DOM É UM ELEMENTO
+        // --------------------------------------------------------------------------- 
+        
+            // SELECIONANDO ELEMENTOS DA ÁRVORE DOM 
+
+            // POR MARCA
+                var pBody = window.document.body
+                var p1 = window.document.getElementsByTagName('p')[1]
+                document.write('Está escrito assim: ' + p1.innerText + ', Esse é o innerText') // PEGA SÓ O TEXTO
+                document.write("<br>")
+                pBody.style.background = 'gray'
+                document.write('Está escrito assim: ' + p1.innerHTML + ', Esse é o innerHTML') // PEGA O HTML INTEIRO, INCLUSIVE AS TAGS FILHAS    
+            
+            // POR ID
+                var msg = window.document.getElementById('msg')
+                msg.style.backgroundColor = 'green'
+                msg.innerText = 'Estou aguardando...'
+                window.document.getElementById('msg').innerText = 'Estou aguardando'      
+
+            // POR NOME 
+                // var h1 = window.document.getElementsByName('title')[0]
+                // h1.innerText = 'Olá'
+
+            // POR CLASSE
+                // window.document.getElementsByClassName()
+
+            // POR SELETOR
+                // querySelector()
+                // querySelectorAll()
+                // var p = window.document.querySelector('p#learn') // SE FOR ID É #, SE FOR CLASSE É .
+                // p.style.color = 'blue'
+        */                
+
+</script>
+</body>
+</html>

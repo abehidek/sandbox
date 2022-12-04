@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript - Module B Commands</title>
+    <style>
+        body{
+            background-color: rgb(154, 232, 235);
+            font-family: Arial;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello World!</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, asperiores accusantium soluta fugiat debitis repudiandae.</p>
+    <script>
+
+        /* ORDEM DE PRECEDÊNCIA DOS OPERADORES 
+            |
+            |   - Operadores Aritméticos
+            |       ()  (Parenteses)
+            |       **  (Potência)
+            |       * / % (Multiplicação, Divisão e Resto da Divisão Inteira)
+            |       + - (Adição e Subtração)
+            |
+            |   - Operadores Relacionais (não tem ordem de precedência, quem aparecer primeiro vai ser feito primeiro)
+            |
+            |   - Operadoes Lógicos
+            |       !
+            |       &&
+            |       ||
+            |
+            |   - Operadores Ternários 
+            V
+        
+        */
+        /* OPERADOR TERNÁRIO
+            teste lógico ? se for true : se for false
+        */
+        /* OPERADORES LÓGICOS
+
+            ! -> negação ("não")
+            && -> conjunção ("e")
+            || -> disjunção ("ou")
+
+            Ordem de precedência dos operadores lógicos
+            |   negação
+            |   conjunção
+            v   disjunção
+        */
+        /* OPERADORES RELACIONAIS 
+            5  > 2 -> true
+            7  < 4 -> false
+            8 >= 8 -> true
+            9 <= 7 -> false
+            5 == 5 -> true
+            4 != 4 -> false
+
+            == igualdade
+            5 == '5' -> true
+            === igualdade restrita
+            5 === '5' -> false
+
+            != desigualdade
+            5 != '5' -> false
+
+            !== desigualdade restrita
+            t !== '5' -> true
+        */
+        /* OPERADORES ARITMÉTICOS
+            5 + 2 = 7 (ADIÇÃO)
+            5 - 2 = 3 (SUBTRAÇÃO)
+            5 * 2 = 10 (MULTIPLICAÇÃO)
+            5 / 2 = 2.5 (DIVISÃO)
+            5 % 2 = 1 (RESTO DA DIVISÃO INTEIRA)
+            5 ** 2 = 25 (POTÊNCIA)
+
+            PARENTESES MUDAM A ORDEM DAS OPERAÇÕES LOGO
+            5 + 3 / 2 = 6.5
+            (5 + 3) / 2 = 4
+
+            PRECEDÊNCIA DAS OPERAÇÕES
+            |    () 
+            |    **
+            |    * / %
+            v    + -
+
+            -----------
+
+            x = x + 1 (AUTO INCREMENTO)
+            x += 1 
+            x++ (PÓS INCREMENTO)
+            ++x (PRÉ INCREMENTO)
+
+        */
+        /* FORMATING NUMBERS
+
+        var n1 = window.confirm("Type a number")
+        var n2 = window.confirm("Type another number")
+
+        NEED TO CONVERT STRING TO NUMBER BECAUSE:
+
+        STRING + STRING => CONCATENATION
+        NUMBER + NUMBER => SUM OF TWO NUMBERS
+        then:
+        
+        var n1 = Number(prompt("Type a number"))
+        var n2 = Number.parseInt(prompt("Type another number"))
+        var n3 = Number.parseFloat(prompt("Type another number"))
+        var s = n1 + n2 + n3
+
+            window.alert(`The sum of ${n1} and ${n2} equals to ` + s.toString)
+
+            or
+
+            window.alert(`The sum of ${n1} and ${n2} equals to ` + String(s))
+        
+        toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
+
+        var n1 = 1542.2
+        n1: 1542.2
+        n1.toFixed(2)
+        n1: 1542.20
+        n1.toFixed(2).replace('.',',')
+        n1: 1542,20
+        n1.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
+        n1: R$ 1542,2
+
+            var amount = window.prompt("Type an amount: ")
+            amount.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
+            document.write(`Your amount is: ${amount}`)
+        */
+        /* FORMATTING STRINGS
+
+        * string.lengh = lengh of the string
+
+            var nome = window.prompt("Type your name: ")
+            document.write(`Hello ${nome}, your name has ${nome.length} letters`) // LENGTH É UM ATRIBUTO DA VARIÁVEL STRING
+
+        string.toUpperCase() = transform string into uppercase
+        string.toLowerCaso() = transform string into lowercase
+
+            var nome = window.prompt("Type your name: ")
+            window.confirm("Are you sure that your name is " + nome + "?")
+            window.alert(`Then your name is ${nome.toLowerCase()} and the lengh of your name is ` + nome.length)
+        */  
+    </script>
+</body>
+</html>
