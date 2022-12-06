@@ -1,0 +1,31 @@
+_id: req_371724a86c334ba886d827a048c18381
+type: Request
+parentId: fld_b06046527cdb45828f1ae061fd679a2d
+modified: 1656375621967
+created: 1656374627675
+url: http://localhost:3000/api/projects
+name: removeProjectOwner
+description: ""
+method: PATCH
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"operation": "remove",
+    	"projectId": "62ba43d38d6a3711031a9521",
+    	"userId": "62b51f154dfd941e64bc98c6"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_a1c3c085e3b2442a8ad4b6eacd0e6560
+authentication: {}
+metaSortKey: -1656036792693
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

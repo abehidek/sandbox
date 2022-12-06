@@ -1,0 +1,29 @@
+_id: req_64b9470a899342b2884f8fbbad0a46d0
+type: Request
+parentId: fld_b06046527cdb45828f1ae061fd679a2d
+modified: 1656375613450
+created: 1656368970936
+url: http://localhost:3000/api/projects
+name: deleteProject
+description: ""
+method: DELETE
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"projectId": "62ba43fe8d6a3711031a9522"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_d1956c8d216545ceafe2d154861a7722
+authentication: {}
+metaSortKey: -1656368970936
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
