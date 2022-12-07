@@ -48,6 +48,8 @@
           pkgs.curl
           pkgs.libiconv
           pkgs.glibcLocales
+          # other tools
+          pkgs.sqlc
         ];
         shellHook = with pkgs; ''
           export PRISMA_MIGRATION_ENGINE_BINARY="${prisma-engines}/bin/migration-engine"
