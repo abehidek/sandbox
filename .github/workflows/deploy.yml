@@ -1,0 +1,45 @@
+name: Deploy
+on: [push]
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./astro/poc-deno-fs
+    permissions:
+      id-token: write # Needed for auth with Deno Deploy
+      contents: read # Needed to clone the repository
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6.0.2
+
+      # Not using npm? Change `npm ci` to `yarn install` or `pnpm i`
+      - name: Install dependencies
+        run: pnpm i
+
+      # Not using npm? Change `npm run build` to `yarn build` or `pnpm run build`
+      - name: Build Astro
+        run: pnpm run build
+
+      - name: Print files from CWD
+        run: ls -lah
+
+      - name: Upload to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: fs-deno-poc # TODO: replace with Deno Deploy project name
+          entrypoint: server/entry.mjs
+          root: astro/poc-deno-fs/dist
