@@ -8,7 +8,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "prebuild": "prisma db push",
+    "postinstall": "prisma generate --data-proxy"
   },
   "dependencies": {
     "@astrojs/deno": "^3.0.0",
