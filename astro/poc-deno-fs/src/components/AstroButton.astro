@@ -1,0 +1,16 @@
+---
+---
+
+<button class="alert" onclick="handleButton">Astro Button</button>
+
+<script>
+  // Find all buttons with the `alert` class on the page.
+  const buttons = document.querySelectorAll("button.alert");
+
+  // Handle clicks on each button.
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      alert("Astro Button was clicked!");
+    });
+  });
+</script>

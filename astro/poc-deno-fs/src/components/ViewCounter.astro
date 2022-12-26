@@ -1,0 +1,24 @@
+---
+import { prisma } from "../utils/prisma";
+
+export interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+
+const content = await prisma.contentViews.upsert({
+  where: { slug },
+  update: {
+    views: { increment: 1 },
+  },
+  create: {
+    slug,
+    views: 1,
+  },
+});
+---
+
+<div>
+  <p>Views: {content.views}</p>
+</div>

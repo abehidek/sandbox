@@ -1,0 +1,20 @@
+---
+import ViewCounter from "src/components/ViewCounter.astro";
+const { frontmatter } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Article</title>
+  </head>
+  <body>
+    <p>Article</p>
+    <ViewCounter slug={frontmatter.url} />
+    <slot />
+  </body>
+</html>
