@@ -1,4 +1,4 @@
-pub fn run() {
+pub fn _run() {
     // # variables and mutability
     // ## variables
     // by default, variables are immutable
