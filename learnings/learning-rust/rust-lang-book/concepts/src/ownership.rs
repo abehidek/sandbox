@@ -1,4 +1,4 @@
-pub fn run() {
+pub fn _run() {
     // most unique feature from this lang, enables memory safety guarantees without a gc, aborded topics will be: borrowing, slices and how rust lays data out in memory.
 
     /*
