@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { graphql } from "./__generated__/gql";
 
 const color = "#fff";
 
@@ -14,12 +15,14 @@ const styles = StyleSheet.create({
   },
 });
 
+const HELLO_WORLD = graphql(`
+  query hello {
+    hello
+  }
+`);
+
 export const Home: React.FC = () => {
-  const { loading, error, data } = useQuery(gql`
-    {
-      hello
-    }
-  `);
+  const { loading, error, data } = useQuery(HELLO_WORLD);
 
   if (loading)
     return (
@@ -38,7 +41,7 @@ export const Home: React.FC = () => {
   return (
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>
-      <Text>{JSON.stringify(data)}</Text>
+      <Text>{JSON.stringify(data.hello)}</Text>
     </View>
   );
 };
