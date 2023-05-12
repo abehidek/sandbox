@@ -1,20 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Home } from "./src/home";
+import { client } from "./src/client";
+import { ApolloProvider } from "@apollo/client";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <ApolloProvider client={client}>
+      <Home />
+    </ApolloProvider>
   );
 }
-
-const color = "#fff"
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: color,
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
