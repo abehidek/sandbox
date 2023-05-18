@@ -33,6 +33,7 @@ export type RootMutationTypeToggleTodoItemArgs = {
 export type RootQueryType = {
   __typename?: 'RootQueryType';
   hello?: Maybe<Scalars['String']>;
+  test?: Maybe<Scalars['String']>;
   todoItems: Array<Maybe<TodoItem>>;
 };
 
@@ -43,10 +44,10 @@ export type TodoItem = {
   isCompleted: Scalars['Boolean'];
 };
 
-export type HelloQueryVariables = Exact<{ [key: string]: never; }>;
+export type TodoItemsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HelloQuery = { __typename?: 'RootQueryType', hello?: string | null };
+export type TodoItemsQuery = { __typename?: 'RootQueryType', todoItems: Array<{ __typename?: 'TodoItem', id: string, content: string, isCompleted: boolean } | null> };
 
 
-export const HelloDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"hello"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hello"}}]}}]} as unknown as DocumentNode<HelloQuery, HelloQueryVariables>;
+export const TodoItemsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"todoItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"todoItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"isCompleted"}}]}}]}}]} as unknown as DocumentNode<TodoItemsQuery, TodoItemsQueryVariables>;

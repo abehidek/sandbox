@@ -39,6 +39,10 @@ defmodule ServerWeb.Schema do
       resolve(fn _, _ -> {:ok, "Hello World"} end)
     end
 
+    field :test, :string do
+      resolve(fn _, _ -> {:ok, "Hello Test"} end)
+    end
+
     field :todo_items, non_null(list_of(:todo_item)) do
       resolve(fn _, _ ->
         {:ok, Todos.list_todos()}
