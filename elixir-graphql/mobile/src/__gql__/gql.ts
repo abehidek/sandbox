@@ -13,7 +13,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query todoItems {\n    todoItems {\n      id content isCompleted\n    }\n  }\n": types.TodoItemsDocument,
+    "\n  query getTodoItems {\n    todoItems {\n      id content isCompleted\n    }\n  }\n": types.GetTodoItemsDocument,
+    "\n  mutation toggleTodoItem($id: ID!){\n    toggleTodoItem(id: $id) {\n      content id isCompleted\n    }\n  }\n": types.ToggleTodoItemDocument,
 };
 
 /**
@@ -33,7 +34,11 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query todoItems {\n    todoItems {\n      id content isCompleted\n    }\n  }\n"): (typeof documents)["\n  query todoItems {\n    todoItems {\n      id content isCompleted\n    }\n  }\n"];
+export function gql(source: "\n  query getTodoItems {\n    todoItems {\n      id content isCompleted\n    }\n  }\n"): (typeof documents)["\n  query getTodoItems {\n    todoItems {\n      id content isCompleted\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation toggleTodoItem($id: ID!){\n    toggleTodoItem(id: $id) {\n      content id isCompleted\n    }\n  }\n"): (typeof documents)["\n  mutation toggleTodoItem($id: ID!){\n    toggleTodoItem(id: $id) {\n      content id isCompleted\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

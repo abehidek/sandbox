@@ -14,4 +14,7 @@ module.exports = {
     sourceType: "module",
     ecmaVersion: "latest",
   },
+  rules: {
+    "react-native/no-inline-styles": "off",
+  },
 };

@@ -44,10 +44,18 @@ export type TodoItem = {
   isCompleted: Scalars['Boolean'];
 };
 
-export type TodoItemsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetTodoItemsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TodoItemsQuery = { __typename?: 'RootQueryType', todoItems: Array<{ __typename?: 'TodoItem', id: string, content: string, isCompleted: boolean } | null> };
+export type GetTodoItemsQuery = { __typename?: 'RootQueryType', todoItems: Array<{ __typename?: 'TodoItem', id: string, content: string, isCompleted: boolean } | null> };
+
+export type ToggleTodoItemMutationVariables = Exact<{
+  id: Scalars['ID'];
+}>;
 
 
-export const TodoItemsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"todoItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"todoItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"isCompleted"}}]}}]}}]} as unknown as DocumentNode<TodoItemsQuery, TodoItemsQueryVariables>;
+export type ToggleTodoItemMutation = { __typename?: 'RootMutationType', toggleTodoItem?: { __typename?: 'TodoItem', content: string, id: string, isCompleted: boolean } | null };
+
+
+export const GetTodoItemsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getTodoItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"todoItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"isCompleted"}}]}}]}}]} as unknown as DocumentNode<GetTodoItemsQuery, GetTodoItemsQueryVariables>;
+export const ToggleTodoItemDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"toggleTodoItem"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"toggleTodoItem"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"isCompleted"}}]}}]}}]} as unknown as DocumentNode<ToggleTodoItemMutation, ToggleTodoItemMutationVariables>;
