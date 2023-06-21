@@ -21,7 +21,7 @@ func main() {
 
 	kafkaMsgChan := make(chan *ckafka.Message)
 	configMap := &ckafka.ConfigMap{
-		"bootstrap.servers": "host.docker.internal:9094",
+		"bootstrap.servers": "0.0.0.0:9094",
 		"group.id":          "myGroup",
 		"auto.offset.reset": "earliest",
 	}
@@ -54,7 +54,7 @@ func main() {
 	}()
 
 	for res := range ordersOut {
-		output := transformer.TranformOutput(res)
+		output := transformer.TransformOutput(res)
 		outputJson, err := json.MarshalIndent(output, "", "  ")
 		fmt.Println(string(outputJson))
 		if err != nil {
