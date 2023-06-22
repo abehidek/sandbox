@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  db:
+    # This image automatically creates a replica set required for transactions
+    image: prismagraphql/mongo-single-replica:5.0.3
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: nest
+      INIT_WAIT_SEC: 3
+    ports:
+      - 27017:27017
