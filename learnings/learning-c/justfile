@@ -1,0 +1,8 @@
+watch:
+  watchexec -r -e c just run
+
+build:
+  cc src/*.c -o main
+
+run: build
+  ./main
