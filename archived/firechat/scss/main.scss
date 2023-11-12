@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+* {
+    margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background-color: #2E3440;
+    padding: 2rem;
+
+    h1 { color: white; }
+}
+
+.app {
+    margin-top: 2rem;
+    width: 60%;
+    height: 70vh;
+}
+
+.chat {
+    height: 100%;
+    width: 100%;
+    background-color:#3B4252;
+    border-radius: 1rem;
+    overflow-y: scroll;
+    padding: 1rem;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        li {
+            list-style: none;
+            width: 15rem;
+            height: auto;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            word-wrap: break-word;
+            display: flex;
+
+            .contentMessage { 
+                width: 70%;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+             }
+            .contentMessage span { font-weight: bold; }
+            .deleteMessage {
+                background-color: #BF616A;
+                display: flex;
+                align-items: center;
+                border-radius: 1rem;
+                height: 40px;
+                padding: 5px 10px;
+                margin-left: auto;
+                cursor: pointer;
+            }
+
+            * { max-width: 100%; }
+
+            &.receive { background-color: #5E81AC; }
+            &.sent { background-color: #B48EAD; margin-left: auto; }
+        }
+    }
+}
+
+.actions {
+    display: flex;
+    margin-top: 1rem;
+    gap: 1rem;
+
+    button {
+        width: 5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        outline: none;
+        border: 2px solid #D8DEE9;
+        background-color: #2E3440;
+        color: #D8DEE9;
+
+        &:hover {
+            background-color: #D8DEE9;
+            color: #2E3440;
+        }
+    }
+
+    input {
+        width: 60%;
+        outline: none;
+        border: 2px solid white;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+    }   
+}
+
+.disabled::-webkit-input-placeholder {
+    color: white;
+}
+
+@media only screen and (max-width: 900px) {
+    body { padding: 2rem 0.5rem; }
+    .app { width: 100%; }
+    .chat ul li { width: 100%; }
+}
