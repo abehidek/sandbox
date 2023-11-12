@@ -1,0 +1,20 @@
+{
+  "name": "tailwind-web-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "postcss ./src/styles.css -o ./docs/styles.css",
+    "production": "NODE_ENV=production postcss ./src/styles.css -o ./docs/styles.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.2.4",
+    "live-server": "^1.2.1",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.3",
+    "win-node-env": "^0.4.0"
+  }
+}

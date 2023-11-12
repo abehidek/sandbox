@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .social-icon {
+        @apply text-white;
+    }
+    .bio-title {
+        @apply text-4xl mb-8 sm:text-5xl xl:text-7xl font-medium lg:mb-16 text-primary;
+    }
+    .bio-text {
+        @apply text-sm sm:text-3xl mt-5 text-white font-light;
+    }
+    body {
+        @apply font-mainFont;
+    }
+    .main {
+        @apply bg-black;
+    }
+    .sub {
+        @apply px-12 py-20 lg:p-20 xl:pl-48 xl:pt-36 max-w-7xl;
+    }
+    .main2 {
+        @apply h-screen bg-secondary text-white pt-12 sm:pt-24 lg:p-20 xl:pt-48 xl:pl-48 flex-col;
+    }
+    .text-links {
+        @apply text-primary;
+    }
+    .social-menu {
+        @apply mt-10 sm:mt-20;
+    }
+
+    .social-menu ul li .fa:hover{
+        @apply text-primary;
+    }
+    .text-links:hover{
+        color: #cba5f3;
+    }
+    /* CHANGES THE SIZE OF THE SOCIAL MEDIA ICONS */
+    @media (min-width: 230px){
+        .social-icon {
+            @apply ml-0 mr-5;
+        }
+        .social-menu ul li .fa{
+        font-size: 20px;
+        }
+    }
+    @media (min-width: 350px) {
+        .social-menu ul li .fa{
+            font-size: 25px;
+        }
+        .social-icon {
+            @apply ml-0 mr-7;
+        }
+    }
+    @media (min-width: 640px) {
+        .social-menu ul li .fa{
+            font-size: 40px;
+        }
+    }
+    @media (min-width: 450px){
+        .social-icon {
+            @apply ml-0 mr-10;
+        }
+    }
+    /* MAKES SOCIAL MEDIA ICONS DISAPPEAR WHEN WIDTH < 260 */
+    @media (max-width:260px){
+        .social-menu {
+            display: none;
+        }
+    }
+    /* MAKES SECOND PART OF THE PAGE DISAPPEAR AND BODY BLACK WHEN WIDTH < 310 */
+    @media (max-width:310px){
+        body {
+            @apply bg-black;
+        } 
+        .main2 {
+            display: none;
+        }
+    }
+    /* MAKES HEIGHT THE SIZE OF THE SCREEN WHEN WIDTH > 310*/
+    @media (min-height:700px) and (min-width:740px) {
+        .main {
+            @apply h-screen;
+        }
+    }
+    /* THESE ONES CHANGES TEXT SIZE BASED ON WHAT IS THE SCREEN SIZE */
+    @media (min-height: 400px) and (min-width:310px) {
+        .bio-text {
+            @apply text-base sm:text-3xl mt-5;
+        }
+    }
+    @media (min-height: 620px) and (min-width:310px) {
+        .bio-text {
+            @apply text-xl sm:text-3xl mt-5;
+        }
+    }
+}
