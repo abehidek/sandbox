@@ -1,0 +1,16 @@
+---
+title: "Syncing your work through git and github"
+date: "April 15, 2022"
+type: "Snippet"
+description: "One of the most used gists probably, this teaches how to create a local git repository and then link it on a remote repository (github)."
+---
+
+```bash
+$ git init # this creates a new repository in your machine.
+$ echo "# A new repository" >> README.md # writes some text on README.md.
+$ git add README.md # adds all modifications to staging.
+$ git commit -m "First Commit" # Commit all modifications on stage with a message.
+$ git branch -M main # rename the master branch to main.
+$ git remote add origin https://github.com/abehidek/some-repo # add a remote repository labeled "origin".
+$ git push -u origin main # Pushes the main local branch to the remote repository.
+```
