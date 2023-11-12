@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "java"
+		},
+		{
+			"path": "python"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "java"
+	}
+}
